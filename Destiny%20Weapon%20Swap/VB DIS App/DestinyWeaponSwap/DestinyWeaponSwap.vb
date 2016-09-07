@@ -111,21 +111,12 @@
 
         'Select 3 Ramdom Guns for a poll. Do not include the last used gun
 Start:
-        Randomize()
-        txtRandomGun1.Text = Int((15 * Rnd()) + 1)
-        txtRandomGun2.Text = Int((15 * Rnd()) + 1)
-        txtRandomGun3.Text = Int((15 * Rnd()) + 1)
-        If txtRandomGun1.Text = txtRandomGun2.Text Then
+        txtRandomGun1.Text = Rand(1, 15)
+        txtRandomGun2.Text = Rand(1, 15)
+        txtRandomGun3.Text = Rand(1, 15)
+        If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
             GoTo Start
-        ElseIf txtRandomGun1.Text = txtRandomGun3.Text Then
-            GoTo Start
-        ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
-            GoTo Start
-        ElseIf txtRandomGun1.Text = txtLastGun.Text Then
-            GoTo Start
-        ElseIf txtRandomGun2.Text = txtLastGun.Text Then
-            GoTo Start
-        ElseIf txtRandomGun3.Text = txtLastGun.Text Then
+        ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
             GoTo Start
         End If
 
