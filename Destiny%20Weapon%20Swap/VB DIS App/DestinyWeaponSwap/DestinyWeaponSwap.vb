@@ -136,7 +136,7 @@
                 End If
                 looper = True
             End If
-        Looper while looper
+        Loop while looper
 
         'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
         Select Case txtRandomGun1.Text
