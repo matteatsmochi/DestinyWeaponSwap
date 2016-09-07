@@ -556,9 +556,9 @@
 
     End Sub
 
-    Private Function Rand(lowerbound As Integer, upperbound As Integer)
+    Private Function Rand(lowerbound As Integer, upperbound As Integer) As Integer
         Randomize()
-        Rand = CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+        Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
     End Function
     
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
