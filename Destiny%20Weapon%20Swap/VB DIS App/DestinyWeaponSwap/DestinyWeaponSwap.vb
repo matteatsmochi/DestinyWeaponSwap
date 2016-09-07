@@ -178,7 +178,7 @@ Start:
                 lblWeaponName2.Text = "Hawkmoon"
             Case 3
                 picWeapon2.Image = picW3.Image
-                lblWeaponName1.Text = "LastWord"
+                lblWeaponName2.Text = "LastWord"
             Case 4
                 picWeapon2.Image = picW4.Image
                 lblWeaponName2.Text = "MIDA"
