@@ -548,6 +548,7 @@ Start:
     End Sub
 
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
+        Randomize()
         Dim randomValue As Integer
         Dim upperbound As Integer = 2
         Dim lowerbound As Integer = 1
