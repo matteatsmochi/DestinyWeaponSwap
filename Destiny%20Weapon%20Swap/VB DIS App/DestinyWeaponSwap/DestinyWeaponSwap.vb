@@ -108,17 +108,35 @@
     End Sub
 
     Private Sub RandomWeapons()
-
+        Dim looper as Boolean
         'Select 3 Ramdom Guns for a poll. Do not include the last used gun
-Start:
+
         txtRandomGun1.Text = Rand(1, 15)
         txtRandomGun2.Text = Rand(1, 15)
         txtRandomGun3.Text = Rand(1, 15)
-        If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
-            GoTo Start
-        ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
-            GoTo Start
-        End If
+        
+        Do
+            looper = false
+            If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
+                if txtRandomGun1.Text = txtRandomGun2.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
+                    txtRandomGun2.Text = Rand(1, 15)
+                ElseIf txtRandomGun1.Text = txtRandomGune3.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                End If
+                looper = True
+            ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
+                if txtRandomGun1.Text = txtLastGun.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                ElseIf txtRandomGun2.Text = txtLastGun.Text Then
+                    txtRandomGun2.Text = Rand(1, 15)
+                ElseIf txtRandomGun3.Text = txtLastGun.Text Then
+                    txtRandomGun3.Text = Rand(1, 15)
+                End If
+                looper = True
+            End If
+        Looper while looper
 
         'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
         Select Case txtRandomGun1.Text
