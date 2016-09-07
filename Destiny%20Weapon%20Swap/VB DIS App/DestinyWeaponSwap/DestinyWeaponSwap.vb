@@ -548,15 +548,40 @@ Start:
     End Sub
 
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
+        Dim randomValue As Integer
+        Dim upperbound As Integer = 2
+        Dim lowerbound As Integer = 1
+
         If txtVoteCountdown.Text = 0 Then
-            'Vote is over. Declair winner
+            'Vote is over. Declare winner
             'Check who had the most votes. Move that to txtLastHero.text
-            If txtVote1.Text >= txtVote2.Text And txtVote1.Text >= txtVote3.Text Then
+            If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun1.Text
-            ElseIf txtVote2.Text >= txtVote1.Text And txtVote2.Text >= txtVote3.Text Then
+            ElseIf txtVote2.Text > txtVote1.Text And txtVote2.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun2.Text
-            ElseIf txtVote3.Text >= txtVote1.Text And txtVote3.Text >= txtVote2.Text Then
+            ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
                 txtLastGun.Text = txtRandomGun3.Text
+            ElseIf txtVote1.Text = txtVote2.Text Then 'Check for ties
+                randomValue = CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun1.Text
+                Else
+                    txtLastGun.Text = txtRandomGun2.Text
+                End If
+            ElseIf txtVote1.Text = txtVote3.Text Then
+                randomValue = CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun1.Text
+                Else
+                    txtLastGun.Text = txtRandomGun3.Text
+                End If
+            ElseIf txtVote2.Text = txtVote3.Text Then
+                randomValue = CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun2.Text
+                Else
+                    txtLastGun.Text = txtRandomGun3.Text
+                End If
             End If
 
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
