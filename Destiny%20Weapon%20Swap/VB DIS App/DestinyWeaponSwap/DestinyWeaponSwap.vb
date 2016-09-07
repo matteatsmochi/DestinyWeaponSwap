@@ -551,6 +551,7 @@ Start:
         Randomize()
         Rand = CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
     End Function
+    
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
         Dim randomValue As Integer
 
@@ -597,7 +598,7 @@ Start:
             End If
 
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
-                txtLastGun.Text = Rand(0, 14)
+                txtLastGun.Text = Rand(1, 14)
 
                 UpDown() 'send all voting options down
                 SlotToLocation() 'set up location for slot of gun to send
