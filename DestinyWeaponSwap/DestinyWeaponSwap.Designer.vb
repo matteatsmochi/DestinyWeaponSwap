@@ -1013,7 +1013,7 @@ Partial Class frmDestinyWeaponSwap
         'picBackground
         '
         Me.picBackground.BackColor = System.Drawing.Color.DimGray
-        Me.picBackground.Location = New System.Drawing.Point(216, 645)
+        Me.picBackground.Location = New System.Drawing.Point(216, 0)
         Me.picBackground.Name = "picBackground"
         Me.picBackground.Size = New System.Drawing.Size(337, 680)
         Me.picBackground.TabIndex = 115

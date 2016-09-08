@@ -8,20 +8,13 @@ Public Class frmDestinyWeaponSwap
 
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        picSwapPlate.Top = 0
-        picSwapPlate.Left = 0
-        picWeapon1.Left = 2
-        picWeapon1.Top = 89
-        picWeapon2.Left = 2
-        picWeapon2.Top = 275
-        picBackground.Left = 216
-        picBackground.Top = 0
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
         UpDown()
+        RandomWeapons()
     End Sub
     Private Sub FocusDIM()
         MouseMover1(451, 13)
@@ -73,7 +66,7 @@ Public Class frmDestinyWeaponSwap
         tmrVote.Enabled = True 'Vote only lasts during this duration
         RandomWeapons() 'Mix up all guns
         UpDown() 'Move up all voting options into visible field
-        My.Computer.Audio.Play(My.Resources.Que03, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.Cue03, AudioPlayMode.Background)
     End Sub
     Private Sub RandomWeapons()
         Dim looper As Boolean
@@ -298,14 +291,7 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -326,14 +312,7 @@ Public Class frmDestinyWeaponSwap
         StartVote()
     End Sub
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         If txtCheckYes.Text = 10 Then
             'Player did respawn. Start the new vote & reset.
@@ -365,14 +344,7 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         If txtCheckYes.Text = 10 Then
             'Hero did die. Switch Weapons
@@ -385,7 +357,7 @@ Public Class frmDestinyWeaponSwap
             txt3Strikes.Text += 1
 
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Que01, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
                 FocusDIM()
                 MouseMover1(379, 123) 'reload DIM
@@ -416,40 +388,9 @@ Public Class frmDestinyWeaponSwap
 
         FocusDIM()
 
-        My.Computer.Audio.Play(My.Resources.Que02, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
 
-        Select Case txtWinnerLocation.Text
-            Case 1
-                SendSlot1()
-            Case 2
-                SendSlot2()
-            Case 3
-                SendSlot3()
-            Case 4
-                SendSlot4()
-            Case 5
-                SendSlot5()
-            Case 6
-                SendSlot6()
-            Case 7
-                SendSlot7()
-            Case 8
-                SendSlot8()
-            Case 9
-                SendSlot9()
-            Case 10
-                SendSlot10()
-            Case 11
-                SendSlot11()
-            Case 12
-                SendSlot12()
-            Case 13
-                SendSlot13()
-            Case 14
-                SendSlot14()
-            Case 15
-                SendSlot15()
-        End Select
+        SendSlot(txtWinnerLocation.Text)
 
         txtLocationOnDeck.Text = txtWinnerLocation.Text
 
@@ -459,50 +400,8 @@ Public Class frmDestinyWeaponSwap
     Private Sub cmdSendNew_Click(sender As Object, e As EventArgs) Handles cmdSendNew.Click
         SendNew()
     End Sub
-    Private Sub SendSlot1()
-        MouseMover2(216, 172, 145, 230)
-    End Sub
-    Private Sub SendSlot2()
-        MouseMover2(216, 172, 145, 260)
-    End Sub
-    Private Sub SendSlot3()
-        MouseMover2(216, 172, 145, 290)
-    End Sub
-    Private Sub SendSlot4()
-        MouseMover2(216, 172, 145, 315)
-    End Sub
-    Private Sub SendSlot5()
-        MouseMover2(216, 172, 145, 345)
-    End Sub
-    Private Sub SendSlot6()
-        MouseMover2(216, 172, 145, 370)
-    End Sub
-    Private Sub SendSlot7()
-        MouseMover2(216, 172, 145, 400)
-    End Sub
-    Private Sub SendSlot8()
-        MouseMover2(216, 172, 145, 430)
-    End Sub
-    Private Sub SendSlot9()
-        MouseMover2(216, 172, 145, 455)
-    End Sub
-    Private Sub SendSlot10()
-        MouseMover2(216, 172, 145, 485)
-    End Sub
-    Private Sub SendSlot11()
-        MouseMover2(216, 172, 145, 510)
-    End Sub
-    Private Sub SendSlot12()
-        MouseMover2(216, 172, 145, 540)
-    End Sub
-    Private Sub SendSlot13()
-        MouseMover2(216, 172, 145, 570)
-    End Sub
-    Private Sub SendSlot14()
-        MouseMover2(216, 172, 145, 600)
-    End Sub
-    Private Sub SendSlot15()
-        MouseMover2(216, 172, 145, 630)
+    Private Sub SendSlot(i As Integer)
+        MouseMover2(216, 172, 145, 230 + (i * 30) - 30)
     End Sub
     Private Sub MouseMover1(x1 As Integer, y1 As Integer)
         Me.Cursor = New Cursor(Cursor.Current.Handle)
@@ -528,7 +427,16 @@ Public Class frmDestinyWeaponSwap
         mouse_event(&H4, 0, 0, 0, 1)
         System.Threading.Thread.Sleep(200)
     End Sub
-
+    Private Sub CheckPixels()
+        'Checking 1 pixel at the center of the right screen
+        Dim a As New Drawing.Bitmap(1, 1)
+        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
+        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
+        Dim c As Drawing.Color = a.GetPixel(0, 0)
+        picReticleColor.BackColor = c
+        txtReticleColor.Text = picReticleColor.BackColor.Name
+        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+    End Sub
     Private Sub cmdManualAuto_Click(sender As Object, e As EventArgs) Handles cmdManualAuto.Click
         If cmdManualAuto.Text = "Manual" Then
             txt3Strikes.Text = "15"
