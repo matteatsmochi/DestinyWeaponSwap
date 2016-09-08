@@ -291,14 +291,7 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -319,14 +312,7 @@ Public Class frmDestinyWeaponSwap
         StartVote()
     End Sub
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         If txtCheckYes.Text = 10 Then
             'Player did respawn. Start the new vote & reset.
@@ -358,14 +344,7 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        CheckPixels()
 
         If txtCheckYes.Text = 10 Then
             'Hero did die. Switch Weapons
@@ -447,5 +426,15 @@ Public Class frmDestinyWeaponSwap
         mouse_event(&H2, 0, 0, 0, 1)
         mouse_event(&H4, 0, 0, 0, 1)
         System.Threading.Thread.Sleep(200)
+    End Sub
+    Private Sub CheckPixels()
+        'Checking 1 pixel at the center of the right screen
+        Dim a As New Drawing.Bitmap(1, 1)
+        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
+        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
+        Dim c As Drawing.Color = a.GetPixel(0, 0)
+        picReticleColor.BackColor = c
+        txtReticleColor.Text = picReticleColor.BackColor.Name
+        'txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
     End Sub
 End Class
