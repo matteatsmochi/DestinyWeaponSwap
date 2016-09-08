@@ -608,23 +608,14 @@
 
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
                 txtLastGun.Text = Rand(1, 14)
-
-                UpDown() 'send all voting options down
-                SlotToLocation() 'set up location for slot of gun to send
-                SendNew() 'send over the new gun
-                txtVoteCountdown.Text = "45" 'reset voting countdown timer
-                tmrVote.Enabled = False 'stop counting down
-                tmrReticleCheck.Enabled = True 'start watching again
-
-            Else
-                UpDown() 'send all voting options down
-                SlotToLocation() 'set up location for slot of gun to send
-                SendNew() 'send over the new gun
-                txtVoteCountdown.Text = "45" 'reset voting countdown timer
-                tmrVote.Enabled = False 'stop counting down
-                tmrReticleCheck.Enabled = True 'start watching again
             End If
-
+            
+            UpDown() 'send all voting options down
+            SlotToLocation() 'set up location for slot of gun to send
+            SendNew() 'send over the new gun
+            txtVoteCountdown.Text = "45" 'reset voting countdown timer
+            tmrVote.Enabled = False 'stop counting down
+            tmrReticleCheck.Enabled = True 'start watching again
 
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
