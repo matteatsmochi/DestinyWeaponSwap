@@ -11,12 +11,25 @@
         If txtPass.Text <> "" Or txtNick.Text <> "" Then
             OAuth = txtPass.Text
             Username = txtNick.Text
+            txtChat.Text += "Starting to connect to twitch as " + Username + "." & vbCrLf
             Info.NickName = Username
             Info.Password = OAuth
             Info.UserName = Username
             Client.Connect(Server, False, Info)
         Else
-            txtChat.Text += "Nick or password is blank." & vbCrLf
+            SetText("Nick or password is blank." & vbCrLf)
         End If
     End Sub
+    Private Sub Connected(sender As Object, e As EventArgs) Handles Client.Connected
+        SetText("Connected to twitch." & vbCrLf)
+    End Sub
+    Private Sub SetText(ByVal [text] As String)
+        If Me.txtChat.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetText)
+            Me.Invoke(d, New Object() {[text]})
+        Else
+            Me.txtChat.Text += [text]
+        End If
+    End Sub
+    Delegate Sub SetTextCallback(ByVal [text] As String)
 End Class
