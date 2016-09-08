@@ -414,7 +414,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW3.Name = "txtLocationW3"
         Me.txtLocationW3.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW3.TabIndex = 71
-        Me.txtLocationW3.Text = "11"
+        Me.txtLocationW3.Text = "3"
         '
         'txtLocationW4
         '
@@ -422,7 +422,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW4.Name = "txtLocationW4"
         Me.txtLocationW4.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW4.TabIndex = 72
-        Me.txtLocationW4.Text = "3"
+        Me.txtLocationW4.Text = "4"
         '
         'txtLocationW5
         '
@@ -430,7 +430,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW5.Name = "txtLocationW5"
         Me.txtLocationW5.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW5.TabIndex = 73
-        Me.txtLocationW5.Text = "16"
+        Me.txtLocationW5.Text = "5"
         '
         'txtLocationW6
         '
@@ -438,7 +438,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW6.Name = "txtLocationW6"
         Me.txtLocationW6.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW6.TabIndex = 74
-        Me.txtLocationW6.Text = "4"
+        Me.txtLocationW6.Text = "6"
         '
         'txtLocationW7
         '
@@ -446,7 +446,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW7.Name = "txtLocationW7"
         Me.txtLocationW7.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW7.TabIndex = 75
-        Me.txtLocationW7.Text = "17"
+        Me.txtLocationW7.Text = "7"
         '
         'txtLocationW8
         '
@@ -454,7 +454,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW8.Name = "txtLocationW8"
         Me.txtLocationW8.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW8.TabIndex = 76
-        Me.txtLocationW8.Text = "13"
+        Me.txtLocationW8.Text = "9"
         '
         'txtLocationW9
         '
@@ -462,7 +462,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW9.Name = "txtLocationW9"
         Me.txtLocationW9.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW9.TabIndex = 77
-        Me.txtLocationW9.Text = "24"
+        Me.txtLocationW9.Text = "10"
         '
         'txtLocationW10
         '
@@ -470,7 +470,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW10.Name = "txtLocationW10"
         Me.txtLocationW10.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW10.TabIndex = 78
-        Me.txtLocationW10.Text = "28"
+        Me.txtLocationW10.Text = "11"
         '
         'txtLocationW11
         '
@@ -478,7 +478,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW11.Name = "txtLocationW11"
         Me.txtLocationW11.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW11.TabIndex = 79
-        Me.txtLocationW11.Text = "5"
+        Me.txtLocationW11.Text = "8"
         '
         'txtLocationW12
         '
@@ -494,7 +494,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW13.Name = "txtLocationW13"
         Me.txtLocationW13.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW13.TabIndex = 81
-        Me.txtLocationW13.Text = "25"
+        Me.txtLocationW13.Text = "13"
         '
         'txtLocationW14
         '
@@ -502,7 +502,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW14.Name = "txtLocationW14"
         Me.txtLocationW14.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW14.TabIndex = 82
-        Me.txtLocationW14.Text = "9"
+        Me.txtLocationW14.Text = "14"
         '
         'txtLocationW15
         '
@@ -510,7 +510,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW15.Name = "txtLocationW15"
         Me.txtLocationW15.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW15.TabIndex = 83
-        Me.txtLocationW15.Text = "31"
+        Me.txtLocationW15.Text = "R"
         '
         'txtLocationW16
         '
@@ -518,6 +518,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW16.Name = "txtLocationW16"
         Me.txtLocationW16.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW16.TabIndex = 84
+        Me.txtLocationW16.Visible = False
         '
         'txtLocationW17
         '
@@ -525,6 +526,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW17.Name = "txtLocationW17"
         Me.txtLocationW17.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW17.TabIndex = 85
+        Me.txtLocationW17.Visible = False
         '
         'txtLocationW18
         '
@@ -532,6 +534,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW18.Name = "txtLocationW18"
         Me.txtLocationW18.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW18.TabIndex = 86
+        Me.txtLocationW18.Visible = False
         '
         'txtLocationW19
         '
@@ -539,6 +542,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW19.Name = "txtLocationW19"
         Me.txtLocationW19.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW19.TabIndex = 87
+        Me.txtLocationW19.Visible = False
         '
         'cmdSendNew
         '
@@ -900,6 +904,7 @@ Partial Class frmDestinyWeaponSwap
         Me.picW16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picW16.TabIndex = 63
         Me.picW16.TabStop = False
+        Me.picW16.Visible = False
         '
         'picW17
         '
@@ -911,6 +916,7 @@ Partial Class frmDestinyWeaponSwap
         Me.picW17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picW17.TabIndex = 48
         Me.picW17.TabStop = False
+        Me.picW17.Visible = False
         '
         'picW18
         '
@@ -922,6 +928,7 @@ Partial Class frmDestinyWeaponSwap
         Me.picW18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picW18.TabIndex = 56
         Me.picW18.TabStop = False
+        Me.picW18.Visible = False
         '
         'picW19
         '
@@ -933,6 +940,7 @@ Partial Class frmDestinyWeaponSwap
         Me.picW19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picW19.TabIndex = 49
         Me.picW19.TabStop = False
+        Me.picW19.Visible = False
         '
         'picW2
         '
@@ -1077,6 +1085,7 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.picWeapon2)
         Me.Controls.Add(Me.picWeapon1)
         Me.Controls.Add(Me.picSwapPlate)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Name = "frmDestinyWeaponSwap"
         Me.Text = "Destiny Weapon Swap"

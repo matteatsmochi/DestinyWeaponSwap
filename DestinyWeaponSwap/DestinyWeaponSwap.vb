@@ -105,7 +105,7 @@ Public Class frmDestinyWeaponSwap
             End If
         Loop While looper
 
-        'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
+        'Based on number, place Weapon Image and Name into picWeapon and lblWeaponName for all 3 Weapons
         For i = 0 To 2
             j = Int(txtWeapons(i).Text) - 1
             picWeapons(i).Image = picAllWeapons(j).Image
@@ -250,7 +250,7 @@ Public Class frmDestinyWeaponSwap
 
         If txtVoteCountdown.Text = 0 Then
             'Vote is over. Declare winner
-            'Check who had the most votes. Move that to txtLastHero.text
+            'Check who had the most votes. Move that to txtLastWeapon.text
             If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun1.Text
             ElseIf txtVote2.Text > txtVote1.Text And txtVote2.Text > txtVote3.Text Then
@@ -303,7 +303,7 @@ Public Class frmDestinyWeaponSwap
         Dim c As Drawing.Color = a.GetPixel(0, 0)
         picReticleColor.BackColor = c
         txtReticleColor.Text = picReticleColor.BackColor.Name
-        'txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
 
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -334,7 +334,7 @@ Public Class frmDestinyWeaponSwap
         txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
 
         If txtCheckYes.Text = 10 Then
-            'Hero did respawn. Start the new vote & reset.
+            'Player did respawn. Start the new vote & reset.
 
             txtCheckNo.Text = "10"
             txtCheckYes.Text = "0"
@@ -348,7 +348,7 @@ Public Class frmDestinyWeaponSwap
             End If
 
         ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Hero did not respawn. Reset & Keep waiting.
+            'false positive. Player did not respawn. Reset & Keep waiting.
             txtCheckNo.Text = "10"
             txtCheckYes.Text = "0"
             tmrSpawnCheck.Enabled = False
@@ -390,7 +390,7 @@ Public Class frmDestinyWeaponSwap
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Hero did not die. Reset & Keep waiting.
+            'false positive. Player did not die. Reset & Keep waiting.
             tmrDeathCheck.Enabled = False
             txtCheckNo.Text = "10"
             txtCheckYes.Text = "0"
@@ -409,8 +409,8 @@ Public Class frmDestinyWeaponSwap
         txtMouseLoc.Text = MPx.ToString
     End Sub
     Private Sub SendNew()
-        'AutoHotKey Macros to switch heros in game - to be used on death screen
-        'Checks what Hero was last voted for (txtLastHero.text)
+        'Send clicks to switch Weapons in game - to be used on death screen
+        'Checks what Weapon was last voted for (txtLastWeapon.text)
 
         FocusDIM()
 
@@ -458,49 +458,49 @@ Public Class frmDestinyWeaponSwap
         SendNew()
     End Sub
     Private Sub SendSlot1()
-        MouseMover1(145, 230)
+        MouseMover2(216, 172, 145, 230)
     End Sub
     Private Sub SendSlot2()
-        MouseMover1(145, 260)
+        MouseMover2(216, 172, 145, 260)
     End Sub
     Private Sub SendSlot3()
-        MouseMover1(145, 290)
+        MouseMover2(216, 172, 145, 290)
     End Sub
     Private Sub SendSlot4()
-        MouseMover1(145, 315)
+        MouseMover2(216, 172, 145, 315)
     End Sub
     Private Sub SendSlot5()
-        MouseMover1(145, 345)
+        MouseMover2(216, 172, 145, 345)
     End Sub
     Private Sub SendSlot6()
-        MouseMover1(145, 370)
+        MouseMover2(216, 172, 145, 370)
     End Sub
     Private Sub SendSlot7()
-        MouseMover1(145, 400)
+        MouseMover2(216, 172, 145, 400)
     End Sub
     Private Sub SendSlot8()
-        MouseMover1(145, 430)
+        MouseMover2(216, 172, 145, 430)
     End Sub
     Private Sub SendSlot9()
-        MouseMover1(145, 455)
+        MouseMover2(216, 172, 145, 455)
     End Sub
     Private Sub SendSlot10()
-        MouseMover1(145, 485)
+        MouseMover2(216, 172, 145, 485)
     End Sub
     Private Sub SendSlot11()
-        MouseMover1(145, 510)
+        MouseMover2(216, 172, 145, 510)
     End Sub
     Private Sub SendSlot12()
-        MouseMover1(145, 540)
+        MouseMover2(216, 172, 145, 540)
     End Sub
     Private Sub SendSlot13()
-        MouseMover1(145, 570)
+        MouseMover2(216, 172, 145, 570)
     End Sub
     Private Sub SendSlot14()
-        MouseMover1(145, 600)
+        MouseMover2(216, 172, 145, 600)
     End Sub
     Private Sub SendSlot15()
-        MouseMover1(145, 630)
+        MouseMover2(216, 172, 145, 630)
     End Sub
     Private Sub MouseMover1(x1 As Integer, y1 As Integer)
         Me.Cursor = New Cursor(Cursor.Current.Handle)
