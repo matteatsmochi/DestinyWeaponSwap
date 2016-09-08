@@ -242,8 +242,6 @@ Public Class frmDestinyWeaponSwap
         Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
     End Function
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
-        Dim randomValue As Integer
-
         If txtVoteCountdown.Text = 0 Then
             'Vote is over. Declare winner
             'Check who had the most votes. Move that to txtLastWeapon.text
@@ -253,53 +251,52 @@ Public Class frmDestinyWeaponSwap
                 txtLastGun.Text = txtRandomGun2.Text
             ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
                 txtLastGun.Text = txtRandomGun3.Text
-            ElseIf txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
-                randomValue = Rand(0, 2)
-                txtLastGun.Text = txtWeapons(randomValue).Text
-            ElseIf txtVote1.Text = txtVote2.Text Then
-                randomValue = Rand(0, 1)
-                txtLastGun.Text = txtWeapons(randomValue).Text
-            ElseIf txtVote1.Text = txtVote3.Text Then
-                randomValue = Rand(1, 2)
-                If randomValue = 1 Then
-                    txtLastGun.Text = txtRandomGun1.Text
-                Else
-                    txtLastGun.Text = txtRandomGun3.Text
-                End If
-            ElseIf txtVote2.Text = txtVote3.Text Then
-                randomValue = Rand(1, 2)
-                txtLastGun.Text = txtWeapons(randomValue).Text
             End If
-
+            CheckForTies()
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
                 txtLastGun.Text = Rand(1, 14)
             End If
-
             UpDown() 'send all voting options down
             SlotToLocation() 'set up location for slot of gun to send
             SendNew() 'send over the new gun
             txtVoteCountdown.Text = "45" 'reset voting countdown timer
             tmrVote.Enabled = False 'stop counting down
             tmrReticleCheck.Enabled = True 'start watching again
-
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
             YesNoReticleDeathSpawnStatus(False, False, False)
         End If
     End Sub
+    Private Sub CheckForTies()
+        Dim randomValue As Integer
+        If txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
+            randomValue = Rand(0, 2)
+            txtLastGun.Text = txtWeapons(randomValue).Text
+        ElseIf txtVote1.Text = txtVote2.Text Then
+            randomValue = Rand(0, 1)
+            txtLastGun.Text = txtWeapons(randomValue).Text
+        ElseIf txtVote1.Text = txtVote3.Text Then
+            randomValue = Rand(1, 2)
+            If randomValue = 1 Then
+                txtLastGun.Text = txtRandomGun1.Text
+            Else
+                txtLastGun.Text = txtRandomGun3.Text
+            End If
+        ElseIf txtVote2.Text = txtVote3.Text Then
+            randomValue = Rand(1, 2)
+            txtLastGun.Text = txtWeapons(randomValue).Text
+        End If
+    End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
         CheckPixels()
-
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
-            If txtPlayerStatus.Text <> "Dead" Then
-                'Just died- Run spawn check
+            If txtPlayerStatus.Text <> "Dead" Then 'Just died- Run spawn check
                 tmrReticleCheck.Enabled = False
                 tmrDeathCheck.Enabled = True
             End If
         Else
-            If txtPlayerStatus.Text <> "Alive" Then
-                'Just spawned- Run death check
+            If txtPlayerStatus.Text <> "Alive" Then 'Just spawned- Run death check
                 tmrReticleCheck.Enabled = False
                 tmrSpawnCheck.Enabled = True
             End If
@@ -310,21 +307,15 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
         CheckPixels()
-
-        If txtCheckYes.Text = 10 Then
-            'Player did respawn. Start the new vote & reset.
+        If txtCheckYes.Text = 10 Then 'Player did respawn. Start the new vote & reset.
             YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False, "Alive")
-
             If txt3Strikes.Text = 4 Then
                 StartVote()
                 txt3Strikes.Text = 0
             End If
-
-        ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Player did not respawn. Reset & Keep waiting.
+        ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not respawn. Reset & Keep waiting.
             YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False)
-        Else
-            'expecting to see NO white. If we do, return No
+        Else 'expecting to see NO white. If we do, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckNo.Text = txtCheckNo.Text - 1
             Else
