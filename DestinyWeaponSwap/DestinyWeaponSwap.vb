@@ -280,7 +280,7 @@ Public Class frmDestinyWeaponSwap
 
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
-            YesNoReticleDeathSpawnStatus(False, False, False, txtPlayerStatus.Text)
+            YesNoReticleDeathSpawnStatus(False, False, False)
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
@@ -318,7 +318,7 @@ Public Class frmDestinyWeaponSwap
 
         ElseIf txtCheckNo.Text = 0 Then
             'false positive. Player did not respawn. Reset & Keep waiting.
-            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False, txtPlayerStatus.Text)
+            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False)
         Else
             'expecting to see NO white. If we do, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -341,7 +341,7 @@ Public Class frmDestinyWeaponSwap
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
-            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, txtPlayerStatus.Text)
+            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled)
         Else 'expecting to see red. If we dont, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckYes.Text += 1
@@ -350,8 +350,10 @@ Public Class frmDestinyWeaponSwap
             End If
         End If
     End Sub
-    Private Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, status As String)
-        txtPlayerStatus.Text = status
+    Public Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, Optional ByVal status As String = "")
+        If status <> "" Then
+            txtPlayerStatus.Text = status
+        End If
         txtCheckYes.Text = "0"
         txtCheckNo.Text = "10"
         tmrReticleCheck.Enabled = reticle
