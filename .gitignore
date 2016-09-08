@@ -47,9 +47,14 @@ Temporary Items
 .apdisk
 
 #VB.Net
-DestinyWeaponSwap/bin
-DestinyWeaponSwap/obj
+[Bb]in/
+[Oo]bj/
+!/lib
 *.user
 *.suo
 _ReSharper.*
 *.sln.cache
+*.xap
+*.vspcc
+*.vscc 
+*.vssscc
