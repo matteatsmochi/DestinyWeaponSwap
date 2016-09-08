@@ -280,9 +280,7 @@ Public Class frmDestinyWeaponSwap
 
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
-            YesNoReticle(False)
-            tmrDeathCheck.Enabled = False
-            tmrSpawnCheck.Enabled = False
+            YesNoReticleDeathSpawnStatus(False, False, False, txtPlayerStatus.Text)
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
@@ -311,9 +309,7 @@ Public Class frmDestinyWeaponSwap
 
         If txtCheckYes.Text = 10 Then
             'Player did respawn. Start the new vote & reset.
-            YesNoReticle(True)
-            txtPlayerStatus.Text = "Alive"
-            tmrSpawnCheck.Enabled = False
+            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False, "Alive")
 
             If txt3Strikes.Text = 4 Then
                 StartVote()
@@ -322,8 +318,7 @@ Public Class frmDestinyWeaponSwap
 
         ElseIf txtCheckNo.Text = 0 Then
             'false positive. Player did not respawn. Reset & Keep waiting.
-            YesNoReticle(True)
-            tmrSpawnCheck.Enabled = False
+            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False, txtPlayerStatus.Text)
         Else
             'expecting to see NO white. If we do, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -336,9 +331,7 @@ Public Class frmDestinyWeaponSwap
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
         CheckPixels()
         If txtCheckYes.Text = 10 Then 'Guardian did die. Switch Weapons
-            tmrDeathCheck.Enabled = False
-            YesNoReticle(True)
-            txtPlayerStatus.Text = "Dead"
+            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, "Dead")
             txt3Strikes.Text += 1
             If txt3Strikes.Text = 0 Then
                 My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
@@ -348,8 +341,7 @@ Public Class frmDestinyWeaponSwap
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
-            tmrDeathCheck.Enabled = False
-            YesNoReticle(True)
+            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, txtPlayerStatus.Text)
         Else 'expecting to see red. If we dont, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckYes.Text += 1
@@ -358,10 +350,13 @@ Public Class frmDestinyWeaponSwap
             End If
         End If
     End Sub
-    Private Sub YesNoReticle(reticle As Boolean)
+    Private Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, status As String)
+        txtPlayerStatus.Text = status
         txtCheckYes.Text = "0"
         txtCheckNo.Text = "10"
         tmrReticleCheck.Enabled = reticle
+        tmrDeathCheck.Enabled = death
+        tmrSpawnCheck.Enabled = spawn
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tmrMouseLoc.Tick
         Dim MPx As Point = MousePosition()
