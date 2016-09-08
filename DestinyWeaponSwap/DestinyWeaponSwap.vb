@@ -16,6 +16,10 @@ Public Class frmDestinyWeaponSwap
         UpDown()
         RandomWeapons()
     End Sub
+    Private Sub ReloadDIM()
+        FocusDIM()
+        MouseMover1(379, 123)
+    End Sub
     Private Sub FocusDIM()
         MouseMover1(451, 13)
     End Sub
@@ -336,8 +340,7 @@ Public Class frmDestinyWeaponSwap
             If txt3Strikes.Text = 0 Then
                 My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
-                FocusDIM()
-                MouseMover1(379, 123) 'reload DIM
+                ReloadDim()
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
@@ -350,7 +353,7 @@ Public Class frmDestinyWeaponSwap
             End If
         End If
     End Sub
-    Public Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, Optional ByVal status As String = "")
+    Private Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, Optional ByVal status As String = "")
         If status <> "" Then
             txtPlayerStatus.Text = status
         End If
