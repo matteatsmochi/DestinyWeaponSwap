@@ -420,179 +420,33 @@ Public Class frmDestinyWeaponSwap
             Case 1
                 SendSlot1()
             Case 2
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot1()
-                Else
-                    SendSlot2()
-                End If
+                SendSlot2()
             Case 3
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot2()
-                Else
-                    SendSlot3()
-                End If
+                SendSlot3()
             Case 4
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot3()
-                Else
-                    SendSlot4()
-                End If
+                SendSlot4()
             Case 5
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot4()
-                Else
-                    SendSlot5()
-                End If
+                SendSlot5()
             Case 6
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot5()
-                Else
-                    SendSlot6()
-                End If
+                SendSlot6()
             Case 7
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot6()
-                Else
-                    SendSlot7()
-                End If
+                SendSlot7()
             Case 8
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot7()
-                Else
-                    SendSlot8()
-                End If
+                SendSlot8()
             Case 9
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot8()
-                Else
-                    SendSlot9()
-                End If
+                SendSlot9()
             Case 10
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot9()
-                Else
-                    SendSlot10()
-                End If
+                SendSlot10()
             Case 11
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot10()
-                Else
-                    SendSlot11()
-                End If
+                SendSlot11()
             Case 12
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot11()
-                Else
-                    SendSlot12()
-                End If
+                SendSlot12()
             Case 13
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot12()
-                Else
-                    SendSlot13()
-                End If
+                SendSlot13()
             Case 14
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot13()
-                Else
-                    SendSlot14()
-                End If
+                SendSlot14()
             Case 15
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot14()
-                Else
-                    SendSlot15()
-                End If
-            Case 16
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot15()
-                Else
-                    SendSlot16()
-                End If
-            Case 17
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot16()
-                Else
-                    SendSlot17()
-                End If
-            Case 18
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot17()
-                Else
-                    SendSlot18()
-                End If
-            Case 19
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot18()
-                Else
-                    SendSlot19()
-                End If
-            Case 20
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot19()
-                Else
-                    SendSlot20()
-                End If
-            Case 21
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot20()
-                Else
-                    SendSlot21()
-                End If
-            Case 22
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot21()
-                Else
-                    SendSlot22()
-                End If
-            Case 23
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot22()
-                Else
-                    SendSlot23()
-                End If
-            Case 24
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot23()
-                Else
-                    SendSlot24()
-                End If
-            Case 25
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot24()
-                Else
-                    SendSlot25()
-                End If
-            Case 26
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot25()
-                Else
-                    SendSlot26()
-                End If
-            Case 27
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot26()
-                Else
-                    SendSlot27()
-                End If
-            Case 28
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot27()
-                Else
-                    SendSlot28()
-                End If
-            Case 29
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot28()
-                Else
-                    SendSlot29()
-                End If
-            Case 30
-                If txtLocationWActive.Text < txtWinnerLocation.Text Then
-                    SendSlot29()
-                Else
-                    SendSlot30()
-                End If
+                SendSlot15()
         End Select
 
         txtLocationOnDeck.Text = txtWinnerLocation.Text
@@ -604,94 +458,49 @@ Public Class frmDestinyWeaponSwap
         SendNew()
     End Sub
     Private Sub SendSlot1()
-        MouseMover2(635, 311, 459, 272)
+        MouseMover1(145, 230)
     End Sub
     Private Sub SendSlot2()
-        MouseMover2(637, 311, 498, 272)
+        MouseMover1(145, 260)
     End Sub
     Private Sub SendSlot3()
-        MouseMover2(711, 311, 535, 272)
+        MouseMover1(145, 290)
     End Sub
     Private Sub SendSlot4()
-        MouseMover2(747, 311, 573, 272)
+        MouseMover1(145, 315)
     End Sub
     Private Sub SendSlot5()
-        MouseMover2(787, 311, 611, 272)
+        MouseMover1(145, 345)
     End Sub
     Private Sub SendSlot6()
-        MouseMover2(635, 351, 459, 311)
+        MouseMover1(145, 370)
     End Sub
     Private Sub SendSlot7()
-        MouseMover2(673, 351, 498, 311)
+        MouseMover1(145, 400)
     End Sub
     Private Sub SendSlot8()
-        MouseMover2(711, 351, 535, 311)
+        MouseMover1(145, 430)
     End Sub
     Private Sub SendSlot9()
-        MouseMover2(747, 351, 537, 311)
+        MouseMover1(145, 455)
     End Sub
     Private Sub SendSlot10()
-        MouseMover2(787, 351, 498, 311)
+        MouseMover1(145, 485)
     End Sub
     Private Sub SendSlot11()
-        MouseMover2(635, 388, 459, 351)
+        MouseMover1(145, 510)
     End Sub
     Private Sub SendSlot12()
-        MouseMover2(673, 388, 498, 351)
+        MouseMover1(145, 540)
     End Sub
     Private Sub SendSlot13()
-        MouseMover2(711, 388, 535, 351)
+        MouseMover1(145, 570)
     End Sub
     Private Sub SendSlot14()
-        MouseMover2(747, 388, 573, 351)
+        MouseMover1(145, 600)
     End Sub
     Private Sub SendSlot15()
-        MouseMover2(787, 388, 611, 351)
-    End Sub
-    Private Sub SendSlot16()
-        MouseMover2(635, 425, 459, 388)
-    End Sub
-    Private Sub SendSlot17()
-        MouseMover2(673, 425, 498, 388)
-    End Sub
-    Private Sub SendSlot18()
-        MouseMover2(711, 425, 535, 388)
-    End Sub
-    Private Sub SendSlot19()
-        MouseMover2(747, 425, 573, 388)
-    End Sub
-    Private Sub SendSlot20()
-        MouseMover2(787, 425, 611, 388)
-    End Sub
-    Private Sub SendSlot21()
-        MouseMover2(635, 464, 459, 425)
-    End Sub
-    Private Sub SendSlot22()
-        MouseMover2(673, 464, 498, 425)
-    End Sub
-    Private Sub SendSlot23()
-        MouseMover2(711, 464, 535, 425)
-    End Sub
-    Private Sub SendSlot24()
-        MouseMover2(747, 464, 573, 425)
-    End Sub
-    Private Sub SendSlot25()
-        MouseMover2(787, 464, 611, 425)
-    End Sub
-    Private Sub SendSlot26()
-        MouseMover2(635, 499, 459, 464)
-    End Sub
-    Private Sub SendSlot27()
-        MouseMover2(673, 499, 498, 464)
-    End Sub
-    Private Sub SendSlot28()
-        MouseMover2(711, 499, 535, 464)
-    End Sub
-    Private Sub SendSlot29()
-        MouseMover2(747, 499, 573, 464)
-    End Sub
-    Private Sub SendSlot30()
-        MouseMover2(787, 499, 611, 464)
+        MouseMover1(145, 630)
     End Sub
     Private Sub MouseMover1(x1 As Integer, y1 As Integer)
         Me.Cursor = New Cursor(Cursor.Current.Handle)
