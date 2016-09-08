@@ -26,23 +26,21 @@ Public Class frmDestinyWeaponSwap
         tmrUpDown.Enabled = True
     End Sub
     Private Sub UpdateVotes()
+        txtTotalVotes.Text = Int(txtVote1.Text) + Int(txtVote2.Text) + Int(txtVote3.Text)
         barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
         barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
         barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
     End Sub
     Private Sub Vote1()
         txtVote1.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub Vote2()
         txtVote2.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub Vote3()
         txtVote3.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub TakeOld()
@@ -206,7 +204,6 @@ Public Class frmDestinyWeaponSwap
                 txtVote1.Text = "0"
                 txtVote2.Text = "0"
                 txtVote3.Text = "0"
-                txtTotalVotes.Text = "0"
 
             Else
                 'Move all items left by 2 pixels
