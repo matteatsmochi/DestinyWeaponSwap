@@ -66,7 +66,7 @@ Public Class frmDestinyWeaponSwap
         tmrVote.Enabled = True 'Vote only lasts during this duration
         RandomWeapons() 'Mix up all guns
         UpDown() 'Move up all voting options into visible field
-        My.Computer.Audio.Play(My.Resources.Que03, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.Cue03, AudioPlayMode.Background)
     End Sub
     Private Sub RandomWeapons()
         Dim looper As Boolean
@@ -357,7 +357,7 @@ Public Class frmDestinyWeaponSwap
             txt3Strikes.Text += 1
 
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Que01, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
                 FocusDIM()
                 MouseMover1(379, 123) 'reload DIM
@@ -388,7 +388,7 @@ Public Class frmDestinyWeaponSwap
 
         FocusDIM()
 
-        My.Computer.Audio.Play(My.Resources.Que02, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
 
         SendSlot(txtWinnerLocation.Text)
 

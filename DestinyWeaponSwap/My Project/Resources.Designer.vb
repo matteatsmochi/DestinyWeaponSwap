@@ -63,27 +63,27 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property Que01() As System.IO.UnmanagedMemoryStream
+        Friend ReadOnly Property Cue01() As System.IO.UnmanagedMemoryStream
             Get
-                Return ResourceManager.GetStream("Que01", resourceCulture)
+                Return ResourceManager.GetStream("Cue01", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property Que02() As System.IO.UnmanagedMemoryStream
+        Friend ReadOnly Property Cue02() As System.IO.UnmanagedMemoryStream
             Get
-                Return ResourceManager.GetStream("Que02", resourceCulture)
+                Return ResourceManager.GetStream("Cue02", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property Que03() As System.IO.UnmanagedMemoryStream
+        Friend ReadOnly Property Cue03() As System.IO.UnmanagedMemoryStream
             Get
-                Return ResourceManager.GetStream("Que03", resourceCulture)
+                Return ResourceManager.GetStream("Cue03", resourceCulture)
             End Get
         End Property
     End Module
