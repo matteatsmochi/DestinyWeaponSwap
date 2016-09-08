@@ -1,5 +1,9 @@
 ﻿Public Class frmDestinyWeaponSwap
-
+    Dim picAllWeapons() As PictureBox
+    Dim picWeapons() As PictureBox
+    Dim lblWeapons() As Label
+    Dim txtWeapons() As TextBox
+    Dim txtLocations() As TextBox
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
 
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -9,92 +13,62 @@
         picWeapon1.Top = 89
         picWeapon2.Left = 2
         picWeapon2.Top = 275
+        txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
+        txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
+        lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
+        picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
+        picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
         UpDown()
     End Sub
 
     Private Sub FocusDIM()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(451, 13)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
+        MouseMover1(451, 13)
     End Sub
 
-
     Private Sub FocusDIS()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(1124, 107)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
+        MouseMover1(1124, 107)
     End Sub
 
     Private Sub UpDown()
         tmrUpDown.Enabled = True
     End Sub
-
-    Private Sub Vote1()
-        txtVote1.Text = txtVote1.Text + 1
-        txtTotalVotes.Text = txtTotalVotes.Text + 1
-
+    Private Sub UpdateVotes()
         barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
         barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
         barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
+    End Sub
+    Private Sub Vote1()
+        txtVote1.Text += 1
+        txtTotalVotes.Text += 1
+        UpdateVotes()
     End Sub
 
     Private Sub Vote2()
-        txtVote2.Text = txtVote2.Text + 1
-        txtTotalVotes.Text = txtTotalVotes.Text + 1
-
-        barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
-        barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
-        barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
+        txtVote2.Text += 1
+        txtTotalVotes.Text += 1
+        UpdateVotes()
     End Sub
 
     Private Sub Vote3()
-        txtVote3.Text = txtVote3.Text + 1
-        txtTotalVotes.Text = txtTotalVotes.Text + 1
-
-        barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
-        barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
-        barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
+        txtVote3.Text += 1
+        txtTotalVotes.Text += 1
+        UpdateVotes()
     End Sub
 
     Private Sub TakeOld()
-
         FocusDIM()
-
-
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(116, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(282, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
-
+        MouseMover2(116, 311, 282, 272)
 
         tmrReticleCheck.Enabled = True 'start checking for death again
         FocusDIS()
 
-
         picActive.Image = picOnDeck.Image
         txtLocationWActive.Text = txtLocationOnDeck.Text
-        picOnDeck.Image = picW19.Image
+        picOnDeck.Image = picAllWeapons(18).Image
         txtLocationOnDeck.Text = "0"
 
         System.Threading.Thread.Sleep(200)
     End Sub
-
 
     Private Sub StartVote()
         TakeOld() 'take old weapon
@@ -107,22 +81,23 @@
     End Sub
 
     Private Sub RandomWeapons()
-        Dim looper as Boolean
+        Dim looper As Boolean
+        Dim i, j As Integer
         'Select 3 Ramdom Guns for a poll. Do not include the last used gun
 
-        txtRandomGun1.Text = Rand(1, 15)
-        txtRandomGun2.Text = Rand(1, 15)
-        txtRandomGun3.Text = Rand(1, 15)
-        
+        For i = 0 To 2
+            txtWeapons(i).Text = Rand(1, 15)
+        Next
+
         Do
-            looper = false
+            looper = False
             If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
                 If txtRandomGun1.Text = txtRandomGun2.Text Then
                     txtRandomGun1.Text = Rand(1, 15)
                 ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
                     txtRandomGun2.Text = Rand(1, 15)
                 ElseIf txtRandomGun1.Text = txtRandomGun3.Text Then
-                    txtRandomGun1.Text = Rand(1, 15)
+                    txtRandomGun3.Text = Rand(1, 15)
                 End If
                 looper = True
             ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
@@ -138,279 +113,57 @@
         Loop while looper
 
         'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
-        Select Case txtRandomGun1.Text
-            Case 1
-                picWeapon1.Image = picW1.Image
-                lblWeaponName1.Text = "Hawksaw"
-            Case 2
-                picWeapon1.Image = picW2.Image
-                lblWeaponName1.Text = "Hawkmoon"
-            Case 3
-                picWeapon1.Image = picW3.Image
-                lblWeaponName1.Text = "LastWord"
-            Case 4
-                picWeapon1.Image = picW4.Image
-                lblWeaponName1.Text = "MIDA"
-            Case 5
-                picWeapon1.Image = picW5.Image
-                lblWeaponName1.Text = "Carlo"
-            Case 6
-                picWeapon1.Image = picW6.Image
-                lblWeaponName1.Text = "NLB"
-            Case 7
-                picWeapon1.Image = picW7.Image
-                lblWeaponName1.Text = "NTtE"
-            Case 8
-                picWeapon1.Image = picW8.Image
-                lblWeaponName1.Text = "RedDeath"
-            Case 9
-                picWeapon1.Image = picW9.Image
-                lblWeaponName1.Text = "Regime"
-            Case 10
-                picWeapon1.Image = picW10.Image
-                lblWeaponName1.Text = "Thorn"
-            Case 11
-                picWeapon1.Image = picW11.Image
-                lblWeaponName1.Text = "PDX45"
-            Case 12
-                picWeapon1.Image = picW12.Image
-                lblWeaponName1.Text = "Remote"
-            Case 13
-                picWeapon1.Image = picW13.Image
-                lblWeaponName1.Text = "Vex"
-            Case 14
-                picWeapon1.Image = picW14.Image
-                lblWeaponName1.Text = "Zhalo"
-            Case 15
-                picWeapon1.Image = picW15.Image
-                lblWeaponName1.Text = "Random"
-        End Select
+        For i = 0 To 2
+            j = Int(txtWeapons(i).Text) - 1
+            picWeapons(i).Image = picAllWeapons(j).Image
+            lblWeapons(i).Text = picAllWeapons(j).Tag
+        Next
 
-        Select Case txtRandomGun2.Text
-            Case 1
-                picWeapon2.Image = picW1.Image
-                lblWeaponName2.Text = "Hawksaw"
-            Case 2
-                picWeapon2.Image = picW2.Image
-                lblWeaponName2.Text = "Hawkmoon"
-            Case 3
-                picWeapon2.Image = picW3.Image
-                lblWeaponName2.Text = "LastWord"
-            Case 4
-                picWeapon2.Image = picW4.Image
-                lblWeaponName2.Text = "MIDA"
-            Case 5
-                picWeapon2.Image = picW5.Image
-                lblWeaponName2.Text = "Carlo"
-            Case 6
-                picWeapon2.Image = picW6.Image
-                lblWeaponName2.Text = "NLB"
-            Case 7
-                picWeapon2.Image = picW7.Image
-                lblWeaponName2.Text = "NTtE"
-            Case 8
-                picWeapon2.Image = picW8.Image
-                lblWeaponName2.Text = "RedDeath"
-            Case 9
-                picWeapon2.Image = picW9.Image
-                lblWeaponName2.Text = "Regime"
-            Case 10
-                picWeapon2.Image = picW10.Image
-                lblWeaponName2.Text = "Thorn"
-            Case 11
-                picWeapon2.Image = picW11.Image
-                lblWeaponName2.Text = "PDX45"
-            Case 12
-                picWeapon2.Image = picW12.Image
-                lblWeaponName2.Text = "Remote"
-            Case 13
-                picWeapon2.Image = picW13.Image
-                lblWeaponName2.Text = "Vex"
-            Case 14
-                picWeapon2.Image = picW14.Image
-                lblWeaponName2.Text = "Zhalo"
-            Case 15
-                picWeapon2.Image = picW15.Image
-                lblWeaponName2.Text = "Random"
-
-        End Select
-
-        Select Case txtRandomGun3.Text
-            Case 1
-                picWeapon3.Image = picW1.Image
-                lblWeaponName3.Text = "Hawksaw"
-            Case 2
-                picWeapon3.Image = picW2.Image
-                lblWeaponName3.Text = "Hawkmoon"
-            Case 3
-                picWeapon3.Image = picW3.Image
-                lblWeaponName3.Text = "LastWord"
-            Case 4
-                picWeapon3.Image = picW4.Image
-                lblWeaponName3.Text = "MIDA"
-            Case 5
-                picWeapon3.Image = picW5.Image
-                lblWeaponName3.Text = "Carlo"
-            Case 6
-                picWeapon3.Image = picW6.Image
-                lblWeaponName3.Text = "NLB"
-            Case 7
-                picWeapon3.Image = picW7.Image
-                lblWeaponName3.Text = "NTtE"
-            Case 8
-                picWeapon3.Image = picW8.Image
-                lblWeaponName3.Text = "RedDeath"
-            Case 9
-                picWeapon3.Image = picW9.Image
-                lblWeaponName3.Text = "Regime"
-            Case 10
-                picWeapon3.Image = picW10.Image
-                lblWeaponName3.Text = "Thorn"
-            Case 11
-                picWeapon3.Image = picW11.Image
-                lblWeaponName3.Text = "PDX45"
-            Case 12
-                picWeapon3.Image = picW12.Image
-                lblWeaponName3.Text = "Remote"
-            Case 13
-                picWeapon3.Image = picW13.Image
-                lblWeaponName3.Text = "Vex"
-            Case 14
-                picWeapon3.Image = picW14.Image
-                lblWeaponName3.Text = "Zhalo"
-            Case 15
-                picWeapon3.Image = picW15.Image
-                lblWeaponName3.Text = "Random"
-        End Select
     End Sub
-
+    Private Sub Voter(weaponvote As String)
+        If lblWeaponName1.Text = weaponvote Then
+            Vote1()
+        ElseIf lblWeaponName2.Text = weaponvote Then
+            Vote2()
+        ElseIf lblWeaponName3.Text = weaponvote Then
+            Vote3()
+        End If
+    End Sub
 
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
             Case Keys.A
-                If lblWeaponName1.Text = "Hawksaw" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Hawksaw" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Hawksaw" Then
-                    Vote3()
-                End If
+                Voter(picW1.Tag)
             Case Keys.B
-                If lblWeaponName1.Text = "Hawkmoon" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Hawkmoon" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Hawkmoon" Then
-                    Vote3()
-                End If
+                Voter(picW2.Tag)
             Case Keys.C
-                If lblWeaponName1.Text = "LastWord" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "LastWord" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "LastWord" Then
-                    Vote3()
-                End If
+                Voter(picW3.Tag)
             Case Keys.D
-                If lblWeaponName1.Text = "MIDA" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "MIDA" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "MIDA" Then
-                    Vote3()
-                End If
+                Voter(picW4.Tag)
             Case Keys.E
-                If lblWeaponName1.Text = "Carlo" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Carlo" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Carlo" Then
-                    Vote3()
-                End If
+                Voter(picW5.Tag)
             Case Keys.F
-                If lblWeaponName1.Text = "NLB" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "NLB" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "NLB" Then
-                    Vote3()
-                End If
+                Voter(picW6.Tag)
             Case Keys.G
-                If lblWeaponName1.Text = "NTtE" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "NTtE" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "NTtE" Then
-                    Vote3()
-                End If
+                Voter(picW7.Tag)
             Case Keys.H
-                If lblWeaponName1.Text = "RedDeath" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "RedDeath" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "RedDeath" Then
-                    Vote3()
-                End If
+                Voter(picW8.Tag)
             Case Keys.I
-                If lblWeaponName1.Text = "Regime" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Regime" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Regime" Then
-                    Vote3()
-                End If
+                Voter(picW9.Tag)
             Case Keys.J
-                If lblWeaponName1.Text = "Thorn" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Thorn" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Thorn" Then
-                    Vote3()
-                End If
+                Voter(picW10.Tag)
             Case Keys.K
-                If lblWeaponName1.Text = "Remote" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Remote" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Remote" Then
-                    Vote3()
-                End If
+                Voter(picW11.Tag)
             Case Keys.L
-                If lblWeaponName1.Text = "Vex" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Vex" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Vex" Then
-                    Vote3()
-                End If
+                Voter(picW12.Tag)
             Case Keys.M
-                If lblWeaponName1.Text = "Zhalo" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Zhalo" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Zhalo" Then
-                    Vote3()
-                End If
+                Voter(picW13.Tag)
             Case Keys.N
-                If lblWeaponName1.Text = "PDX45" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "PDX45" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "PDX45" Then
-                    Vote3()
-                End If
+                Voter(picW14.Tag)
             Case Keys.O
-                If lblWeaponName1.Text = "Random" Then
-                    Vote1()
-                ElseIf lblWeaponName2.Text = "Random" Then
-                    Vote2()
-                ElseIf lblWeaponName3.Text = "Random" Then
-                    Vote3()
-                End If
-
+                Voter(picW15.Tag)
         End Select
     End Sub
-
 
     Private Sub cmdVote1_Click(sender As Object, e As EventArgs) Handles cmdVote1.Click
         Vote1()
@@ -426,7 +179,7 @@
 
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
-
+        Dim i As Integer
         If cmdUpDown.Text = "Up" Then
             'Reset everything for a blank vote
             cmdVote1.Enabled = True
@@ -441,21 +194,18 @@
                 tmrUpDown.Enabled = False
                 txtUpDown.Text = "0"
                 cmdUpDown.Text = "Down"
-                picWeapon3.Left = picWeapon3.Left - 2
             Else
                 'Move all items right by 2 pixels
-                picWeapon1.Left = picWeapon1.Left + 2
-                picWeapon2.Left = picWeapon2.Left + 2
-                picWeapon3.Left = picWeapon2.Left + 2
-                lblWeaponName1.Left = lblWeaponName1.Left + 2
-                lblWeaponName2.Left = lblWeaponName2.Left + 2
-                lblWeaponName3.Left = lblWeaponName3.Left + 2
-                barVote1.Left = barVote1.Left + 2
-                barVote2.Left = barVote2.Left + 2
-                barVote3.Left = barVote3.Left + 2
-                picSwapPlate.Left = picSwapPlate.Left + 2
+                For i = 0 To 2
+                    picWeapons(i).Left += 2
+                    lblWeapons(i).Left += 2
+                Next
+                barVote1.Left += 2
+                barVote2.Left += 2
+                barVote3.Left += 2
+                picSwapPlate.Left += 2
                 'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text = txtUpDown.Text + 1
+                txtUpDown.Text += 1
             End If
 
 
@@ -478,18 +228,16 @@
 
             Else
                 'Move all items left by 2 pixels
-                picWeapon1.Left = picWeapon1.Left - 2
-                picWeapon2.Left = picWeapon2.Left - 2
-                picWeapon3.Left = picWeapon2.Left - 2
-                lblWeaponName1.Left = lblWeaponName1.Left - 2
-                lblWeaponName2.Left = lblWeaponName2.Left - 2
-                lblWeaponName3.Left = lblWeaponName3.Left - 2
-                barVote1.Left = barVote1.Left - 2
-                barVote2.Left = barVote2.Left - 2
-                barVote3.Left = barVote3.Left - 2
-                picSwapPlate.Left = picSwapPlate.Left - 2
+                For i = 0 To 2
+                    picWeapons(i).Left -= 2
+                    lblWeapons(i).Left -= 2
+                Next
+                barVote1.Left -= 2
+                barVote2.Left -= 2
+                barVote3.Left -= 2
+                picSwapPlate.Left -= 2
                 'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text = txtUpDown.Text + 1
+                txtUpDown.Text += 1
             End If
 
         End If
@@ -501,58 +249,14 @@
 
     Private Sub cmdRandomHeroes_Click(sender As Object, e As EventArgs) Handles cmdRandomWeapons.Click
         RandomWeapons()
-
     End Sub
-
-
 
     Private Sub cmdTakeOld_Click(sender As Object, e As EventArgs) Handles cmdTakeOld.Click
         TakeOld()
-
     End Sub
 
     Private Sub SlotToLocation()
-        Select Case txtLastGun.Text
-            Case 1
-                txtWinnerLocation.Text = txtLocationW1.Text
-            Case 2
-                txtWinnerLocation.Text = txtLocationW2.Text
-            Case 3
-                txtWinnerLocation.Text = txtLocationW3.Text
-            Case 4
-                txtWinnerLocation.Text = txtLocationW4.Text
-            Case 5
-                txtWinnerLocation.Text = txtLocationW5.Text
-            Case 6
-                txtWinnerLocation.Text = txtLocationW6.Text
-            Case 7
-                txtWinnerLocation.Text = txtLocationW7.Text
-            Case 8
-                txtWinnerLocation.Text = txtLocationW8.Text
-            Case 9
-                txtWinnerLocation.Text = txtLocationW9.Text
-            Case 10
-                txtWinnerLocation.Text = txtLocationW10.Text
-            Case 11
-                txtWinnerLocation.Text = txtLocationW11.Text
-            Case 12
-                txtWinnerLocation.Text = txtLocationW12.Text
-            Case 13
-                txtWinnerLocation.Text = txtLocationW13.Text
-            Case 14
-                txtWinnerLocation.Text = txtLocationW14.Text
-            Case 15
-                txtWinnerLocation.Text = txtLocationW15.Text
-            Case 16
-                txtWinnerLocation.Text = txtLocationW16.Text
-            Case 17
-                txtWinnerLocation.Text = txtLocationW17.Text
-            Case 18
-                txtWinnerLocation.Text = txtLocationW18.Text
-            Case 19
-                txtWinnerLocation.Text = txtLocationW19.Text
-        End Select
-
+        txtWinnerLocation.Text = txtLocations(Int(txtLastGun.Text) - 1).Text
     End Sub
 
     Private Function Rand(lowerbound As Integer, upperbound As Integer) As Integer
@@ -564,7 +268,7 @@
         Dim randomValue As Integer
 
         If txtVoteCountdown.Text = 0 Then
-            'Vote is over. Declair winner
+            'Vote is over. Declare winner
             'Check who had the most votes. Move that to txtLastHero.text
             If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun1.Text
@@ -572,23 +276,12 @@
                 txtLastGun.Text = txtRandomGun2.Text
             ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
                 txtLastGun.Text = txtRandomGun3.Text
-            ElseIf txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then
-                randomValue = Rand(1, 3)
-                If randomValue = 1 Then
-                    txtLastGun.Text = txtRandomGun1.Text
-                ElseIf randomValue = 2 Then
-                    txtLastGun.Text = txtRandomGun2.Text
-                Else
-                    txtLastGun.Text = txtRandomGun3.Text
-                End If
-
-            ElseIf txtVote1.Text = txtVote2.Text Then 'Check for ties
-                randomValue = Rand(1, 2)
-                If randomValue = 1 Then
-                    txtLastGun.Text = txtRandomGun1.Text
-                Else
-                    txtLastGun.Text = txtRandomGun2.Text
-                End If
+            ElseIf txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
+                randomValue = Rand(0, 2)
+                txtLastGun.Text = txtWeapons(randomValue).Text
+            ElseIf txtVote1.Text = txtVote2.Text Then
+                randomValue = Rand(0, 1)
+                txtLastGun.Text = txtWeapons(randomValue).Text
             ElseIf txtVote1.Text = txtVote3.Text Then
                 randomValue = Rand(1, 2)
                 If randomValue = 1 Then
@@ -598,11 +291,7 @@
                 End If
             ElseIf txtVote2.Text = txtVote3.Text Then
                 randomValue = Rand(1, 2)
-                If randomValue = 1 Then
-                    txtLastGun.Text = txtRandomGun2.Text
-                Else
-                    txtLastGun.Text = txtRandomGun3.Text
-                End If
+                txtLastGun.Text = txtWeapons(randomValue).Text
             End If
 
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
@@ -638,17 +327,13 @@
 
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
-            If txtPlayerStatus.Text = "Dead" Then
-                'NOTHING
-            Else
+            If txtPlayerStatus.Text <> "Dead" Then
                 'Just died- Run spawn check
                 tmrReticleCheck.Enabled = False
                 tmrDeathCheck.Enabled = True
             End If
         Else
-            If txtPlayerStatus.Text = "Alive" Then
-                'NOTHING
-            Else
+            If txtPlayerStatus.Text <> "Alive" Then
                 'Just spawned- Run death check
                 tmrReticleCheck.Enabled = False
                 tmrSpawnCheck.Enabled = True
@@ -658,7 +343,6 @@
 
     Private Sub cmdStartVote_Click(sender As Object, e As EventArgs) Handles cmdStartVote.Click
         StartVote()
-
     End Sub
 
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
@@ -673,29 +357,23 @@
 
         If txtCheckYes.Text = 10 Then
             'Hero did respawn. Start the new vote & reset.
+
+            txtCheckNo.Text = "10"
+            txtCheckYes.Text = "0"
+            txtPlayerStatus.Text = "Alive"
+            tmrSpawnCheck.Enabled = False
+            tmrReticleCheck.Enabled = True
+
             If txt3Strikes.Text = 4 Then
-
                 StartVote()
-                tmrSpawnCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Alive"
-                tmrReticleCheck.Enabled = True
                 txt3Strikes.Text = 0
-
-            Else
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Alive"
-                tmrSpawnCheck.Enabled = False
-                tmrReticleCheck.Enabled = True
             End If
 
         ElseIf txtCheckNo.Text = 0 Then
             'false positive. Hero did not respawn. Reset & Keep waiting.
-            tmrSpawnCheck.Enabled = False
             txtCheckNo.Text = "10"
             txtCheckYes.Text = "0"
+            tmrSpawnCheck.Enabled = False
             tmrReticleCheck.Enabled = True
         Else
             'expecting to see NO white. If we do, return No
@@ -725,28 +403,15 @@
             txtCheckYes.Text = "0"
             txtPlayerStatus.Text = "Dead"
             tmrReticleCheck.Enabled = True
-            txt3Strikes.Text = txt3Strikes.Text + 1
-            
+            txt3Strikes.Text += 1
+
             If txt3Strikes.Text = 0 Then
-
                 My.Computer.Audio.Play(My.Resources.Que01, AudioPlayMode.Background)
-
             ElseIf txt3Strikes.Text = 1 Then
                 FocusDIM()
-
-                'reload DIM
-                System.Threading.Thread.Sleep(200)
-                Cursor.Position = New Point(379, 123)
-                Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-                mouse_event(&H2, 0, 0, 0, 1)
-                mouse_event(&H4, 0, 0, 0, 1)
-
+                MouseMover1(379, 123) 'reload DIM
                 FocusDIS()
-                
             End If
-
-
-
         ElseIf txtCheckNo.Text = 0 Then
             'false positive. Hero did not die. Reset & Keep waiting.
             tmrDeathCheck.Enabled = False
@@ -756,9 +421,9 @@
         Else
             'expecting to see red. If we dont, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
-                txtCheckYes.Text = txtCheckYes.Text + 1
+                txtCheckYes.Text += 1
             Else
-                txtCheckNo.Text = txtCheckNo.Text - 1
+                txtCheckNo.Text -= 1
             End If
         End If
     End Sub
@@ -768,14 +433,11 @@
         txtMouseLoc.Text = MPx.ToString
     End Sub
 
-
     Private Sub SendNew()
         'AutoHotKey Macros to switch heros in game - to be used on death screen
         'Checks what Hero was last voted for (txtLastHero.text)
 
-
         FocusDIM()
-
 
         My.Computer.Audio.Play(My.Resources.Que02, AudioPlayMode.Background)
 
@@ -960,505 +622,155 @@
 
         txtLocationOnDeck.Text = txtWinnerLocation.Text
 
-        Select Case txtLastGun.Text
-            Case 1
-                picOnDeck.Image = picW1.Image
-            Case 2
-                picOnDeck.Image = picW2.Image
-            Case 3
-                picOnDeck.Image = picW3.Image
-            Case 4
-                picOnDeck.Image = picW4.Image
-            Case 5
-                picOnDeck.Image = picW5.Image
-            Case 6
-                picOnDeck.Image = picW6.Image
-            Case 7
-                picOnDeck.Image = picW7.Image
-            Case 8
-                picOnDeck.Image = picW8.Image
-            Case 9
-                picOnDeck.Image = picW9.Image
-            Case 10
-                picOnDeck.Image = picW10.Image
-            Case 11
-                picOnDeck.Image = picW11.Image
-            Case 12
-                picOnDeck.Image = picW12.Image
-            Case 13
-                picOnDeck.Image = picW13.Image
-            Case 14
-                picOnDeck.Image = picW14.Image
-            Case 15
-                picOnDeck.Image = picW15.Image
-            Case 16
-                picOnDeck.Image = picW16.Image
-            Case 17
-                picOnDeck.Image = picW17.Image
-            Case 18
-                picOnDeck.Image = picW18.Image
-            Case 19
-                picOnDeck.Image = picW19.Image
-        End Select
+        picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
 
     End Sub
-
 
     Private Sub cmdSendNew_Click(sender As Object, e As EventArgs) Handles cmdSendNew.Click
         SendNew()
-
     End Sub
 
     Private Sub SendSlot1()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 311, 459, 272)
     End Sub
 
     Private Sub SendSlot2()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(637, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(637, 311, 498, 272)
     End Sub
 
     Private Sub SendSlot3()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 311, 535, 272)
     End Sub
 
     Private Sub SendSlot4()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(573, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 311, 573, 272)
     End Sub
 
     Private Sub SendSlot5()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(611, 272)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(787, 311, 611, 272)
     End Sub
 
     Private Sub SendSlot6()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 351, 459, 311)
     End Sub
 
     Private Sub SendSlot7()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(673, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(673, 351, 498, 311)
     End Sub
 
     Private Sub SendSlot8()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 351, 535, 311)
     End Sub
 
     Private Sub SendSlot9()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(537, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 351, 537, 311)
     End Sub
 
     Private Sub SendSlot10()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 311)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(787, 351, 498, 311)
     End Sub
 
     Private Sub SendSlot11()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 388, 459, 351)
     End Sub
 
     Private Sub SendSlot12()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(673, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(673, 388, 498, 351)
     End Sub
 
     Private Sub SendSlot13()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 388, 535, 351)
     End Sub
 
     Private Sub SendSlot14()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(573, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 388, 573, 351)
     End Sub
 
     Private Sub SendSlot15()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(611, 351)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(787, 388, 611, 351)
     End Sub
 
     Private Sub SendSlot16()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 425, 459, 388)
     End Sub
 
     Private Sub SendSlot17()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(673, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(673, 425, 498, 388)
     End Sub
 
     Private Sub SendSlot18()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 425, 535, 388)
     End Sub
 
     Private Sub SendSlot19()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(573, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 425, 573, 388)
     End Sub
 
     Private Sub SendSlot20()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(611, 388)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(787, 425, 611, 388)
     End Sub
 
     Private Sub SendSlot21()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 464, 459, 425)
     End Sub
 
     Private Sub SendSlot22()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(673, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(673, 464, 498, 425)
     End Sub
 
     Private Sub SendSlot23()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 464, 535, 425)
     End Sub
 
     Private Sub SendSlot24()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(573, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 464, 573, 425)
     End Sub
 
     Private Sub SendSlot25()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(611, 425)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(787, 464, 611, 425)
     End Sub
 
     Private Sub SendSlot26()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(635, 499)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(459, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(635, 499, 459, 464)
     End Sub
 
     Private Sub SendSlot27()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(673, 499)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(498, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(673, 499, 498, 464)
     End Sub
 
     Private Sub SendSlot28()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(711, 499)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(535, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(711, 499, 535, 464)
     End Sub
 
     Private Sub SendSlot29()
-        Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(747, 499)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(573, 464)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
-        System.Threading.Thread.Sleep(200)
+        MouseMover2(747, 499, 573, 464)
     End Sub
 
     Private Sub SendSlot30()
+        MouseMover2(787, 499, 611, 464)
+    End Sub
+    Private Sub MouseMover1(x1 As Integer, y1 As Integer)
         Me.Cursor = New Cursor(Cursor.Current.Handle)
-        Cursor.Position = New Point(787, 499)
-        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
-        mouse_event(&H2, 0, 0, 0, 1)
-        mouse_event(&H4, 0, 0, 0, 1)
 
-        System.Threading.Thread.Sleep(200)
-        Cursor.Position = New Point(611, 464)
+        Cursor.Position = New Point(x1, y1)
         Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
         mouse_event(&H2, 0, 0, 0, 1)
         mouse_event(&H4, 0, 0, 0, 1)
         System.Threading.Thread.Sleep(200)
     End Sub
+    Private Sub MouseMover2(x1 As Integer, y1 As Integer, x2 As Integer, y2 As Integer)
+        Me.Cursor = New Cursor(Cursor.Current.Handle)
 
+        Cursor.Position = New Point(x1, y1)
+        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
+        mouse_event(&H2, 0, 0, 0, 1)
+        mouse_event(&H4, 0, 0, 0, 1)
+        System.Threading.Thread.Sleep(200)
 
-
+        Cursor.Position = New Point(x2, y2)
+        Windows.Forms.Cursor.Position = New System.Drawing.Point(Windows.Forms.Cursor.Position)
+        mouse_event(&H2, 0, 0, 0, 1)
+        mouse_event(&H4, 0, 0, 0, 1)
+        System.Threading.Thread.Sleep(200)
+    End Sub
 End Class
