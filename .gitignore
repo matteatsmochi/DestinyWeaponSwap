@@ -45,3 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#VB.Net
+[Bb]in/
+[Oo]bj/
+!/lib
+*.user
+*.suo
+_ReSharper.*
+*.sln.cache
+*.xap
+*.vspcc
+*.vscc 
+*.vssscc
