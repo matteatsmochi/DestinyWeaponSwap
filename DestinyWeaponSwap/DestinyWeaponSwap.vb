@@ -1,11 +1,12 @@
-﻿Public Class frmDestinyWeaponSwap
+﻿
+Public Class frmDestinyWeaponSwap
     Dim picAllWeapons() As PictureBox
     Dim picWeapons() As PictureBox
     Dim lblWeapons() As Label
     Dim txtWeapons() As TextBox
     Dim txtLocations() As TextBox
-    Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
 
+    Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         picSwapPlate.Top = 0
         picSwapPlate.Left = 0
@@ -20,15 +21,12 @@
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
         UpDown()
     End Sub
-
     Private Sub FocusDIM()
         MouseMover1(451, 13)
     End Sub
-
     Private Sub FocusDIS()
         MouseMover1(1124, 107)
     End Sub
-
     Private Sub UpDown()
         tmrUpDown.Enabled = True
     End Sub
@@ -42,19 +40,16 @@
         txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
-
     Private Sub Vote2()
         txtVote2.Text += 1
         txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
-
     Private Sub Vote3()
         txtVote3.Text += 1
         txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
-
     Private Sub TakeOld()
         FocusDIM()
         MouseMover2(116, 311, 282, 272)
@@ -69,7 +64,6 @@
 
         System.Threading.Thread.Sleep(200)
     End Sub
-
     Private Sub StartVote()
         TakeOld() 'take old weapon
         System.Threading.Thread.Sleep(200)
@@ -79,7 +73,6 @@
         UpDown() 'Move up all voting options into visible field
         My.Computer.Audio.Play(My.Resources.Que03, AudioPlayMode.Background)
     End Sub
-
     Private Sub RandomWeapons()
         Dim looper As Boolean
         Dim i, j As Integer
@@ -101,7 +94,7 @@
                 End If
                 looper = True
             ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
-                if txtRandomGun1.Text = txtLastGun.Text Then
+                If txtRandomGun1.Text = txtLastGun.Text Then
                     txtRandomGun1.Text = Rand(1, 15)
                 ElseIf txtRandomGun2.Text = txtLastGun.Text Then
                     txtRandomGun2.Text = Rand(1, 15)
@@ -110,7 +103,7 @@
                 End If
                 looper = True
             End If
-        Loop while looper
+        Loop While looper
 
         'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
         For i = 0 To 2
@@ -129,7 +122,6 @@
             Vote3()
         End If
     End Sub
-
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
             Case Keys.A
@@ -164,19 +156,15 @@
                 Voter(picW15.Tag)
         End Select
     End Sub
-
     Private Sub cmdVote1_Click(sender As Object, e As EventArgs) Handles cmdVote1.Click
         Vote1()
     End Sub
-
     Private Sub cmdVote2_Click(sender As Object, e As EventArgs) Handles cmdVote2.Click
         Vote2()
     End Sub
-
     Private Sub cmdVote3_Click(sender As Object, e As EventArgs) Handles cmdVote3.Click
         Vote3()
     End Sub
-
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
         Dim i As Integer
@@ -207,7 +195,6 @@
                 'Mark the timer up by 1 (until it reaches 125)
                 txtUpDown.Text += 1
             End If
-
 
         ElseIf cmdUpDown.Text = "Down" Then
             'Vote is over, voting is disabled
@@ -242,28 +229,22 @@
 
         End If
     End Sub
-
     Private Sub cmdUpDown_Click(sender As Object, e As EventArgs) Handles cmdUpDown.Click
         UpDown()
     End Sub
-
     Private Sub cmdRandomHeroes_Click(sender As Object, e As EventArgs) Handles cmdRandomWeapons.Click
         RandomWeapons()
     End Sub
-
     Private Sub cmdTakeOld_Click(sender As Object, e As EventArgs) Handles cmdTakeOld.Click
         TakeOld()
     End Sub
-
     Private Sub SlotToLocation()
         txtWinnerLocation.Text = txtLocations(Int(txtLastGun.Text) - 1).Text
     End Sub
-
     Private Function Rand(lowerbound As Integer, upperbound As Integer) As Integer
         Randomize()
         Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
     End Function
-    
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
         Dim randomValue As Integer
 
@@ -297,7 +278,7 @@
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
                 txtLastGun.Text = Rand(1, 14)
             End If
-            
+
             UpDown() 'send all voting options down
             SlotToLocation() 'set up location for slot of gun to send
             SendNew() 'send over the new gun
@@ -314,7 +295,6 @@
             txtCheckYes.Text = 0
         End If
     End Sub
-
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
         'Checking 1 pixel at the center of the right screen
         Dim a As New Drawing.Bitmap(1, 1)
@@ -323,7 +303,7 @@
         Dim c As Drawing.Color = a.GetPixel(0, 0)
         picReticleColor.BackColor = c
         txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        'txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
 
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -340,11 +320,9 @@
             End If
         End If
     End Sub
-
     Private Sub cmdStartVote_Click(sender As Object, e As EventArgs) Handles cmdStartVote.Click
         StartVote()
     End Sub
-
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
         'Checking 1 pixel at the center of the right screen
         Dim a As New Drawing.Bitmap(1, 1)
@@ -384,7 +362,6 @@
             End If
         End If
     End Sub
-
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
         'Checking 1 pixel at the center of the right screen
         Dim a As New Drawing.Bitmap(1, 1)
@@ -397,7 +374,7 @@
 
         If txtCheckYes.Text = 10 Then
             'Hero did die. Switch Weapons
-            
+
             tmrDeathCheck.Enabled = False
             txtCheckNo.Text = "10"
             txtCheckYes.Text = "0"
@@ -427,12 +404,10 @@
             End If
         End If
     End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tmrMouseLoc.Tick
         Dim MPx As Point = MousePosition()
         txtMouseLoc.Text = MPx.ToString
     End Sub
-
     Private Sub SendNew()
         'AutoHotKey Macros to switch heros in game - to be used on death screen
         'Checks what Hero was last voted for (txtLastHero.text)
@@ -625,127 +600,96 @@
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
 
     End Sub
-
     Private Sub cmdSendNew_Click(sender As Object, e As EventArgs) Handles cmdSendNew.Click
         SendNew()
     End Sub
-
     Private Sub SendSlot1()
         MouseMover2(635, 311, 459, 272)
     End Sub
-
     Private Sub SendSlot2()
         MouseMover2(637, 311, 498, 272)
     End Sub
-
     Private Sub SendSlot3()
         MouseMover2(711, 311, 535, 272)
     End Sub
-
     Private Sub SendSlot4()
         MouseMover2(747, 311, 573, 272)
     End Sub
-
     Private Sub SendSlot5()
         MouseMover2(787, 311, 611, 272)
     End Sub
-
     Private Sub SendSlot6()
         MouseMover2(635, 351, 459, 311)
     End Sub
-
     Private Sub SendSlot7()
         MouseMover2(673, 351, 498, 311)
     End Sub
-
     Private Sub SendSlot8()
         MouseMover2(711, 351, 535, 311)
     End Sub
-
     Private Sub SendSlot9()
         MouseMover2(747, 351, 537, 311)
     End Sub
-
     Private Sub SendSlot10()
         MouseMover2(787, 351, 498, 311)
     End Sub
-
     Private Sub SendSlot11()
         MouseMover2(635, 388, 459, 351)
     End Sub
-
     Private Sub SendSlot12()
         MouseMover2(673, 388, 498, 351)
     End Sub
-
     Private Sub SendSlot13()
         MouseMover2(711, 388, 535, 351)
     End Sub
-
     Private Sub SendSlot14()
         MouseMover2(747, 388, 573, 351)
     End Sub
-
     Private Sub SendSlot15()
         MouseMover2(787, 388, 611, 351)
     End Sub
-
     Private Sub SendSlot16()
         MouseMover2(635, 425, 459, 388)
     End Sub
-
     Private Sub SendSlot17()
         MouseMover2(673, 425, 498, 388)
     End Sub
-
     Private Sub SendSlot18()
         MouseMover2(711, 425, 535, 388)
     End Sub
-
     Private Sub SendSlot19()
         MouseMover2(747, 425, 573, 388)
     End Sub
-
     Private Sub SendSlot20()
         MouseMover2(787, 425, 611, 388)
     End Sub
-
     Private Sub SendSlot21()
         MouseMover2(635, 464, 459, 425)
     End Sub
-
     Private Sub SendSlot22()
         MouseMover2(673, 464, 498, 425)
     End Sub
-
     Private Sub SendSlot23()
         MouseMover2(711, 464, 535, 425)
     End Sub
-
     Private Sub SendSlot24()
         MouseMover2(747, 464, 573, 425)
     End Sub
-
     Private Sub SendSlot25()
         MouseMover2(787, 464, 611, 425)
     End Sub
-
     Private Sub SendSlot26()
         MouseMover2(635, 499, 459, 464)
     End Sub
-
     Private Sub SendSlot27()
         MouseMover2(673, 499, 498, 464)
     End Sub
-
     Private Sub SendSlot28()
         MouseMover2(711, 499, 535, 464)
     End Sub
-
     Private Sub SendSlot29()
         MouseMover2(747, 499, 573, 464)
     End Sub
-
     Private Sub SendSlot30()
         MouseMover2(787, 499, 611, 464)
     End Sub

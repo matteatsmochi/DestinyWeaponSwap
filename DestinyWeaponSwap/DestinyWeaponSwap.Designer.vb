@@ -112,6 +112,11 @@ Partial Class frmDestinyWeaponSwap
         Me.picW18 = New System.Windows.Forms.PictureBox()
         Me.picW19 = New System.Windows.Forms.PictureBox()
         Me.picW2 = New System.Windows.Forms.PictureBox()
+        Me.txtNick = New System.Windows.Forms.TextBox()
+        Me.txtPass = New System.Windows.Forms.TextBox()
+        Me.txtServer = New System.Windows.Forms.TextBox()
+        Me.txtChan = New System.Windows.Forms.TextBox()
+        Me.txtChat = New System.Windows.Forms.TextBox()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -941,12 +946,56 @@ Partial Class frmDestinyWeaponSwap
         Me.picW2.TabStop = False
         Me.picW2.Tag = "Hawkmoon"
         '
+        'txtNick
+        '
+        Me.txtNick.Location = New System.Drawing.Point(302, 260)
+        Me.txtNick.Name = "txtNick"
+        Me.txtNick.Size = New System.Drawing.Size(100, 20)
+        Me.txtNick.TabIndex = 109
+        Me.txtNick.Text = "Nick"
+        '
+        'txtPass
+        '
+        Me.txtPass.Location = New System.Drawing.Point(302, 286)
+        Me.txtPass.Name = "txtPass"
+        Me.txtPass.Size = New System.Drawing.Size(100, 20)
+        Me.txtPass.TabIndex = 110
+        Me.txtPass.Text = "Pass"
+        '
+        'txtServer
+        '
+        Me.txtServer.Location = New System.Drawing.Point(302, 312)
+        Me.txtServer.Name = "txtServer"
+        Me.txtServer.Size = New System.Drawing.Size(100, 20)
+        Me.txtServer.TabIndex = 111
+        Me.txtServer.Text = "Server"
+        '
+        'txtChan
+        '
+        Me.txtChan.Location = New System.Drawing.Point(302, 338)
+        Me.txtChan.Name = "txtChan"
+        Me.txtChan.Size = New System.Drawing.Size(100, 20)
+        Me.txtChan.TabIndex = 112
+        Me.txtChan.Text = "Chan"
+        '
+        'txtChat
+        '
+        Me.txtChat.Location = New System.Drawing.Point(302, 388)
+        Me.txtChat.Name = "txtChat"
+        Me.txtChat.Size = New System.Drawing.Size(100, 20)
+        Me.txtChat.TabIndex = 113
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Lime
         Me.ClientSize = New System.Drawing.Size(553, 681)
+        Me.Controls.Add(Me.txtChat)
+        Me.Controls.Add(Me.txtChan)
+        Me.Controls.Add(Me.txtServer)
+        Me.Controls.Add(Me.txtPass)
+        Me.Controls.Add(Me.txtNick)
         Me.Controls.Add(Me.txtWinnerLocation)
         Me.Controls.Add(Me.AlertPlayer)
         Me.Controls.Add(Me.txtExcess)
@@ -1154,4 +1203,9 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picW18 As PictureBox
     Friend WithEvents picW19 As PictureBox
     Friend WithEvents picW2 As PictureBox
+    Friend WithEvents txtNick As TextBox
+    Friend WithEvents txtPass As TextBox
+    Friend WithEvents txtServer As TextBox
+    Friend WithEvents txtChan As TextBox
+    Friend WithEvents txtChat As TextBox
 End Class
