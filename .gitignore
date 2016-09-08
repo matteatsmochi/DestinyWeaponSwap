@@ -47,8 +47,8 @@ Temporary Items
 .apdisk
 
 #VB.Net
-ProjectName/bin
-ProjectName/obj
+DestinyWeaponSwap/bin
+DestinyWeaponSwap/obj
 *.user
 *.suo
 _ReSharper.*
