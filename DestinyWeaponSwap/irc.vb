@@ -22,6 +22,7 @@
     End Sub
     Private Sub Connected(sender As Object, e As EventArgs) Handles Client.Connected
         SetText("Connected to twitch." & vbCrLf)
+        Client.SendRawMessage("JOIN :" + txtChan.Text)
     End Sub
     Private Sub SetText(ByVal [text] As String)
         If Me.txtChat.InvokeRequired Then
