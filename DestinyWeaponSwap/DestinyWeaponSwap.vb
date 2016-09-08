@@ -280,11 +280,9 @@ Public Class frmDestinyWeaponSwap
 
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
-            tmrReticleCheck.Enabled = False
+            YesNoReticle(False)
             tmrDeathCheck.Enabled = False
             tmrSpawnCheck.Enabled = False
-            txtCheckNo.Text = 10
-            txtCheckYes.Text = 0
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
@@ -313,12 +311,9 @@ Public Class frmDestinyWeaponSwap
 
         If txtCheckYes.Text = 10 Then
             'Player did respawn. Start the new vote & reset.
-
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
+            YesNoReticle(True)
             txtPlayerStatus.Text = "Alive"
             tmrSpawnCheck.Enabled = False
-            tmrReticleCheck.Enabled = True
 
             If txt3Strikes.Text = 4 Then
                 StartVote()
@@ -327,10 +322,8 @@ Public Class frmDestinyWeaponSwap
 
         ElseIf txtCheckNo.Text = 0 Then
             'false positive. Player did not respawn. Reset & Keep waiting.
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
+            YesNoReticle(True)
             tmrSpawnCheck.Enabled = False
-            tmrReticleCheck.Enabled = True
         Else
             'expecting to see NO white. If we do, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
@@ -342,17 +335,11 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
         CheckPixels()
-
-        If txtCheckYes.Text = 10 Then
-            'Hero did die. Switch Weapons
-
+        If txtCheckYes.Text = 10 Then 'Guardian did die. Switch Weapons
             tmrDeathCheck.Enabled = False
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
+            YesNoReticle(True)
             txtPlayerStatus.Text = "Dead"
-            tmrReticleCheck.Enabled = True
             txt3Strikes.Text += 1
-
             If txt3Strikes.Text = 0 Then
                 My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
@@ -360,20 +347,21 @@ Public Class frmDestinyWeaponSwap
                 MouseMover1(379, 123) 'reload DIM
                 FocusDIS()
             End If
-        ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Player did not die. Reset & Keep waiting.
+        ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
             tmrDeathCheck.Enabled = False
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
-            tmrReticleCheck.Enabled = True
-        Else
-            'expecting to see red. If we dont, return No
+            YesNoReticle(True)
+        Else 'expecting to see red. If we dont, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckYes.Text += 1
             Else
                 txtCheckNo.Text -= 1
             End If
         End If
+    End Sub
+    Private Sub YesNoReticle(reticle As Boolean)
+        txtCheckYes.Text = "0"
+        txtCheckNo.Text = "10"
+        tmrReticleCheck.Enabled = reticle
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tmrMouseLoc.Tick
         Dim MPx As Point = MousePosition()
@@ -382,17 +370,11 @@ Public Class frmDestinyWeaponSwap
     Private Sub SendNew()
         'Send clicks to switch Weapons in game - to be used on death screen
         'Checks what Weapon was last voted for (txtLastWeapon.text)
-
         FocusDIM()
-
         My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
-
         SendSlot(txtWinnerLocation.Text)
-
         txtLocationOnDeck.Text = txtWinnerLocation.Text
-
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
-
     End Sub
     Private Sub cmdSendNew_Click(sender As Object, e As EventArgs) Handles cmdSendNew.Click
         SendNew()
