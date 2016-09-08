@@ -108,26 +108,35 @@
     End Sub
 
     Private Sub RandomWeapons()
-
+        Dim looper as Boolean
         'Select 3 Ramdom Guns for a poll. Do not include the last used gun
-Start:
-        Randomize()
-        txtRandomGun1.Text = Int((15 * Rnd()) + 1)
-        txtRandomGun2.Text = Int((15 * Rnd()) + 1)
-        txtRandomGun3.Text = Int((15 * Rnd()) + 1)
-        If txtRandomGun1.Text = txtRandomGun2.Text Then
-            GoTo Start
-        ElseIf txtRandomGun1.Text = txtRandomGun3.Text Then
-            GoTo Start
-        ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
-            GoTo Start
-        ElseIf txtRandomGun1.Text = txtLastGun.Text Then
-            GoTo Start
-        ElseIf txtRandomGun2.Text = txtLastGun.Text Then
-            GoTo Start
-        ElseIf txtRandomGun3.Text = txtLastGun.Text Then
-            GoTo Start
-        End If
+
+        txtRandomGun1.Text = Rand(1, 15)
+        txtRandomGun2.Text = Rand(1, 15)
+        txtRandomGun3.Text = Rand(1, 15)
+        
+        Do
+            looper = false
+            If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
+                if txtRandomGun1.Text = txtRandomGun2.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
+                    txtRandomGun2.Text = Rand(1, 15)
+                ElseIf txtRandomGun1.Text = txtRandomGune3.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                End If
+                looper = True
+            ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
+                if txtRandomGun1.Text = txtLastGun.Text Then
+                    txtRandomGun1.Text = Rand(1, 15)
+                ElseIf txtRandomGun2.Text = txtLastGun.Text Then
+                    txtRandomGun2.Text = Rand(1, 15)
+                ElseIf txtRandomGun3.Text = txtLastGun.Text Then
+                    txtRandomGun3.Text = Rand(1, 15)
+                End If
+                looper = True
+            End If
+        Loop while looper
 
         'Based on number, place Hero Image and Name into picHero and lblHeroName for all 3 Heroes
         Select Case txtRandomGun1.Text
@@ -187,7 +196,7 @@ Start:
                 lblWeaponName2.Text = "Hawkmoon"
             Case 3
                 picWeapon2.Image = picW3.Image
-                lblWeaponName1.Text = "LastWord"
+                lblWeaponName2.Text = "LastWord"
             Case 4
                 picWeapon2.Image = picW4.Image
                 lblWeaponName2.Text = "MIDA"
@@ -547,39 +556,66 @@ Start:
 
     End Sub
 
+    Private Function Rand(lowerbound As Integer, upperbound As Integer) As Integer
+        Randomize()
+        Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
+    End Function
+    
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
+        Dim randomValue As Integer
+
         If txtVoteCountdown.Text = 0 Then
             'Vote is over. Declair winner
             'Check who had the most votes. Move that to txtLastHero.text
-            If txtVote1.Text >= txtVote2.Text And txtVote1.Text >= txtVote3.Text Then
+            If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun1.Text
-            ElseIf txtVote2.Text >= txtVote1.Text And txtVote2.Text >= txtVote3.Text Then
+            ElseIf txtVote2.Text > txtVote1.Text And txtVote2.Text > txtVote3.Text Then
                 txtLastGun.Text = txtRandomGun2.Text
-            ElseIf txtVote3.Text >= txtVote1.Text And txtVote3.Text >= txtVote2.Text Then
+            ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
                 txtLastGun.Text = txtRandomGun3.Text
+            ElseIf txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then
+                randomValue = Rand(1, 3)
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun1.Text
+                ElseIf randomValue = 2 Then
+                    txtLastGun.Text = txtRandomGun2.Text
+                Else
+                    txtLastGun.Text = txtRandomGun3.Text
+                End If
+
+            ElseIf txtVote1.Text = txtVote2.Text Then 'Check for ties
+                randomValue = Rand(1, 2)
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun1.Text
+                Else
+                    txtLastGun.Text = txtRandomGun2.Text
+                End If
+            ElseIf txtVote1.Text = txtVote3.Text Then
+                randomValue = Rand(1, 2)
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun1.Text
+                Else
+                    txtLastGun.Text = txtRandomGun3.Text
+                End If
+            ElseIf txtVote2.Text = txtVote3.Text Then
+                randomValue = Rand(1, 2)
+                If randomValue = 1 Then
+                    txtLastGun.Text = txtRandomGun2.Text
+                Else
+                    txtLastGun.Text = txtRandomGun3.Text
+                End If
             End If
 
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
-
-                Randomize()
-                txtLastGun.Text = Int((14 * Rnd()) + 1)
-
-                UpDown() 'send all voting options down
-                SlotToLocation() 'set up location for slot of gun to send
-                SendNew() 'send over the new gun
-                txtVoteCountdown.Text = "45" 'reset voting countdown timer
-                tmrVote.Enabled = False 'stop counting down
-                tmrReticleCheck.Enabled = True 'start watching again
-
-            Else
-                UpDown() 'send all voting options down
-                SlotToLocation() 'set up location for slot of gun to send
-                SendNew() 'send over the new gun
-                txtVoteCountdown.Text = "45" 'reset voting countdown timer
-                tmrVote.Enabled = False 'stop counting down
-                tmrReticleCheck.Enabled = True 'start watching again
+                txtLastGun.Text = Rand(1, 14)
             End If
-
+            
+            UpDown() 'send all voting options down
+            SlotToLocation() 'set up location for slot of gun to send
+            SendNew() 'send over the new gun
+            txtVoteCountdown.Text = "45" 'reset voting countdown timer
+            tmrVote.Enabled = False 'stop counting down
+            tmrReticleCheck.Enabled = True 'start watching again
 
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
@@ -684,30 +720,20 @@ Start:
 
         If txtCheckYes.Text = 10 Then
             'Hero did die. Switch Weapons
-            If txt3Strikes.Text = 4 Then
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-
-
-
-            ElseIf txt3Strikes.Text = 0 Then
-                txt3Strikes.Text = txt3Strikes.Text + 1
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
+            
+            tmrDeathCheck.Enabled = False
+            txtCheckNo.Text = "10"
+            txtCheckYes.Text = "0"
+            txtPlayerStatus.Text = "Dead"
+            tmrReticleCheck.Enabled = True
+            txt3Strikes.Text = txt3Strikes.Text + 1
+            
+            If txt3Strikes.Text = 0 Then
 
                 AlertPlayer.URL = "C:\Users\Matthew\Desktop\Destiny Weapon Swap\Audio Queues\Que01.wav"
                 AlertPlayer.Ctlcontrols.play()
 
-
-                tmrReticleCheck.Enabled = True
-
             ElseIf txt3Strikes.Text = 1 Then
-                txt3Strikes.Text = txt3Strikes.Text + 1
                 FocusDIM()
 
                 'reload DIM
@@ -718,23 +744,7 @@ Start:
                 mouse_event(&H4, 0, 0, 0, 1)
 
                 FocusDIS()
-
-
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-                tmrReticleCheck.Enabled = True
-
-            Else
-                txt3Strikes.Text = txt3Strikes.Text + 1
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-                tmrReticleCheck.Enabled = True
+                
             End If
 
 
