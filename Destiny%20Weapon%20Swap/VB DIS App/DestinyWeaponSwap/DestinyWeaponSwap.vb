@@ -720,30 +720,20 @@
 
         If txtCheckYes.Text = 10 Then
             'Hero did die. Switch Weapons
-            If txt3Strikes.Text = 4 Then
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-
-
-
-            ElseIf txt3Strikes.Text = 0 Then
-                txt3Strikes.Text = txt3Strikes.Text + 1
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
+            
+            tmrDeathCheck.Enabled = False
+            txtCheckNo.Text = "10"
+            txtCheckYes.Text = "0"
+            txtPlayerStatus.Text = "Dead"
+            tmrReticleCheck.Enabled = True
+            txt3Strikes.Text = txt3Strikes.Text + 1
+            
+            If txt3Strikes.Text = 0 Then
 
                 AlertPlayer.URL = "C:\Users\Matthew\Desktop\Destiny Weapon Swap\Audio Queues\Que01.wav"
                 AlertPlayer.Ctlcontrols.play()
 
-
-                tmrReticleCheck.Enabled = True
-
             ElseIf txt3Strikes.Text = 1 Then
-                txt3Strikes.Text = txt3Strikes.Text + 1
                 FocusDIM()
 
                 'reload DIM
@@ -754,23 +744,7 @@
                 mouse_event(&H4, 0, 0, 0, 1)
 
                 FocusDIS()
-
-
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-                tmrReticleCheck.Enabled = True
-
-            Else
-                txt3Strikes.Text = txt3Strikes.Text + 1
-                tmrDeathCheck.Enabled = False
-                txtCheckNo.Text = "10"
-                txtCheckYes.Text = "0"
-                txtPlayerStatus.Text = "Dead"
-
-                tmrReticleCheck.Enabled = True
+                
             End If
 
 
