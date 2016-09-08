@@ -13,6 +13,7 @@ Public Class frmDestinyWeaponSwap
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
+        frmIRC.Hide()
         UpDown()
         RandomWeapons()
     End Sub
@@ -415,5 +416,8 @@ Public Class frmDestinyWeaponSwap
             txt3Strikes.Text = "0"
             cmdManualAuto.Text = "Manual"
         End If
+    End Sub
+    Private Sub cmdIRC_Click(sender As Object, e As EventArgs) Handles cmdIRC.Click
+        frmIRC.Show()
     End Sub
 End Class
