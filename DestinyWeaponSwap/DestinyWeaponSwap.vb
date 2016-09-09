@@ -8,20 +8,18 @@ Public Class frmDestinyWeaponSwap
 
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        picSwapPlate.Top = 0
-        picSwapPlate.Left = 0
-        picWeapon1.Left = 2
-        picWeapon1.Top = 89
-        picWeapon2.Left = 2
-        picWeapon2.Top = 275
-        picBackground.Left = 216
-        picBackground.Top = 0
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
+        frmIRC.Hide()
         UpDown()
+        RandomWeapons()
+    End Sub
+    Private Sub ReloadDIM()
+        FocusDIM()
+        MouseMover1(379, 123)
     End Sub
     Private Sub FocusDIM()
         MouseMover1(451, 13)
@@ -33,23 +31,21 @@ Public Class frmDestinyWeaponSwap
         tmrUpDown.Enabled = True
     End Sub
     Private Sub UpdateVotes()
+        txtTotalVotes.Text = Int(txtVote1.Text) + Int(txtVote2.Text) + Int(txtVote3.Text)
         barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
         barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
         barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
     End Sub
     Private Sub Vote1()
         txtVote1.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub Vote2()
         txtVote2.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub Vote3()
         txtVote3.Text += 1
-        txtTotalVotes.Text += 1
         UpdateVotes()
     End Sub
     Private Sub TakeOld()
@@ -73,7 +69,7 @@ Public Class frmDestinyWeaponSwap
         tmrVote.Enabled = True 'Vote only lasts during this duration
         RandomWeapons() 'Mix up all guns
         UpDown() 'Move up all voting options into visible field
-        My.Computer.Audio.Play(My.Resources.Que03, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.Cue03, AudioPlayMode.Background)
     End Sub
     Private Sub RandomWeapons()
         Dim looper As Boolean
@@ -213,7 +209,6 @@ Public Class frmDestinyWeaponSwap
                 txtVote1.Text = "0"
                 txtVote2.Text = "0"
                 txtVote3.Text = "0"
-                txtTotalVotes.Text = "0"
 
             Else
                 'Move all items left by 2 pixels
@@ -248,8 +243,6 @@ Public Class frmDestinyWeaponSwap
         Return CInt(Math.Floor((upperbound - lowerbound + 1) * Rnd())) + lowerbound
     End Function
     Private Sub tmrVote_Tick(sender As Object, e As EventArgs) Handles tmrVote.Tick
-        Dim randomValue As Integer
-
         If txtVoteCountdown.Text = 0 Then
             'Vote is over. Declare winner
             'Check who had the most votes. Move that to txtLastWeapon.text
@@ -259,64 +252,52 @@ Public Class frmDestinyWeaponSwap
                 txtLastGun.Text = txtRandomGun2.Text
             ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
                 txtLastGun.Text = txtRandomGun3.Text
-            ElseIf txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
-                randomValue = Rand(0, 2)
-                txtLastGun.Text = txtWeapons(randomValue).Text
-            ElseIf txtVote1.Text = txtVote2.Text Then
-                randomValue = Rand(0, 1)
-                txtLastGun.Text = txtWeapons(randomValue).Text
-            ElseIf txtVote1.Text = txtVote3.Text Then
-                randomValue = Rand(1, 2)
-                If randomValue = 1 Then
-                    txtLastGun.Text = txtRandomGun1.Text
-                Else
-                    txtLastGun.Text = txtRandomGun3.Text
-                End If
-            ElseIf txtVote2.Text = txtVote3.Text Then
-                randomValue = Rand(1, 2)
-                txtLastGun.Text = txtWeapons(randomValue).Text
             End If
-
+            CheckForTies()
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
                 txtLastGun.Text = Rand(1, 14)
             End If
-
             UpDown() 'send all voting options down
             SlotToLocation() 'set up location for slot of gun to send
             SendNew() 'send over the new gun
             txtVoteCountdown.Text = "45" 'reset voting countdown timer
             tmrVote.Enabled = False 'stop counting down
             tmrReticleCheck.Enabled = True 'start watching again
-
         Else
             txtVoteCountdown.Text = txtVoteCountdown.Text - 1 'countdown from timer by 1
-            tmrReticleCheck.Enabled = False
-            tmrDeathCheck.Enabled = False
-            tmrSpawnCheck.Enabled = False
-            txtCheckNo.Text = 10
-            txtCheckYes.Text = 0
+            YesNoReticleDeathSpawnStatus(False, False, False)
+        End If
+    End Sub
+    Private Sub CheckForTies()
+        Dim randomValue As Integer
+        If txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
+            randomValue = Rand(0, 2)
+            txtLastGun.Text = txtWeapons(randomValue).Text
+        ElseIf txtVote1.Text = txtVote2.Text Then
+            randomValue = Rand(0, 1)
+            txtLastGun.Text = txtWeapons(randomValue).Text
+        ElseIf txtVote1.Text = txtVote3.Text Then
+            randomValue = Rand(1, 2)
+            If randomValue = 1 Then
+                txtLastGun.Text = txtRandomGun1.Text
+            Else
+                txtLastGun.Text = txtRandomGun3.Text
+            End If
+        ElseIf txtVote2.Text = txtVote3.Text Then
+            randomValue = Rand(1, 2)
+            txtLastGun.Text = txtWeapons(randomValue).Text
         End If
     End Sub
     Private Sub tmrReticleCheck_Tick(sender As Object, e As EventArgs) Handles tmrReticleCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
-
+        CheckPixels()
         'All presumptions on the characters dead/alive status are founded on the presence or absence of the reticle being visible
         If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
-            If txtPlayerStatus.Text <> "Dead" Then
-                'Just died- Run spawn check
+            If txtPlayerStatus.Text <> "Dead" Then 'Just died- Run spawn check
                 tmrReticleCheck.Enabled = False
                 tmrDeathCheck.Enabled = True
             End If
         Else
-            If txtPlayerStatus.Text <> "Alive" Then
-                'Just spawned- Run death check
+            If txtPlayerStatus.Text <> "Alive" Then 'Just spawned- Run death check
                 tmrReticleCheck.Enabled = False
                 tmrSpawnCheck.Enabled = True
             End If
@@ -326,37 +307,16 @@ Public Class frmDestinyWeaponSwap
         StartVote()
     End Sub
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
-
-        If txtCheckYes.Text = 10 Then
-            'Player did respawn. Start the new vote & reset.
-
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
-            txtPlayerStatus.Text = "Alive"
-            tmrSpawnCheck.Enabled = False
-            tmrReticleCheck.Enabled = True
-
+        CheckPixels()
+        If txtCheckYes.Text = 10 Then 'Player did respawn. Start the new vote & reset.
+            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False, "Alive")
             If txt3Strikes.Text = 4 Then
                 StartVote()
                 txt3Strikes.Text = 0
             End If
-
-        ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Player did not respawn. Reset & Keep waiting.
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
-            tmrSpawnCheck.Enabled = False
-            tmrReticleCheck.Enabled = True
-        Else
-            'expecting to see NO white. If we do, return No
+        ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not respawn. Reset & Keep waiting.
+            YesNoReticleDeathSpawnStatus(True, tmrDeathCheck.Enabled, False)
+        Else 'expecting to see NO white. If we do, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckNo.Text = txtCheckNo.Text - 1
             Else
@@ -365,46 +325,35 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub tmrDeathCheck_Tick(sender As Object, e As EventArgs) Handles tmrDeathCheck.Tick
-        'Checking 1 pixel at the center of the right screen
-        Dim a As New Drawing.Bitmap(1, 1)
-        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
-        Dim c As Drawing.Color = a.GetPixel(0, 0)
-        picReticleColor.BackColor = c
-        txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
-
-        If txtCheckYes.Text = 10 Then
-            'Hero did die. Switch Weapons
-
-            tmrDeathCheck.Enabled = False
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
-            txtPlayerStatus.Text = "Dead"
-            tmrReticleCheck.Enabled = True
+        CheckPixels()
+        If txtCheckYes.Text = 10 Then 'Guardian did die. Switch Weapons
+            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, "Dead")
             txt3Strikes.Text += 1
-
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Que01, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
-                FocusDIM()
-                MouseMover1(379, 123) 'reload DIM
+                ReloadDim()
                 FocusDIS()
             End If
-        ElseIf txtCheckNo.Text = 0 Then
-            'false positive. Player did not die. Reset & Keep waiting.
-            tmrDeathCheck.Enabled = False
-            txtCheckNo.Text = "10"
-            txtCheckYes.Text = "0"
-            tmrReticleCheck.Enabled = True
-        Else
-            'expecting to see red. If we dont, return No
+        ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
+            YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled)
+        Else 'expecting to see red. If we dont, return No
             If txtReticleColor.Text = "fff0" Or txtReticleColor.Text = "fff1" Or txtReticleColor.Text = "fff2" Or txtReticleColor.Text = "fff3" Or txtReticleColor.Text = "fff4" Or txtReticleColor.Text = "fff5" Or txtReticleColor.Text = "fff6" Or txtReticleColor.Text = "fff7" Or txtReticleColor.Text = "fff8" Or txtReticleColor.Text = "fff9" Then
                 txtCheckYes.Text += 1
             Else
                 txtCheckNo.Text -= 1
             End If
         End If
+    End Sub
+    Private Sub YesNoReticleDeathSpawnStatus(reticle As Boolean, death As Boolean, spawn As Boolean, Optional ByVal status As String = "")
+        If status <> "" Then
+            txtPlayerStatus.Text = status
+        End If
+        txtCheckYes.Text = "0"
+        txtCheckNo.Text = "10"
+        tmrReticleCheck.Enabled = reticle
+        tmrDeathCheck.Enabled = death
+        tmrSpawnCheck.Enabled = spawn
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tmrMouseLoc.Tick
         Dim MPx As Point = MousePosition()
@@ -413,96 +362,17 @@ Public Class frmDestinyWeaponSwap
     Private Sub SendNew()
         'Send clicks to switch Weapons in game - to be used on death screen
         'Checks what Weapon was last voted for (txtLastWeapon.text)
-
         FocusDIM()
-
-        My.Computer.Audio.Play(My.Resources.Que02, AudioPlayMode.Background)
-
-        Select Case txtWinnerLocation.Text
-            Case 1
-                SendSlot1()
-            Case 2
-                SendSlot2()
-            Case 3
-                SendSlot3()
-            Case 4
-                SendSlot4()
-            Case 5
-                SendSlot5()
-            Case 6
-                SendSlot6()
-            Case 7
-                SendSlot7()
-            Case 8
-                SendSlot8()
-            Case 9
-                SendSlot9()
-            Case 10
-                SendSlot10()
-            Case 11
-                SendSlot11()
-            Case 12
-                SendSlot12()
-            Case 13
-                SendSlot13()
-            Case 14
-                SendSlot14()
-            Case 15
-                SendSlot15()
-        End Select
-
+        My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
+        SendSlot(txtWinnerLocation.Text)
         txtLocationOnDeck.Text = txtWinnerLocation.Text
-
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
-
     End Sub
     Private Sub cmdSendNew_Click(sender As Object, e As EventArgs) Handles cmdSendNew.Click
         SendNew()
     End Sub
-    Private Sub SendSlot1()
-        MouseMover2(216, 172, 145, 230)
-    End Sub
-    Private Sub SendSlot2()
-        MouseMover2(216, 172, 145, 260)
-    End Sub
-    Private Sub SendSlot3()
-        MouseMover2(216, 172, 145, 290)
-    End Sub
-    Private Sub SendSlot4()
-        MouseMover2(216, 172, 145, 315)
-    End Sub
-    Private Sub SendSlot5()
-        MouseMover2(216, 172, 145, 345)
-    End Sub
-    Private Sub SendSlot6()
-        MouseMover2(216, 172, 145, 370)
-    End Sub
-    Private Sub SendSlot7()
-        MouseMover2(216, 172, 145, 400)
-    End Sub
-    Private Sub SendSlot8()
-        MouseMover2(216, 172, 145, 430)
-    End Sub
-    Private Sub SendSlot9()
-        MouseMover2(216, 172, 145, 455)
-    End Sub
-    Private Sub SendSlot10()
-        MouseMover2(216, 172, 145, 485)
-    End Sub
-    Private Sub SendSlot11()
-        MouseMover2(216, 172, 145, 510)
-    End Sub
-    Private Sub SendSlot12()
-        MouseMover2(216, 172, 145, 540)
-    End Sub
-    Private Sub SendSlot13()
-        MouseMover2(216, 172, 145, 570)
-    End Sub
-    Private Sub SendSlot14()
-        MouseMover2(216, 172, 145, 600)
-    End Sub
-    Private Sub SendSlot15()
-        MouseMover2(216, 172, 145, 630)
+    Private Sub SendSlot(i As Integer)
+        MouseMover2(216, 172, 145, 230 + (i * 30) - 30)
     End Sub
     Private Sub MouseMover1(x1 As Integer, y1 As Integer)
         Me.Cursor = New Cursor(Cursor.Current.Handle)
@@ -528,7 +398,16 @@ Public Class frmDestinyWeaponSwap
         mouse_event(&H4, 0, 0, 0, 1)
         System.Threading.Thread.Sleep(200)
     End Sub
-
+    Private Sub CheckPixels()
+        'Checking 1 pixel at the center of the right screen
+        Dim a As New Drawing.Bitmap(1, 1)
+        Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
+        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
+        Dim c As Drawing.Color = a.GetPixel(0, 0)
+        picReticleColor.BackColor = c
+        txtReticleColor.Text = picReticleColor.BackColor.Name
+        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+    End Sub
     Private Sub cmdManualAuto_Click(sender As Object, e As EventArgs) Handles cmdManualAuto.Click
         If cmdManualAuto.Text = "Manual" Then
             txt3Strikes.Text = "15"
@@ -537,5 +416,8 @@ Public Class frmDestinyWeaponSwap
             txt3Strikes.Text = "0"
             cmdManualAuto.Text = "Manual"
         End If
+    End Sub
+    Private Sub cmdIRC_Click(sender As Object, e As EventArgs) Handles cmdIRC.Click
+        frmIRC.Show()
     End Sub
 End Class

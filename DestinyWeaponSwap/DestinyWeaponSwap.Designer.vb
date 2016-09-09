@@ -90,8 +90,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtMouseLoc = New System.Windows.Forms.TextBox()
         Me.tmrMouseLoc = New System.Windows.Forms.Timer(Me.components)
         Me.txt3Strikes = New System.Windows.Forms.TextBox()
-        Me.txtExcess = New System.Windows.Forms.TextBox()
-        Me.AlertPlayer = New AxWMPLib.AxWindowsMediaPlayer()
         Me.txtWinnerLocation = New System.Windows.Forms.TextBox()
         Me.picW3 = New System.Windows.Forms.PictureBox()
         Me.picW4 = New System.Windows.Forms.PictureBox()
@@ -111,17 +109,13 @@ Partial Class frmDestinyWeaponSwap
         Me.picW18 = New System.Windows.Forms.PictureBox()
         Me.picW19 = New System.Windows.Forms.PictureBox()
         Me.picW2 = New System.Windows.Forms.PictureBox()
-        Me.txtNick = New System.Windows.Forms.TextBox()
-        Me.txtPass = New System.Windows.Forms.TextBox()
-        Me.txtServer = New System.Windows.Forms.TextBox()
-        Me.txtChan = New System.Windows.Forms.TextBox()
-        Me.txtChat = New System.Windows.Forms.TextBox()
         Me.cmdManualAuto = New System.Windows.Forms.Button()
         Me.picBackground = New System.Windows.Forms.PictureBox()
         Me.listWeaponSlot = New System.Windows.Forms.ComboBox()
         Me.cmdSendWeaponToSlot = New System.Windows.Forms.Button()
         Me.listWeaponName = New System.Windows.Forms.ComboBox()
         Me.line1 = New System.Windows.Forms.Label()
+        Me.cmdIRC = New System.Windows.Forms.Button()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +127,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AlertPlayer, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -718,24 +711,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txt3Strikes.TabIndex = 105
         Me.txt3Strikes.Text = "0"
         '
-        'txtExcess
-        '
-        Me.txtExcess.Location = New System.Drawing.Point(502, 66)
-        Me.txtExcess.Name = "txtExcess"
-        Me.txtExcess.Size = New System.Drawing.Size(48, 20)
-        Me.txtExcess.TabIndex = 106
-        Me.txtExcess.Text = "excess"
-        '
-        'AlertPlayer
-        '
-        Me.AlertPlayer.Enabled = True
-        Me.AlertPlayer.Location = New System.Drawing.Point(502, 90)
-        Me.AlertPlayer.Name = "AlertPlayer"
-        Me.AlertPlayer.OcxState = CType(resources.GetObject("AlertPlayer.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AlertPlayer.Size = New System.Drawing.Size(48, 20)
-        Me.AlertPlayer.TabIndex = 107
-        Me.AlertPlayer.Visible = False
-        '
         'txtWinnerLocation
         '
         Me.txtWinnerLocation.Enabled = False
@@ -962,45 +937,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picW2.TabStop = False
         Me.picW2.Tag = "Hawkmoon"
         '
-        'txtNick
-        '
-        Me.txtNick.Location = New System.Drawing.Point(302, 246)
-        Me.txtNick.Name = "txtNick"
-        Me.txtNick.Size = New System.Drawing.Size(100, 20)
-        Me.txtNick.TabIndex = 109
-        Me.txtNick.Text = "Nick"
-        '
-        'txtPass
-        '
-        Me.txtPass.Location = New System.Drawing.Point(302, 272)
-        Me.txtPass.Name = "txtPass"
-        Me.txtPass.Size = New System.Drawing.Size(100, 20)
-        Me.txtPass.TabIndex = 110
-        Me.txtPass.Text = "Pass"
-        '
-        'txtServer
-        '
-        Me.txtServer.Location = New System.Drawing.Point(302, 298)
-        Me.txtServer.Name = "txtServer"
-        Me.txtServer.Size = New System.Drawing.Size(100, 20)
-        Me.txtServer.TabIndex = 111
-        Me.txtServer.Text = "Server"
-        '
-        'txtChan
-        '
-        Me.txtChan.Location = New System.Drawing.Point(302, 324)
-        Me.txtChan.Name = "txtChan"
-        Me.txtChan.Size = New System.Drawing.Size(100, 20)
-        Me.txtChan.TabIndex = 112
-        Me.txtChan.Text = "Chan"
-        '
-        'txtChat
-        '
-        Me.txtChat.Location = New System.Drawing.Point(302, 365)
-        Me.txtChat.Name = "txtChat"
-        Me.txtChat.Size = New System.Drawing.Size(100, 20)
-        Me.txtChat.TabIndex = 113
-        '
         'cmdManualAuto
         '
         Me.cmdManualAuto.Location = New System.Drawing.Point(422, 205)
@@ -1013,7 +949,7 @@ Partial Class frmDestinyWeaponSwap
         'picBackground
         '
         Me.picBackground.BackColor = System.Drawing.Color.DimGray
-        Me.picBackground.Location = New System.Drawing.Point(216, 645)
+        Me.picBackground.Location = New System.Drawing.Point(216, 0)
         Me.picBackground.Name = "picBackground"
         Me.picBackground.Size = New System.Drawing.Size(337, 680)
         Me.picBackground.TabIndex = 115
@@ -1054,25 +990,28 @@ Partial Class frmDestinyWeaponSwap
         Me.line1.TabIndex = 119
         Me.line1.Text = "Label1"
         '
+        'cmdIRC
+        '
+        Me.cmdIRC.Location = New System.Drawing.Point(421, 78)
+        Me.cmdIRC.Name = "cmdIRC"
+        Me.cmdIRC.Size = New System.Drawing.Size(75, 23)
+        Me.cmdIRC.TabIndex = 120
+        Me.cmdIRC.Text = "IRC"
+        Me.cmdIRC.UseVisualStyleBackColor = True
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Lime
         Me.ClientSize = New System.Drawing.Size(553, 681)
+        Me.Controls.Add(Me.cmdIRC)
         Me.Controls.Add(Me.line1)
         Me.Controls.Add(Me.listWeaponName)
         Me.Controls.Add(Me.cmdSendWeaponToSlot)
         Me.Controls.Add(Me.listWeaponSlot)
         Me.Controls.Add(Me.cmdManualAuto)
-        Me.Controls.Add(Me.txtChat)
-        Me.Controls.Add(Me.txtChan)
-        Me.Controls.Add(Me.txtServer)
-        Me.Controls.Add(Me.txtPass)
-        Me.Controls.Add(Me.txtNick)
         Me.Controls.Add(Me.txtWinnerLocation)
-        Me.Controls.Add(Me.AlertPlayer)
-        Me.Controls.Add(Me.txtExcess)
         Me.Controls.Add(Me.txt3Strikes)
         Me.Controls.Add(Me.txtMouseLoc)
         Me.Controls.Add(Me.txtLocationOnDeck)
@@ -1166,7 +1105,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AlertPlayer, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1257,8 +1195,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents txtMouseLoc As TextBox
     Friend WithEvents tmrMouseLoc As Timer
     Friend WithEvents txt3Strikes As TextBox
-    Friend WithEvents txtExcess As TextBox
-    Friend WithEvents AlertPlayer As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents txtWinnerLocation As TextBox
     Friend WithEvents picW3 As PictureBox
     Friend WithEvents picW4 As PictureBox
@@ -1278,15 +1214,11 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picW18 As PictureBox
     Friend WithEvents picW19 As PictureBox
     Friend WithEvents picW2 As PictureBox
-    Friend WithEvents txtNick As TextBox
-    Friend WithEvents txtPass As TextBox
-    Friend WithEvents txtServer As TextBox
-    Friend WithEvents txtChan As TextBox
-    Friend WithEvents txtChat As TextBox
     Friend WithEvents cmdManualAuto As Button
     Friend WithEvents picBackground As PictureBox
     Friend WithEvents listWeaponSlot As ComboBox
     Friend WithEvents cmdSendWeaponToSlot As Button
     Friend WithEvents listWeaponName As ComboBox
     Friend WithEvents line1 As Label
+    Friend WithEvents cmdIRC As Button
 End Class
