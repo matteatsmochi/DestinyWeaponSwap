@@ -1,19 +1,32 @@
 ﻿
 Public Class frmDestinyWeaponSwap
+    ' Set up Arrays for Weapons
     Dim picAllWeapons() As PictureBox
     Dim picWeapons() As PictureBox
+    Dim barVotes() As PictureBox
     Dim lblWeapons() As Label
     Dim txtWeapons() As TextBox
     Dim txtLocations() As TextBox
-
+    Dim txtVotes() As TextBox
+    ' IRC Variables
+    Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
+    Dim OAuth As String
+    Dim Username As String
+    Dim Server As String = "irc.twitch.tv"
+    Dim Info As New IrcDotNet.IrcUserRegistrationInfo
+    'One-Line Sub Declarations
+    Delegate Sub SetTextCallback(ByVal [text] As String)
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Width = "570"
+        barVotes = New PictureBox() {barVote1, barVote2, barVote3}
+        txtVotes = New TextBox() {txtVote1, txtVote2, txtVote3}
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
-        frmIRC.Hide()
+        Client.FloodPreventer = New IrcDotNet.IrcStandardFloodPreventer(4, 2000)
         UpDown()
         RandomWeapons()
     End Sub
@@ -31,21 +44,17 @@ Public Class frmDestinyWeaponSwap
         tmrUpDown.Enabled = True
     End Sub
     Private Sub UpdateVotes()
-        txtTotalVotes.Text = Int(txtVote1.Text) + Int(txtVote2.Text) + Int(txtVote3.Text)
-        barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
-        barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
-        barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
+        Dim i As Integer
+        txtTotalVotes.Text = 0
+        For i = 0 To 2
+            txtTotalVotes.Text += Int(txtVotes(i).Text)
+        Next
+        For i = 0 To 2
+            barVotes(i).Width = (txtVotes(i).Text / txtTotalVotes.Text) * 200
+        Next
     End Sub
-    Private Sub Vote1()
-        txtVote1.Text += 1
-        UpdateVotes()
-    End Sub
-    Private Sub Vote2()
-        txtVote2.Text += 1
-        UpdateVotes()
-    End Sub
-    Private Sub Vote3()
-        txtVote3.Text += 1
+    Private Sub Vote(i As Integer) 'Send as 1,2,3 not zero
+        txtVotes(i - 1).Text += 1
         UpdateVotes()
     End Sub
     Private Sub TakeOld()
@@ -59,17 +68,19 @@ Public Class frmDestinyWeaponSwap
         txtLocationWActive.Text = txtLocationOnDeck.Text
         picOnDeck.Image = picAllWeapons(18).Image
         txtLocationOnDeck.Text = "0"
-
         System.Threading.Thread.Sleep(200)
     End Sub
     Private Sub StartVote()
+        cmdStartVote.Enabled = False
         TakeOld() 'take old weapon
         System.Threading.Thread.Sleep(200)
         FocusDIS()
         tmrVote.Enabled = True 'Vote only lasts during this duration
         RandomWeapons() 'Mix up all guns
-        UpDown() 'Move up all voting options into visible field
-        My.Computer.Audio.Play(My.Resources.Cue03, AudioPlayMode.Background)
+        If cmdUpDown.Text <> "Down" Then
+            UpDown() 'Move up all voting options into visible field
+        End If
+        My.Computer.Audio.Play(My.Resources.VoteStart, AudioPlayMode.Background)
     End Sub
     Private Sub RandomWeapons()
         Dim looper As Boolean
@@ -113,11 +124,11 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub Voter(weaponvote As String)
         If lblWeaponName1.Text = weaponvote Then
-            Vote1()
+            Vote(1)
         ElseIf lblWeaponName2.Text = weaponvote Then
-            Vote2()
+            Vote(2)
         ElseIf lblWeaponName3.Text = weaponvote Then
-            Vote3()
+            Vote(3)
         End If
     End Sub
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
@@ -155,76 +166,50 @@ Public Class frmDestinyWeaponSwap
         End Select
     End Sub
     Private Sub cmdVote1_Click(sender As Object, e As EventArgs) Handles cmdVote1.Click
-        Vote1()
+        Vote(1)
     End Sub
     Private Sub cmdVote2_Click(sender As Object, e As EventArgs) Handles cmdVote2.Click
-        Vote2()
+        Vote(2)
     End Sub
     Private Sub cmdVote3_Click(sender As Object, e As EventArgs) Handles cmdVote3.Click
-        Vote3()
+        Vote(3)
     End Sub
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
-        Dim i As Integer
-        If cmdUpDown.Text = "Up" Then
-            'Reset everything for a blank vote
-            cmdVote1.Enabled = True
-            cmdVote2.Enabled = True
-            cmdVote3.Enabled = True
-            barVote1.Width = 0
-            barVote2.Width = 0
-            barVote3.Width = 0
-
-            If txtUpDown.Text = 125 Then
-                'All items are at the top, do not move them anymore. Ready everything to be pushed down.
-                tmrUpDown.Enabled = False
-                txtUpDown.Text = "0"
+        If txtUpDown.Text = 125 Then
+            cmdVote1.Enabled = Not cmdVote1.Enabled
+            cmdVote2.Enabled = Not cmdVote2.Enabled
+            cmdVote3.Enabled = Not cmdVote3.Enabled
+            tmrUpDown.Enabled = False
+            txtUpDown.Text = "0"
+            If cmdUpDown.Text = "Up" Then
                 cmdUpDown.Text = "Down"
             Else
-                'Move all items right by 2 pixels
-                For i = 0 To 2
-                    picWeapons(i).Left += 2
-                    lblWeapons(i).Left += 2
-                Next
-                barVote1.Left += 2
-                barVote2.Left += 2
-                barVote3.Left += 2
-                picSwapPlate.Left += 2
-                'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text += 1
-            End If
-
-        ElseIf cmdUpDown.Text = "Down" Then
-            'Vote is over, voting is disabled
-            cmdVote1.Enabled = False
-            cmdVote2.Enabled = False
-            cmdVote3.Enabled = False
-
-            If txtUpDown.Text = 125 Then
+                'Vote is over, voting is disabled
                 'All items are at the bottom, do not move them anymore. Ready everything to be pushed up.
-                tmrUpDown.Enabled = False
-                txtUpDown.Text = "0"
                 cmdUpDown.Text = "Up"
-                'Reset Vote
                 txtVote1.Text = "0"
                 txtVote2.Text = "0"
                 txtVote3.Text = "0"
-
-            Else
-                'Move all items left by 2 pixels
-                For i = 0 To 2
-                    picWeapons(i).Left -= 2
-                    lblWeapons(i).Left -= 2
-                Next
-                barVote1.Left -= 2
-                barVote2.Left -= 2
-                barVote3.Left -= 2
-                picSwapPlate.Left -= 2
-                'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text += 1
+                barVote1.Width = 0
+                barVote2.Width = 0
+                barVote3.Width = 0
             End If
-
+        ElseIf cmdUpDown.Text = "Up" Then
+            Mover(2)
+        Else
+            Mover(-2)
         End If
+    End Sub
+    Private Sub Mover(x As Integer) '-2 for left, 2 for right
+        For i = 0 To 2
+            picWeapons(i).Left += x
+            lblWeapons(i).Left += x
+            barVotes(i).Left += x
+        Next
+        picSwapPlate.Left += x
+        'Mark the timer up by 1 (until it reaches 125)
+        txtUpDown.Text += 1
     End Sub
     Private Sub cmdUpDown_Click(sender As Object, e As EventArgs) Handles cmdUpDown.Click
         UpDown()
@@ -330,9 +315,9 @@ Public Class frmDestinyWeaponSwap
             YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, "Dead")
             txt3Strikes.Text += 1
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.Death, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
-                ReloadDim()
+                ReloadDIM()
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
@@ -363,7 +348,8 @@ Public Class frmDestinyWeaponSwap
         'Send clicks to switch Weapons in game - to be used on death screen
         'Checks what Weapon was last voted for (txtLastWeapon.text)
         FocusDIM()
-        My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.VoteEnd, AudioPlayMode.Background)
+        cmdStartVote.Enabled = True
         SendSlot(txtWinnerLocation.Text)
         txtLocationOnDeck.Text = txtWinnerLocation.Text
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
@@ -412,12 +398,79 @@ Public Class frmDestinyWeaponSwap
         If cmdManualAuto.Text = "Manual" Then
             txt3Strikes.Text = "15"
             cmdManualAuto.Text = "Auto"
-        ElseIf cmdManualAuto.Text = "Auto" Then
+        Else
             txt3Strikes.Text = "0"
             cmdManualAuto.Text = "Manual"
         End If
     End Sub
     Private Sub cmdIRC_Click(sender As Object, e As EventArgs) Handles cmdIRC.Click
-        frmIRC.Show()
+        If cmdIRC.Text = "Show IRC" Then
+            Me.Width = 875
+            cmdIRC.Text = "Hide IRC"
+        Else
+            Me.Width = 570
+            cmdIRC.Text = "Show IRC"
+        End If
+    End Sub
+    Private Sub cmdConnect_Click(sender As Object, e As EventArgs) Handles cmdConnect.Click
+        If cmdConnect.Text = "Connect" Then
+            If txtPass.Text <> "" Or txtNick.Text <> "" Then
+                OAuth = txtPass.Text
+                Username = txtNick.Text
+                Info.NickName = Username
+                Info.Password = OAuth
+                Info.UserName = Username
+                SetServerInfo("Starting to connect to twitch as " + Username + ".")
+                Client.Connect(Server, False, Info)
+                cmdConnect.Text = "Join"
+                cmdDisconnect.Enabled = True
+                If chkAutoJoin.Checked And txtChan.Text <> "" Then
+                    cmdConnect.Enabled = False
+                    JoinChannel()
+                Else
+                    SetServerInfo("Channel not set.")
+                End If
+            Else
+                SetServerInfo("Nick or password is blank.")
+            End If
+        Else
+            cmdConnect.Enabled = False
+            JoinChannel()
+        End If
+    End Sub
+    Private Sub cmdDisconnect_Click(sender As Object, e As EventArgs) Handles cmdDisconnect.Click
+        Client.Disconnect()
+        cmdDisconnect.Enabled = False
+        cmdConnect.Enabled = True
+        cmdConnect.Text = "Connect"
+    End Sub
+    Private Sub ConnectFailed(sender As Object, e As EventArgs) Handles Client.ConnectFailed
+        SetServerInfo("Failed to connect to twitch.")
+    End Sub
+    Private Sub Disconnected(sender As Object, e As EventArgs) Handles Client.Disconnected
+        SetServerInfo("Disconnected from twitch.")
+    End Sub
+    Private Sub Connected(sender As Object, e As EventArgs) Handles Client.Connected
+        SetServerInfo("Connected to twitch.")
+    End Sub
+    Private Sub JoinChannel()
+        Client.SendRawMessage("JOIN :" + txtChan.Text)
+        SetServerInfo("Joined Channel: " + txtChan.Text)
+    End Sub
+    Private Sub SetServerInfo(ByVal [text] As String)
+        If Me.txtServerInfo.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetServerInfo)
+            Me.Invoke(d, New Object() {[text] & vbCrLf}) 'Thread Safe Call
+        Else
+            Me.txtServerInfo.Text += [text] & vbCrLf
+        End If
+    End Sub
+    Private Sub SetChanChat(ByVal [text] As String)
+        If Me.txtServerInfo.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetChanChat)
+            Me.Invoke(d, New Object() {[text] & vbCrLf}) 'Thread Safe Call
+        Else
+            Me.txtChanChat.Text += [text] & vbCrLf
+        End If
     End Sub
 End Class

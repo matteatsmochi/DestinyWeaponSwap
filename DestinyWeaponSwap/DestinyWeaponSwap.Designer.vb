@@ -27,7 +27,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picWeapon1 = New System.Windows.Forms.PictureBox()
         Me.picWeapon2 = New System.Windows.Forms.PictureBox()
         Me.picWeapon3 = New System.Windows.Forms.PictureBox()
-        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
         Me.barVote3 = New System.Windows.Forms.PictureBox()
         Me.barVote2 = New System.Windows.Forms.PictureBox()
         Me.barVote1 = New System.Windows.Forms.PictureBox()
@@ -110,16 +109,27 @@ Partial Class frmDestinyWeaponSwap
         Me.picW19 = New System.Windows.Forms.PictureBox()
         Me.picW2 = New System.Windows.Forms.PictureBox()
         Me.cmdManualAuto = New System.Windows.Forms.Button()
-        Me.picBackground = New System.Windows.Forms.PictureBox()
         Me.listWeaponSlot = New System.Windows.Forms.ComboBox()
         Me.cmdSendWeaponToSlot = New System.Windows.Forms.Button()
         Me.listWeaponName = New System.Windows.Forms.ComboBox()
         Me.line1 = New System.Windows.Forms.Label()
         Me.cmdIRC = New System.Windows.Forms.Button()
+        Me.lblChan = New System.Windows.Forms.Label()
+        Me.lblPass = New System.Windows.Forms.Label()
+        Me.lblNick = New System.Windows.Forms.Label()
+        Me.txtChan = New System.Windows.Forms.TextBox()
+        Me.txtPass = New System.Windows.Forms.TextBox()
+        Me.txtNick = New System.Windows.Forms.TextBox()
+        Me.cmdConnect = New System.Windows.Forms.Button()
+        Me.txtServerInfo = New System.Windows.Forms.TextBox()
+        Me.txtChanChat = New System.Windows.Forms.TextBox()
+        Me.picLime = New System.Windows.Forms.PictureBox()
+        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
+        Me.cmdDisconnect = New System.Windows.Forms.Button()
+        Me.chkAutoJoin = New System.Windows.Forms.CheckBox()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,7 +155,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picBackground, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picLime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picWeapon1
@@ -183,15 +194,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picWeapon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picWeapon3.TabIndex = 2
         Me.picWeapon3.TabStop = False
-        '
-        'picSwapPlate
-        '
-        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
-        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
-        Me.picSwapPlate.Name = "picSwapPlate"
-        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
-        Me.picSwapPlate.TabIndex = 3
-        Me.picSwapPlate.TabStop = False
         '
         'barVote3
         '
@@ -382,6 +384,8 @@ Partial Class frmDestinyWeaponSwap
         '
         'picReticleColor
         '
+        Me.picReticleColor.BackColor = System.Drawing.Color.Lime
+        Me.picReticleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
         Me.picReticleColor.Name = "picReticleColor"
@@ -946,15 +950,6 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdManualAuto.Text = "Manual"
         Me.cmdManualAuto.UseVisualStyleBackColor = True
         '
-        'picBackground
-        '
-        Me.picBackground.BackColor = System.Drawing.Color.DimGray
-        Me.picBackground.Location = New System.Drawing.Point(216, 0)
-        Me.picBackground.Name = "picBackground"
-        Me.picBackground.Size = New System.Drawing.Size(337, 680)
-        Me.picBackground.TabIndex = 115
-        Me.picBackground.TabStop = False
-        '
         'listWeaponSlot
         '
         Me.listWeaponSlot.FormattingEnabled = True
@@ -996,15 +991,147 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdIRC.Name = "cmdIRC"
         Me.cmdIRC.Size = New System.Drawing.Size(75, 23)
         Me.cmdIRC.TabIndex = 120
-        Me.cmdIRC.Text = "IRC"
+        Me.cmdIRC.Text = "Show IRC"
         Me.cmdIRC.UseVisualStyleBackColor = True
+        '
+        'lblChan
+        '
+        Me.lblChan.AutoSize = True
+        Me.lblChan.BackColor = System.Drawing.Color.DimGray
+        Me.lblChan.Location = New System.Drawing.Point(562, 60)
+        Me.lblChan.Name = "lblChan"
+        Me.lblChan.Size = New System.Drawing.Size(52, 13)
+        Me.lblChan.TabIndex = 126
+        Me.lblChan.Text = "Channel: "
+        '
+        'lblPass
+        '
+        Me.lblPass.AutoSize = True
+        Me.lblPass.BackColor = System.Drawing.Color.DimGray
+        Me.lblPass.Location = New System.Drawing.Point(556, 36)
+        Me.lblPass.Name = "lblPass"
+        Me.lblPass.Size = New System.Drawing.Size(56, 13)
+        Me.lblPass.TabIndex = 125
+        Me.lblPass.Text = "Password:"
+        '
+        'lblNick
+        '
+        Me.lblNick.AutoSize = True
+        Me.lblNick.BackColor = System.Drawing.Color.DimGray
+        Me.lblNick.Location = New System.Drawing.Point(581, 12)
+        Me.lblNick.Name = "lblNick"
+        Me.lblNick.Size = New System.Drawing.Size(32, 13)
+        Me.lblNick.TabIndex = 124
+        Me.lblNick.Text = "Nick:"
+        '
+        'txtChan
+        '
+        Me.txtChan.Location = New System.Drawing.Point(613, 57)
+        Me.txtChan.Name = "txtChan"
+        Me.txtChan.Size = New System.Drawing.Size(160, 20)
+        Me.txtChan.TabIndex = 123
+        '
+        'txtPass
+        '
+        Me.txtPass.Location = New System.Drawing.Point(613, 33)
+        Me.txtPass.Name = "txtPass"
+        Me.txtPass.Size = New System.Drawing.Size(160, 20)
+        Me.txtPass.TabIndex = 122
+        Me.txtPass.UseSystemPasswordChar = True
+        '
+        'txtNick
+        '
+        Me.txtNick.Location = New System.Drawing.Point(613, 8)
+        Me.txtNick.Name = "txtNick"
+        Me.txtNick.Size = New System.Drawing.Size(160, 20)
+        Me.txtNick.TabIndex = 121
+        '
+        'cmdConnect
+        '
+        Me.cmdConnect.Location = New System.Drawing.Point(775, 6)
+        Me.cmdConnect.Name = "cmdConnect"
+        Me.cmdConnect.Size = New System.Drawing.Size(75, 23)
+        Me.cmdConnect.TabIndex = 127
+        Me.cmdConnect.Text = "Connect"
+        Me.cmdConnect.UseVisualStyleBackColor = True
+        '
+        'txtServerInfo
+        '
+        Me.txtServerInfo.Enabled = False
+        Me.txtServerInfo.Location = New System.Drawing.Point(562, 83)
+        Me.txtServerInfo.Multiline = True
+        Me.txtServerInfo.Name = "txtServerInfo"
+        Me.txtServerInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtServerInfo.Size = New System.Drawing.Size(288, 92)
+        Me.txtServerInfo.TabIndex = 128
+        '
+        'txtChanChat
+        '
+        Me.txtChanChat.Enabled = False
+        Me.txtChanChat.Location = New System.Drawing.Point(562, 179)
+        Me.txtChanChat.Multiline = True
+        Me.txtChanChat.Name = "txtChanChat"
+        Me.txtChanChat.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtChanChat.Size = New System.Drawing.Size(288, 490)
+        Me.txtChanChat.TabIndex = 129
+        '
+        'picLime
+        '
+        Me.picLime.BackColor = System.Drawing.Color.Lime
+        Me.picLime.Location = New System.Drawing.Point(0, 0)
+        Me.picLime.Name = "picLime"
+        Me.picLime.Size = New System.Drawing.Size(215, 680)
+        Me.picLime.TabIndex = 130
+        Me.picLime.TabStop = False
+        '
+        'picSwapPlate
+        '
+        Me.picSwapPlate.BackColor = System.Drawing.Color.Lime
+        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
+        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
+        Me.picSwapPlate.Name = "picSwapPlate"
+        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
+        Me.picSwapPlate.TabIndex = 3
+        Me.picSwapPlate.TabStop = False
+        '
+        'cmdDisconnect
+        '
+        Me.cmdDisconnect.Enabled = False
+        Me.cmdDisconnect.Location = New System.Drawing.Point(775, 56)
+        Me.cmdDisconnect.Name = "cmdDisconnect"
+        Me.cmdDisconnect.Size = New System.Drawing.Size(75, 23)
+        Me.cmdDisconnect.TabIndex = 132
+        Me.cmdDisconnect.Text = "Disconnect"
+        Me.cmdDisconnect.UseVisualStyleBackColor = True
+        '
+        'chkAutoJoin
+        '
+        Me.chkAutoJoin.AutoSize = True
+        Me.chkAutoJoin.Location = New System.Drawing.Point(777, 35)
+        Me.chkAutoJoin.Name = "chkAutoJoin"
+        Me.chkAutoJoin.Size = New System.Drawing.Size(70, 17)
+        Me.chkAutoJoin.TabIndex = 133
+        Me.chkAutoJoin.Text = "Auto-Join"
+        Me.chkAutoJoin.UseVisualStyleBackColor = True
         '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Lime
-        Me.ClientSize = New System.Drawing.Size(553, 681)
+        Me.BackColor = System.Drawing.Color.DimGray
+        Me.ClientSize = New System.Drawing.Size(865, 681)
+        Me.Controls.Add(Me.chkAutoJoin)
+        Me.Controls.Add(Me.cmdDisconnect)
+        Me.Controls.Add(Me.picReticleColor)
+        Me.Controls.Add(Me.txtChanChat)
+        Me.Controls.Add(Me.txtServerInfo)
+        Me.Controls.Add(Me.cmdConnect)
+        Me.Controls.Add(Me.lblChan)
+        Me.Controls.Add(Me.lblPass)
+        Me.Controls.Add(Me.lblNick)
+        Me.Controls.Add(Me.txtChan)
+        Me.Controls.Add(Me.txtPass)
+        Me.Controls.Add(Me.txtNick)
         Me.Controls.Add(Me.cmdIRC)
         Me.Controls.Add(Me.line1)
         Me.Controls.Add(Me.listWeaponName)
@@ -1049,7 +1176,6 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtCheckNo)
         Me.Controls.Add(Me.txtCheckYes)
         Me.Controls.Add(Me.txtPlayerStatus)
-        Me.Controls.Add(Me.picReticleColor)
         Me.Controls.Add(Me.txtReticleColor)
         Me.Controls.Add(Me.picW16)
         Me.Controls.Add(Me.picW13)
@@ -1089,15 +1215,17 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.picWeapon2)
         Me.Controls.Add(Me.picWeapon1)
         Me.Controls.Add(Me.picSwapPlate)
-        Me.Controls.Add(Me.picBackground)
+        Me.Controls.Add(Me.picLime)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmDestinyWeaponSwap"
         Me.Text = "Destiny Weapon Swap"
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1123,7 +1251,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picBackground, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picLime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1132,7 +1261,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picWeapon1 As PictureBox
     Friend WithEvents picWeapon2 As PictureBox
     Friend WithEvents picWeapon3 As PictureBox
-    Friend WithEvents picSwapPlate As PictureBox
     Friend WithEvents barVote3 As PictureBox
     Friend WithEvents barVote2 As PictureBox
     Friend WithEvents barVote1 As PictureBox
@@ -1215,10 +1343,22 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picW19 As PictureBox
     Friend WithEvents picW2 As PictureBox
     Friend WithEvents cmdManualAuto As Button
-    Friend WithEvents picBackground As PictureBox
     Friend WithEvents listWeaponSlot As ComboBox
     Friend WithEvents cmdSendWeaponToSlot As Button
     Friend WithEvents listWeaponName As ComboBox
     Friend WithEvents line1 As Label
     Friend WithEvents cmdIRC As Button
+    Friend WithEvents lblChan As Label
+    Friend WithEvents lblPass As Label
+    Friend WithEvents lblNick As Label
+    Friend WithEvents txtChan As TextBox
+    Friend WithEvents txtPass As TextBox
+    Friend WithEvents txtNick As TextBox
+    Friend WithEvents cmdConnect As Button
+    Friend WithEvents txtServerInfo As TextBox
+    Friend WithEvents txtChanChat As TextBox
+    Friend WithEvents picLime As PictureBox
+    Friend WithEvents picSwapPlate As PictureBox
+    Friend WithEvents cmdDisconnect As Button
+    Friend WithEvents chkAutoJoin As CheckBox
 End Class
