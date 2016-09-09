@@ -121,10 +121,12 @@ Partial Class frmDestinyWeaponSwap
         Me.txtPass = New System.Windows.Forms.TextBox()
         Me.txtNick = New System.Windows.Forms.TextBox()
         Me.cmdConnect = New System.Windows.Forms.Button()
-        Me.txtChat = New System.Windows.Forms.TextBox()
-        Me.txtChat2 = New System.Windows.Forms.TextBox()
+        Me.txtServerInfo = New System.Windows.Forms.TextBox()
+        Me.txtChanChat = New System.Windows.Forms.TextBox()
         Me.picLime = New System.Windows.Forms.PictureBox()
         Me.picSwapPlate = New System.Windows.Forms.PictureBox()
+        Me.cmdDisconnect = New System.Windows.Forms.Button()
+        Me.chkAutoJoin = New System.Windows.Forms.CheckBox()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -383,6 +385,7 @@ Partial Class frmDestinyWeaponSwap
         'picReticleColor
         '
         Me.picReticleColor.BackColor = System.Drawing.Color.Lime
+        Me.picReticleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
         Me.picReticleColor.Name = "picReticleColor"
@@ -995,7 +998,7 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.lblChan.AutoSize = True
         Me.lblChan.BackColor = System.Drawing.Color.DimGray
-        Me.lblChan.Location = New System.Drawing.Point(559, 46)
+        Me.lblChan.Location = New System.Drawing.Point(562, 60)
         Me.lblChan.Name = "lblChan"
         Me.lblChan.Size = New System.Drawing.Size(52, 13)
         Me.lblChan.TabIndex = 126
@@ -1005,7 +1008,7 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.lblPass.AutoSize = True
         Me.lblPass.BackColor = System.Drawing.Color.DimGray
-        Me.lblPass.Location = New System.Drawing.Point(685, 11)
+        Me.lblPass.Location = New System.Drawing.Point(556, 36)
         Me.lblPass.Name = "lblPass"
         Me.lblPass.Size = New System.Drawing.Size(56, 13)
         Me.lblPass.TabIndex = 125
@@ -1015,7 +1018,7 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.lblNick.AutoSize = True
         Me.lblNick.BackColor = System.Drawing.Color.DimGray
-        Me.lblNick.Location = New System.Drawing.Point(559, 15)
+        Me.lblNick.Location = New System.Drawing.Point(581, 12)
         Me.lblNick.Name = "lblNick"
         Me.lblNick.Size = New System.Drawing.Size(32, 13)
         Me.lblNick.TabIndex = 124
@@ -1023,16 +1026,16 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtChan
         '
-        Me.txtChan.Location = New System.Drawing.Point(613, 43)
+        Me.txtChan.Location = New System.Drawing.Point(613, 57)
         Me.txtChan.Name = "txtChan"
-        Me.txtChan.Size = New System.Drawing.Size(74, 20)
+        Me.txtChan.Size = New System.Drawing.Size(160, 20)
         Me.txtChan.TabIndex = 123
         '
         'txtPass
         '
-        Me.txtPass.Location = New System.Drawing.Point(741, 8)
+        Me.txtPass.Location = New System.Drawing.Point(613, 33)
         Me.txtPass.Name = "txtPass"
-        Me.txtPass.Size = New System.Drawing.Size(69, 20)
+        Me.txtPass.Size = New System.Drawing.Size(160, 20)
         Me.txtPass.TabIndex = 122
         Me.txtPass.UseSystemPasswordChar = True
         '
@@ -1040,35 +1043,37 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.txtNick.Location = New System.Drawing.Point(613, 8)
         Me.txtNick.Name = "txtNick"
-        Me.txtNick.Size = New System.Drawing.Size(66, 20)
+        Me.txtNick.Size = New System.Drawing.Size(160, 20)
         Me.txtNick.TabIndex = 121
         '
         'cmdConnect
         '
-        Me.cmdConnect.Location = New System.Drawing.Point(735, 41)
+        Me.cmdConnect.Location = New System.Drawing.Point(775, 6)
         Me.cmdConnect.Name = "cmdConnect"
         Me.cmdConnect.Size = New System.Drawing.Size(75, 23)
         Me.cmdConnect.TabIndex = 127
         Me.cmdConnect.Text = "Connect"
         Me.cmdConnect.UseVisualStyleBackColor = True
         '
-        'txtChat
+        'txtServerInfo
         '
-        Me.txtChat.Enabled = False
-        Me.txtChat.Location = New System.Drawing.Point(562, 76)
-        Me.txtChat.Multiline = True
-        Me.txtChat.Name = "txtChat"
-        Me.txtChat.Size = New System.Drawing.Size(288, 82)
-        Me.txtChat.TabIndex = 128
+        Me.txtServerInfo.Enabled = False
+        Me.txtServerInfo.Location = New System.Drawing.Point(562, 83)
+        Me.txtServerInfo.Multiline = True
+        Me.txtServerInfo.Name = "txtServerInfo"
+        Me.txtServerInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtServerInfo.Size = New System.Drawing.Size(288, 92)
+        Me.txtServerInfo.TabIndex = 128
         '
-        'txtChat2
+        'txtChanChat
         '
-        Me.txtChat2.Enabled = False
-        Me.txtChat2.Location = New System.Drawing.Point(562, 165)
-        Me.txtChat2.Multiline = True
-        Me.txtChat2.Name = "txtChat2"
-        Me.txtChat2.Size = New System.Drawing.Size(288, 504)
-        Me.txtChat2.TabIndex = 129
+        Me.txtChanChat.Enabled = False
+        Me.txtChanChat.Location = New System.Drawing.Point(562, 179)
+        Me.txtChanChat.Multiline = True
+        Me.txtChanChat.Name = "txtChanChat"
+        Me.txtChanChat.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtChanChat.Size = New System.Drawing.Size(288, 490)
+        Me.txtChanChat.TabIndex = 129
         '
         'picLime
         '
@@ -1089,14 +1094,37 @@ Partial Class frmDestinyWeaponSwap
         Me.picSwapPlate.TabIndex = 3
         Me.picSwapPlate.TabStop = False
         '
+        'cmdDisconnect
+        '
+        Me.cmdDisconnect.Enabled = False
+        Me.cmdDisconnect.Location = New System.Drawing.Point(775, 56)
+        Me.cmdDisconnect.Name = "cmdDisconnect"
+        Me.cmdDisconnect.Size = New System.Drawing.Size(75, 23)
+        Me.cmdDisconnect.TabIndex = 132
+        Me.cmdDisconnect.Text = "Disconnect"
+        Me.cmdDisconnect.UseVisualStyleBackColor = True
+        '
+        'chkAutoJoin
+        '
+        Me.chkAutoJoin.AutoSize = True
+        Me.chkAutoJoin.Location = New System.Drawing.Point(777, 35)
+        Me.chkAutoJoin.Name = "chkAutoJoin"
+        Me.chkAutoJoin.Size = New System.Drawing.Size(70, 17)
+        Me.chkAutoJoin.TabIndex = 133
+        Me.chkAutoJoin.Text = "Auto-Join"
+        Me.chkAutoJoin.UseVisualStyleBackColor = True
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DimGray
         Me.ClientSize = New System.Drawing.Size(865, 681)
-        Me.Controls.Add(Me.txtChat2)
-        Me.Controls.Add(Me.txtChat)
+        Me.Controls.Add(Me.chkAutoJoin)
+        Me.Controls.Add(Me.cmdDisconnect)
+        Me.Controls.Add(Me.picReticleColor)
+        Me.Controls.Add(Me.txtChanChat)
+        Me.Controls.Add(Me.txtServerInfo)
         Me.Controls.Add(Me.cmdConnect)
         Me.Controls.Add(Me.lblChan)
         Me.Controls.Add(Me.lblPass)
@@ -1148,7 +1176,6 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtCheckNo)
         Me.Controls.Add(Me.txtCheckYes)
         Me.Controls.Add(Me.txtPlayerStatus)
-        Me.Controls.Add(Me.picReticleColor)
         Me.Controls.Add(Me.txtReticleColor)
         Me.Controls.Add(Me.picW16)
         Me.Controls.Add(Me.picW13)
@@ -1328,8 +1355,10 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents txtPass As TextBox
     Friend WithEvents txtNick As TextBox
     Friend WithEvents cmdConnect As Button
-    Friend WithEvents txtChat As TextBox
-    Friend WithEvents txtChat2 As TextBox
+    Friend WithEvents txtServerInfo As TextBox
+    Friend WithEvents txtChanChat As TextBox
     Friend WithEvents picLime As PictureBox
     Friend WithEvents picSwapPlate As PictureBox
+    Friend WithEvents cmdDisconnect As Button
+    Friend WithEvents chkAutoJoin As CheckBox
 End Class

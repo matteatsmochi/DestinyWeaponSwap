@@ -68,17 +68,19 @@ Public Class frmDestinyWeaponSwap
         txtLocationWActive.Text = txtLocationOnDeck.Text
         picOnDeck.Image = picAllWeapons(18).Image
         txtLocationOnDeck.Text = "0"
-
         System.Threading.Thread.Sleep(200)
     End Sub
     Private Sub StartVote()
+        cmdStartVote.Enabled = False
         TakeOld() 'take old weapon
         System.Threading.Thread.Sleep(200)
         FocusDIS()
         tmrVote.Enabled = True 'Vote only lasts during this duration
         RandomWeapons() 'Mix up all guns
-        UpDown() 'Move up all voting options into visible field
-        My.Computer.Audio.Play(My.Resources.Cue03, AudioPlayMode.Background)
+        If cmdUpDown.Text <> "Down" Then
+            UpDown() 'Move up all voting options into visible field
+        End If
+        My.Computer.Audio.Play(My.Resources.VoteStart, AudioPlayMode.Background)
     End Sub
     Private Sub RandomWeapons()
         Dim looper As Boolean
@@ -174,62 +176,40 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
-        Dim i As Integer
-        If cmdUpDown.Text = "Up" Then
-            'Reset everything for a blank vote
-            cmdVote1.Enabled = True
-            cmdVote2.Enabled = True
-            cmdVote3.Enabled = True
-            barVote1.Width = 0
-            barVote2.Width = 0
-            barVote3.Width = 0
-
-            If txtUpDown.Text = 125 Then
-                'All items are at the top, do not move them anymore. Ready everything to be pushed down.
-                tmrUpDown.Enabled = False
-                txtUpDown.Text = "0"
+        If txtUpDown.Text = 125 Then
+            cmdVote1.Enabled = Not cmdVote1.Enabled
+            cmdVote2.Enabled = Not cmdVote2.Enabled
+            cmdVote3.Enabled = Not cmdVote3.Enabled
+            tmrUpDown.Enabled = False
+            txtUpDown.Text = "0"
+            If cmdUpDown.Text = "Up" Then
                 cmdUpDown.Text = "Down"
             Else
-                'Move all items right by 2 pixels
-                For i = 0 To 2
-                    picWeapons(i).Left += 2
-                    lblWeapons(i).Left += 2
-                    barVotes(i).Left += 2
-                Next
-                picSwapPlate.Left += 2
-                'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text += 1
-            End If
-
-        ElseIf cmdUpDown.Text = "Down" Then
-            'Vote is over, voting is disabled
-            cmdVote1.Enabled = False
-            cmdVote2.Enabled = False
-            cmdVote3.Enabled = False
-
-            If txtUpDown.Text = 125 Then
+                'Vote is over, voting is disabled
                 'All items are at the bottom, do not move them anymore. Ready everything to be pushed up.
-                tmrUpDown.Enabled = False
-                txtUpDown.Text = "0"
                 cmdUpDown.Text = "Up"
-                'Reset Vote
                 txtVote1.Text = "0"
                 txtVote2.Text = "0"
                 txtVote3.Text = "0"
-
-            Else
-                'Move all items left by 2 pixels
-                For i = 0 To 2
-                    picWeapons(i).Left -= 2
-                    lblWeapons(i).Left -= 2
-                    barVotes(i).Left -= 2
-                Next
-                picSwapPlate.Left -= 2
-                'Mark the timer up by 1 (until it reaches 125)
-                txtUpDown.Text += 1
+                barVote1.Width = 0
+                barVote2.Width = 0
+                barVote3.Width = 0
             End If
-
+        ElseIf cmdUpDown.Text = "Up" Then
+            Mover(2)
+        Else
+            Mover(-2)
         End If
+    End Sub
+    Private Sub Mover(x As Integer) '-2 for left, 2 for right
+        For i = 0 To 2
+            picWeapons(i).Left += x
+            lblWeapons(i).Left += x
+            barVotes(i).Left += x
+        Next
+        picSwapPlate.Left += x
+        'Mark the timer up by 1 (until it reaches 125)
+        txtUpDown.Text += 1
     End Sub
     Private Sub cmdUpDown_Click(sender As Object, e As EventArgs) Handles cmdUpDown.Click
         UpDown()
@@ -335,9 +315,9 @@ Public Class frmDestinyWeaponSwap
             YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, "Dead")
             txt3Strikes.Text += 1
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Cue01, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.Death, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
-                ReloadDim()
+                ReloadDIM()
                 FocusDIS()
             End If
         ElseIf txtCheckNo.Text = 0 Then 'false positive. Player did not die. Reset & Keep waiting.
@@ -368,7 +348,8 @@ Public Class frmDestinyWeaponSwap
         'Send clicks to switch Weapons in game - to be used on death screen
         'Checks what Weapon was last voted for (txtLastWeapon.text)
         FocusDIM()
-        My.Computer.Audio.Play(My.Resources.Cue02, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.VoteEnd, AudioPlayMode.Background)
+        cmdStartVote.Enabled = True
         SendSlot(txtWinnerLocation.Text)
         txtLocationOnDeck.Text = txtWinnerLocation.Text
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image
@@ -432,30 +413,64 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub cmdConnect_Click(sender As Object, e As EventArgs) Handles cmdConnect.Click
-        If txtPass.Text <> "" Or txtNick.Text <> "" Then
-            OAuth = txtPass.Text
-            Username = txtNick.Text
-            txtChat.Text += "Starting to connect to twitch as " + Username + "." & vbCrLf
-            Info.NickName = Username
-            Info.Password = OAuth
-            Info.UserName = Username
-            Client.Connect(Server, False, Info)
+        If cmdConnect.Text = "Connect" Then
+            If txtPass.Text <> "" Or txtNick.Text <> "" Then
+                OAuth = txtPass.Text
+                Username = txtNick.Text
+                Info.NickName = Username
+                Info.Password = OAuth
+                Info.UserName = Username
+                SetServerInfo("Starting to connect to twitch as " + Username + ".")
+                Client.Connect(Server, False, Info)
+                cmdConnect.Text = "Join"
+                cmdDisconnect.Enabled = True
+                If chkAutoJoin.Checked And txtChan.Text <> "" Then
+                    cmdConnect.Enabled = False
+                    JoinChannel()
+                Else
+                    SetServerInfo("Channel not set.")
+                End If
+            Else
+                SetServerInfo("Nick or password is blank.")
+            End If
         Else
-            SetText("Nick or password is blank." & vbCrLf)
+            cmdConnect.Enabled = False
+            JoinChannel()
         End If
+    End Sub
+    Private Sub cmdDisconnect_Click(sender As Object, e As EventArgs) Handles cmdDisconnect.Click
+        Client.Disconnect()
+        cmdDisconnect.Enabled = False
+        cmdConnect.Enabled = True
+        cmdConnect.Text = "Connect"
+    End Sub
+    Private Sub ConnectFailed(sender As Object, e As EventArgs) Handles Client.ConnectFailed
+        SetServerInfo("Failed to connect to twitch.")
+    End Sub
+    Private Sub Disconnected(sender As Object, e As EventArgs) Handles Client.Disconnected
+        SetServerInfo("Disconnected from twitch.")
     End Sub
     Private Sub Connected(sender As Object, e As EventArgs) Handles Client.Connected
-        SetText("Connected to twitch." & vbCrLf)
-        Client.SendRawMessage("JOIN :" + txtChan.Text)
-        SetText("Joined Channel: " + txtChan.Text & vbCrLf)
+        SetServerInfo("Connected to twitch.")
     End Sub
-    Private Sub SetText(ByVal [text] As String)
-        If Me.txtChat.InvokeRequired Then
-            Dim d As New SetTextCallback(AddressOf SetText)
-            Me.Invoke(d, New Object() {[text]})
+    Private Sub JoinChannel()
+        Client.SendRawMessage("JOIN :" + txtChan.Text)
+        SetServerInfo("Joined Channel: " + txtChan.Text)
+    End Sub
+    Private Sub SetServerInfo(ByVal [text] As String)
+        If Me.txtServerInfo.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetServerInfo)
+            Me.Invoke(d, New Object() {[text] & vbCrLf}) 'Thread Safe Call
         Else
-            Me.txtChat.Text += [text]
+            Me.txtServerInfo.Text += [text] & vbCrLf
         End If
     End Sub
-
+    Private Sub SetChanChat(ByVal [text] As String)
+        If Me.txtServerInfo.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetChanChat)
+            Me.Invoke(d, New Object() {[text] & vbCrLf}) 'Thread Safe Call
+        Else
+            Me.txtChanChat.Text += [text] & vbCrLf
+        End If
+    End Sub
 End Class
