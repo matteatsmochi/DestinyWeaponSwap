@@ -6,14 +6,21 @@ Public Class frmDestinyWeaponSwap
     Dim txtWeapons() As TextBox
     Dim txtLocations() As TextBox
 
+    Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
+    Dim OAuth As String
+    Dim Username As String
+    Dim Server As String = "irc.twitch.tv"
+    Dim Info As New IrcDotNet.IrcUserRegistrationInfo
+
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Width = "570"
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
-        frmIRC.Hide()
+        Client.FloodPreventer = New IrcDotNet.IrcStandardFloodPreventer(4, 2000)
         UpDown()
         RandomWeapons()
     End Sub
@@ -418,6 +425,39 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub cmdIRC_Click(sender As Object, e As EventArgs) Handles cmdIRC.Click
-        frmIRC.Show()
+        If cmdIRC.Text = "Show IRC" Then
+            Me.Width = 875
+            cmdIRC.Text = "Hide IRC"
+        Else
+            Me.Width = 570
+            cmdIRC.Text = "Show IRC"
+        End If
     End Sub
+    Private Sub cmdConnect_Click(sender As Object, e As EventArgs) Handles cmdConnect.Click
+        If txtPass.Text <> "" Or txtNick.Text <> "" Then
+            OAuth = txtPass.Text
+            Username = txtNick.Text
+            txtChat.Text += "Starting to connect to twitch as " + Username + "." & vbCrLf
+            Info.NickName = Username
+            Info.Password = OAuth
+            Info.UserName = Username
+            Client.Connect(Server, False, Info)
+        Else
+            SetText("Nick or password is blank." & vbCrLf)
+        End If
+    End Sub
+    Private Sub Connected(sender As Object, e As EventArgs) Handles Client.Connected
+        SetText("Connected to twitch." & vbCrLf)
+        Client.SendRawMessage("JOIN :" + txtChan.Text)
+        SetText("Joined Channel: " + txtChan.Text & vbCrLf)
+    End Sub
+    Private Sub SetText(ByVal [text] As String)
+        If Me.txtChat.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf SetText)
+            Me.Invoke(d, New Object() {[text]})
+        Else
+            Me.txtChat.Text += [text]
+        End If
+    End Sub
+    Delegate Sub SetTextCallback(ByVal [text] As String)
 End Class
