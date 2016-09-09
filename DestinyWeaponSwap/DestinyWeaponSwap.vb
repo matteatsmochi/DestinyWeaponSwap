@@ -14,6 +14,8 @@ Public Class frmDestinyWeaponSwap
         picWeapon1.Top = 89
         picWeapon2.Left = 2
         picWeapon2.Top = 275
+        picBackground.Left = 216
+        picBackground.Top = 0
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
@@ -525,5 +527,15 @@ Public Class frmDestinyWeaponSwap
         mouse_event(&H2, 0, 0, 0, 1)
         mouse_event(&H4, 0, 0, 0, 1)
         System.Threading.Thread.Sleep(200)
+    End Sub
+
+    Private Sub cmdManualAuto_Click(sender As Object, e As EventArgs) Handles cmdManualAuto.Click
+        If cmdManualAuto.Text = "Manual" Then
+            txt3Strikes.Text = "15"
+            cmdManualAuto.Text = "Auto"
+        ElseIf cmdManualAuto.Text = "Auto" Then
+            txt3Strikes.Text = "0"
+            cmdManualAuto.Text = "Manual"
+        End If
     End Sub
 End Class
