@@ -185,19 +185,11 @@ Public Class frmDestinyWeaponSwap
             If cmdUpDown.Text = "Up" Then
                 cmdUpDown.Text = "Down"
             Else
-                'Vote is over, voting is disabled
-                'All items are at the bottom, do not move them anymore. Ready everything to be pushed up.
                 cmdUpDown.Text = "Up"
-                txtVote1.Text = "0"
-                txtVote2.Text = "0"
-                txtVote3.Text = "0"
-                barVote1.Width = 0
-                barVote2.Width = 0
-                barVote3.Width = 0
             End If
         ElseIf cmdUpDown.Text = "Up" Then
             Mover(2)
-        Else
+        ElseIf cmdUpDown.Text = "Down" Then
             Mover(-2)
         End If
     End Sub
@@ -231,13 +223,7 @@ Public Class frmDestinyWeaponSwap
         If txtVoteCountdown.Text = 0 Then
             'Vote is over. Declare winner
             'Check who had the most votes. Move that to txtLastWeapon.text
-            If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
-                txtLastGun.Text = txtRandomGun1.Text
-            ElseIf txtVote2.Text > txtVote1.Text And txtVote2.Text > txtVote3.Text Then
-                txtLastGun.Text = txtRandomGun2.Text
-            ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
-                txtLastGun.Text = txtRandomGun3.Text
-            End If
+            CheckForWin()
             CheckForTies()
             If txtLastGun.Text = 15 Then 'selects random gun if random option wins
                 txtLastGun.Text = Rand(1, 14)
@@ -253,22 +239,31 @@ Public Class frmDestinyWeaponSwap
             YesNoReticleDeathSpawnStatus(False, False, False)
         End If
     End Sub
+    Private Sub CheckForWin()
+        If txtVote1.Text > txtVote2.Text And txtVote1.Text > txtVote3.Text Then
+            txtLastGun.Text = txtRandomGun1.Text
+        ElseIf txtVote2.Text > txtVote1.Text And txtVote2.Text > txtVote3.Text Then
+            txtLastGun.Text = txtRandomGun2.Text
+        ElseIf txtVote3.Text > txtVote1.Text And txtVote3.Text > txtVote2.Text Then
+            txtLastGun.Text = txtRandomGun3.Text
+        End If
+    End Sub
     Private Sub CheckForTies()
         Dim randomValue As Integer
         If txtVote1.Text = txtVote2.Text And txtVote2.Text = txtVote3.Text Then 'Check for ties
             randomValue = Rand(0, 2)
             txtLastGun.Text = txtWeapons(randomValue).Text
-        ElseIf txtVote1.Text = txtVote2.Text Then
+        ElseIf txtVote1.Text = txtVote2.Text And txtVote3.Text < txtVote1.Text Then
             randomValue = Rand(0, 1)
             txtLastGun.Text = txtWeapons(randomValue).Text
-        ElseIf txtVote1.Text = txtVote3.Text Then
+        ElseIf txtVote1.Text = txtVote3.Text And txtVote2.Text < txtVote1.Text Then
             randomValue = Rand(1, 2)
             If randomValue = 1 Then
                 txtLastGun.Text = txtRandomGun1.Text
             Else
                 txtLastGun.Text = txtRandomGun3.Text
             End If
-        ElseIf txtVote2.Text = txtVote3.Text Then
+        ElseIf txtVote2.Text = txtVote3.Text And txtVote1.Text < txtVote3.Text Then
             randomValue = Rand(1, 2)
             txtLastGun.Text = txtWeapons(randomValue).Text
         End If
@@ -289,6 +284,10 @@ Public Class frmDestinyWeaponSwap
         End If
     End Sub
     Private Sub cmdStartVote_Click(sender As Object, e As EventArgs) Handles cmdStartVote.Click
+        For i = 0 To 2
+            txtVotes(i).Text = "0"
+            barVotes(i).Width = 0
+        Next
         StartVote()
     End Sub
     Private Sub tmrSpawnCheck_Tick(sender As Object, e As EventArgs) Handles tmrSpawnCheck.Tick
@@ -392,7 +391,9 @@ Public Class frmDestinyWeaponSwap
         Dim c As Drawing.Color = a.GetPixel(0, 0)
         picReticleColor.BackColor = c
         txtReticleColor.Text = picReticleColor.BackColor.Name
-        txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        If txtReticleColor.Text <> "0" Then 'Stops Crashes on my system, since i dont have 2nd monitor
+            txtReticleColor.Text = txtReticleColor.Text.Substring(0, txtReticleColor.Text.Length - 4)
+        End If
     End Sub
     Private Sub cmdManualAuto_Click(sender As Object, e As EventArgs) Handles cmdManualAuto.Click
         If cmdManualAuto.Text = "Manual" Then
