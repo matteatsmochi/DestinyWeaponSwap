@@ -27,7 +27,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picWeapon1 = New System.Windows.Forms.PictureBox()
         Me.picWeapon2 = New System.Windows.Forms.PictureBox()
         Me.picWeapon3 = New System.Windows.Forms.PictureBox()
-        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
         Me.barVote3 = New System.Windows.Forms.PictureBox()
         Me.barVote2 = New System.Windows.Forms.PictureBox()
         Me.barVote1 = New System.Windows.Forms.PictureBox()
@@ -124,10 +123,11 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdConnect = New System.Windows.Forms.Button()
         Me.txtChat = New System.Windows.Forms.TextBox()
         Me.txtChat2 = New System.Windows.Forms.TextBox()
+        Me.picLime = New System.Windows.Forms.PictureBox()
+        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.barVote1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +153,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picLime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picWeapon1
@@ -190,16 +192,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picWeapon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picWeapon3.TabIndex = 2
         Me.picWeapon3.TabStop = False
-        '
-        'picSwapPlate
-        '
-        Me.picSwapPlate.BackColor = System.Drawing.Color.Lime
-        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
-        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
-        Me.picSwapPlate.Name = "picSwapPlate"
-        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
-        Me.picSwapPlate.TabIndex = 3
-        Me.picSwapPlate.TabStop = False
         '
         'barVote3
         '
@@ -1078,6 +1070,25 @@ Partial Class frmDestinyWeaponSwap
         Me.txtChat2.Size = New System.Drawing.Size(288, 504)
         Me.txtChat2.TabIndex = 129
         '
+        'picLime
+        '
+        Me.picLime.BackColor = System.Drawing.Color.Lime
+        Me.picLime.Location = New System.Drawing.Point(0, 0)
+        Me.picLime.Name = "picLime"
+        Me.picLime.Size = New System.Drawing.Size(215, 680)
+        Me.picLime.TabIndex = 130
+        Me.picLime.TabStop = False
+        '
+        'picSwapPlate
+        '
+        Me.picSwapPlate.BackColor = System.Drawing.Color.Lime
+        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
+        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
+        Me.picSwapPlate.Name = "picSwapPlate"
+        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
+        Me.picSwapPlate.TabIndex = 3
+        Me.picSwapPlate.TabStop = False
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1177,6 +1188,7 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.picWeapon2)
         Me.Controls.Add(Me.picWeapon1)
         Me.Controls.Add(Me.picSwapPlate)
+        Me.Controls.Add(Me.picLime)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
@@ -1187,7 +1199,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.barVote1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1213,6 +1224,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picLime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1221,7 +1234,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picWeapon1 As PictureBox
     Friend WithEvents picWeapon2 As PictureBox
     Friend WithEvents picWeapon3 As PictureBox
-    Friend WithEvents picSwapPlate As PictureBox
     Friend WithEvents barVote3 As PictureBox
     Friend WithEvents barVote2 As PictureBox
     Friend WithEvents barVote1 As PictureBox
@@ -1318,4 +1330,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents cmdConnect As Button
     Friend WithEvents txtChat As TextBox
     Friend WithEvents txtChat2 As TextBox
+    Friend WithEvents picLime As PictureBox
+    Friend WithEvents picSwapPlate As PictureBox
 End Class

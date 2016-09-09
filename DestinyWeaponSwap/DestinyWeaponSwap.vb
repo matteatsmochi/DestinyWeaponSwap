@@ -1,20 +1,26 @@
 ﻿
 Public Class frmDestinyWeaponSwap
+    ' Set up Arrays for Weapons
     Dim picAllWeapons() As PictureBox
     Dim picWeapons() As PictureBox
+    Dim barVotes() As PictureBox
     Dim lblWeapons() As Label
     Dim txtWeapons() As TextBox
     Dim txtLocations() As TextBox
-
+    Dim txtVotes() As TextBox
+    ' IRC Variables
     Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
     Dim OAuth As String
     Dim Username As String
     Dim Server As String = "irc.twitch.tv"
     Dim Info As New IrcDotNet.IrcUserRegistrationInfo
-
+    'One-Line Sub Declarations
+    Delegate Sub SetTextCallback(ByVal [text] As String)
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Width = "570"
+        barVotes = New PictureBox() {barVote1, barVote2, barVote3}
+        txtVotes = New TextBox() {txtVote1, txtVote2, txtVote3}
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
         txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
@@ -38,21 +44,17 @@ Public Class frmDestinyWeaponSwap
         tmrUpDown.Enabled = True
     End Sub
     Private Sub UpdateVotes()
-        txtTotalVotes.Text = Int(txtVote1.Text) + Int(txtVote2.Text) + Int(txtVote3.Text)
-        barVote1.Width = (txtVote1.Text / txtTotalVotes.Text) * 200
-        barVote2.Width = (txtVote2.Text / txtTotalVotes.Text) * 200
-        barVote3.Width = (txtVote3.Text / txtTotalVotes.Text) * 200
+        Dim i As Integer
+        txtTotalVotes.Text = 0
+        For i = 0 To 2
+            txtTotalVotes.Text += Int(txtVotes(i).Text)
+        Next
+        For i = 0 To 2
+            barVotes(i).Width = (txtVotes(i).Text / txtTotalVotes.Text) * 200
+        Next
     End Sub
-    Private Sub Vote1()
-        txtVote1.Text += 1
-        UpdateVotes()
-    End Sub
-    Private Sub Vote2()
-        txtVote2.Text += 1
-        UpdateVotes()
-    End Sub
-    Private Sub Vote3()
-        txtVote3.Text += 1
+    Private Sub Vote(i As Integer) 'Send as 1,2,3 not zero
+        txtVotes(i - 1).Text += 1
         UpdateVotes()
     End Sub
     Private Sub TakeOld()
@@ -120,11 +122,11 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub Voter(weaponvote As String)
         If lblWeaponName1.Text = weaponvote Then
-            Vote1()
+            Vote(1)
         ElseIf lblWeaponName2.Text = weaponvote Then
-            Vote2()
+            Vote(2)
         ElseIf lblWeaponName3.Text = weaponvote Then
-            Vote3()
+            Vote(3)
         End If
     End Sub
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
@@ -162,13 +164,13 @@ Public Class frmDestinyWeaponSwap
         End Select
     End Sub
     Private Sub cmdVote1_Click(sender As Object, e As EventArgs) Handles cmdVote1.Click
-        Vote1()
+        Vote(1)
     End Sub
     Private Sub cmdVote2_Click(sender As Object, e As EventArgs) Handles cmdVote2.Click
-        Vote2()
+        Vote(2)
     End Sub
     Private Sub cmdVote3_Click(sender As Object, e As EventArgs) Handles cmdVote3.Click
-        Vote3()
+        Vote(3)
     End Sub
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
@@ -192,10 +194,8 @@ Public Class frmDestinyWeaponSwap
                 For i = 0 To 2
                     picWeapons(i).Left += 2
                     lblWeapons(i).Left += 2
+                    barVotes(i).Left += 2
                 Next
-                barVote1.Left += 2
-                barVote2.Left += 2
-                barVote3.Left += 2
                 picSwapPlate.Left += 2
                 'Mark the timer up by 1 (until it reaches 125)
                 txtUpDown.Text += 1
@@ -222,10 +222,8 @@ Public Class frmDestinyWeaponSwap
                 For i = 0 To 2
                     picWeapons(i).Left -= 2
                     lblWeapons(i).Left -= 2
+                    barVotes(i).Left -= 2
                 Next
-                barVote1.Left -= 2
-                barVote2.Left -= 2
-                barVote3.Left -= 2
                 picSwapPlate.Left -= 2
                 'Mark the timer up by 1 (until it reaches 125)
                 txtUpDown.Text += 1
@@ -419,7 +417,7 @@ Public Class frmDestinyWeaponSwap
         If cmdManualAuto.Text = "Manual" Then
             txt3Strikes.Text = "15"
             cmdManualAuto.Text = "Auto"
-        ElseIf cmdManualAuto.Text = "Auto" Then
+        Else
             txt3Strikes.Text = "0"
             cmdManualAuto.Text = "Manual"
         End If
@@ -459,5 +457,5 @@ Public Class frmDestinyWeaponSwap
             Me.txtChat.Text += [text]
         End If
     End Sub
-    Delegate Sub SetTextCallback(ByVal [text] As String)
+
 End Class
