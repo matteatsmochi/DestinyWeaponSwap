@@ -148,6 +148,57 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\HardLight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Hawkmoon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Hawksaw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\LastWord.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\media-shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\MIDA.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\MonteCarlo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\NoLandBeyond.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\NTTE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\PDX45.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\RedDeath.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\SurosRegime.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Thorn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\UniversalRemote.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Vex.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Zhalo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Null.png.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

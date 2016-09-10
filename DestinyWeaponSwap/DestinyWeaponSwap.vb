@@ -9,10 +9,10 @@ Public Class frmDestinyWeaponSwap
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtWeapons = New TextBox() {txtRandomGun1, txtRandomGun2, txtRandomGun3}
-        txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15, txtLocationW16, txtLocationW17, txtLocationW18, txtLocationW19}
+        txtLocations = New TextBox() {txtLocationW1, txtLocationW2, txtLocationW3, txtLocationW4, txtLocationW5, txtLocationW6, txtLocationW7, txtLocationW8, txtLocationW9, txtLocationW10, txtLocationW11, txtLocationW12, txtLocationW13, txtLocationW14, txtLocationW15}
         lblWeapons = New Label() {lblWeaponName1, lblWeaponName2, lblWeaponName3}
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
-        picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15, picW16, picW17, picW18, picW19}
+        picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15}
         frmIRC.Hide()
         UpDown()
         RandomWeapons()
@@ -57,7 +57,7 @@ Public Class frmDestinyWeaponSwap
 
         picActive.Image = picOnDeck.Image
         txtLocationWActive.Text = txtLocationOnDeck.Text
-        picOnDeck.Image = picAllWeapons(18).Image
+        picOnDeck.Image = My.Resources.Null
         txtLocationOnDeck.Text = "0"
 
         System.Threading.Thread.Sleep(200)
@@ -419,5 +419,59 @@ Public Class frmDestinyWeaponSwap
     End Sub
     Private Sub cmdIRC_Click(sender As Object, e As EventArgs) Handles cmdIRC.Click
         frmIRC.Show()
+    End Sub
+
+    Private Sub cmdSendWeaponToSlot_Click(sender As Object, e As EventArgs) Handles cmdSendWeaponToSlot.Click
+        Dim l As Integer
+        l = listWeaponSlot.SelectedItem - 1
+
+        Select Case listWeaponName.SelectedItem
+            Case "Hawksaw"
+                picAllWeapons(l).Image = My.Resources.Hawksaw
+
+            Case "Hawkmoon"
+                picAllWeapons(l).Image = My.Resources.Hawkmoon
+
+            Case "Last Word"
+                picAllWeapons(l).Image = My.Resources.LastWord
+
+            Case "MIDA"
+                picAllWeapons(l).Image = My.Resources.MIDA
+
+            Case "Monte Carlo"
+                picAllWeapons(l).Image = My.Resources.MonteCarlo
+
+            Case "NLB"
+                picAllWeapons(l).Image = My.Resources.NoLandBeyond
+
+            Case "NTtE"
+                picAllWeapons(l).Image = My.Resources.NTTE
+
+            Case "Suros REGIME"
+                picAllWeapons(l).Image = My.Resources.SurosRegime
+
+            Case "Thorn"
+                picAllWeapons(l).Image = My.Resources.Thorn
+
+            Case "PDX-45"
+                picAllWeapons(l).Image = My.Resources.PDX45
+
+            Case "Universal Remote"
+                picAllWeapons(l).Image = My.Resources.UniversalRemote
+
+            Case "Vex Mythoclast"
+                picAllWeapons(l).Image = My.Resources.Vex
+
+            Case "Zhalo Supercell"
+                picAllWeapons(l).Image = My.Resources.Zhalo
+
+            Case "Random"
+                picAllWeapons(l).Image = My.Resources.Random
+
+
+        End Select
+
+
+
     End Sub
 End Class
