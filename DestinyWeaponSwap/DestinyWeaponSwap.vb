@@ -26,8 +26,22 @@
         picWeapons = New PictureBox() {picWeapon1, picWeapon2, picWeapon3}
         picAllWeapons = New PictureBox() {picW1, picW2, picW3, picW4, picW5, picW6, picW7, picW8, picW9, picW10, picW11, picW12, picW13, picW14, picW15}
         Client.FloodPreventer = New IrcDotNet.IrcStandardFloodPreventer(4, 2000)
-        UpDown()
+        Down()
         RandomWeapons()
+    End Sub
+    Private Sub Down()
+        cmdVote1.Enabled = Not cmdVote1.Enabled
+        cmdVote2.Enabled = Not cmdVote2.Enabled
+        cmdVote3.Enabled = Not cmdVote3.Enabled
+        tmrUpDown.Enabled = False
+        cmdUpDown.Text = "Up"
+        txtUpDown.Text = "0"
+        For i = 0 To 2
+            picWeapons(i).Left = -248
+            lblWeapons(i).Left = -248
+            barVotes(i).Left = -250
+        Next
+        picSwapPlate.Left = -250
     End Sub
     Private Sub ReloadDIM()
         FocusDIM()
@@ -42,15 +56,20 @@
     Private Sub UpDown()
         tmrUpDown.Enabled = True
     End Sub
-    Private Sub UpdateVotes()
-        Dim i As Integer
+    Private Sub UpdateTotalVotes()
         txtTotalVotes.Text = 0
         For i = 0 To 2
             txtTotalVotes.Text += Int(txtVotes(i).Text)
         Next
+    End Sub
+    Private Sub UpdateVoteBars()
         For i = 0 To 2
             barVotes(i).Width = (txtVotes(i).Text / txtTotalVotes.Text) * 200
         Next
+    End Sub
+    Private Sub UpdateVotes()
+        UpdateTotalVotes()
+        UpdateVoteBars()
     End Sub
     Private Sub Vote(i As Integer) 'Send as 1,2,3 not zero
         txtVotes(i - 1).Text += 1
@@ -123,13 +142,12 @@
 
     End Sub
     Private Sub Voter(weaponvote As String)
-        If lblWeaponName1.Text = weaponvote Then
-            Vote(1)
-        ElseIf lblWeaponName2.Text = weaponvote Then
-            Vote(2)
-        ElseIf lblWeaponName3.Text = weaponvote Then
-            Vote(3)
-        End If
+        For i = 0 To 2
+            If lblWeapons(i).Text = weaponvote Then
+                SetChanChat(lblWeapons(i).Text & " " & weaponvote & " " & i)
+                Vote(i + 1)
+            End If
+        Next
     End Sub
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
@@ -177,11 +195,9 @@
     Private Sub tmrUpDown_Tick(sender As Object, e As EventArgs) Handles tmrUpDown.Tick
         'Moving Vote options up (when starting vote) or down (when vote is over)
         If txtUpDown.Text = 125 Then
-            cmdVote1.Enabled = Not cmdVote1.Enabled
-            cmdVote2.Enabled = Not cmdVote2.Enabled
-            cmdVote3.Enabled = Not cmdVote3.Enabled
             tmrUpDown.Enabled = False
             txtUpDown.Text = "0"
+            txtTotalVotes.Text = "0"
             If cmdUpDown.Text = "Up" Then
                 cmdUpDown.Text = "Down"
             Else
@@ -284,6 +300,9 @@
         End If
     End Sub
     Private Sub cmdStartVote_Click(sender As Object, e As EventArgs) Handles cmdStartVote.Click
+        cmdVote1.Enabled = True
+        cmdVote2.Enabled = True
+        cmdVote3.Enabled = True
         For i = 0 To 2
             txtVotes(i).Text = "0"
             barVotes(i).Width = 0
@@ -347,7 +366,11 @@
         'Send clicks to switch Weapons in game - to be used on death screen
         'Checks what Weapon was last voted for (txtLastWeapon.text)
         FocusDIM()
-        My.Computer.Audio.Play(My.Resources.VoteStart, AudioPlayMode.Background)
+        My.Computer.Audio.Play(My.Resources.VoteEnd, AudioPlayMode.Background)
+        cmdStartVote.Enabled = True
+        cmdVote1.Enabled = False
+        cmdVote2.Enabled = False
+        cmdVote3.Enabled = False
         SendSlot(txtWinnerLocation.Text)
         txtLocationOnDeck.Text = txtWinnerLocation.Text
         picOnDeck.Image = picAllWeapons(Int(txtLastGun.Text) - 1).Image

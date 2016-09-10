@@ -258,7 +258,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'cmdVote1
         '
-        Me.cmdVote1.Location = New System.Drawing.Point(221, 12)
+        Me.cmdVote1.Location = New System.Drawing.Point(221, 11)
         Me.cmdVote1.Name = "cmdVote1"
         Me.cmdVote1.Size = New System.Drawing.Size(75, 23)
         Me.cmdVote1.TabIndex = 10
@@ -383,6 +383,7 @@ Partial Class frmDestinyWeaponSwap
         'picReticleColor
         '
         Me.picReticleColor.BackColor = System.Drawing.Color.Lime
+        Me.picReticleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
         Me.picReticleColor.Name = "picReticleColor"
@@ -649,7 +650,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationWActive.Name = "txtLocationWActive"
         Me.txtLocationWActive.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationWActive.TabIndex = 102
-        Me.txtLocationWActive.Text = "1"
+        Me.txtLocationWActive.Text = "0"
         '
         'txtLocationOnDeck
         '
@@ -658,7 +659,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationOnDeck.Name = "txtLocationOnDeck"
         Me.txtLocationOnDeck.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationOnDeck.TabIndex = 103
-        Me.txtLocationOnDeck.Text = "1"
+        Me.txtLocationOnDeck.Text = "0"
         '
         'txtMouseLoc
         '
@@ -945,18 +946,22 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtServerInfo
         '
-        Me.txtServerInfo.Location = New System.Drawing.Point(589, 107)
+        Me.txtServerInfo.Enabled = False
+        Me.txtServerInfo.Location = New System.Drawing.Point(564, 90)
         Me.txtServerInfo.Multiline = True
         Me.txtServerInfo.Name = "txtServerInfo"
-        Me.txtServerInfo.Size = New System.Drawing.Size(258, 68)
+        Me.txtServerInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtServerInfo.Size = New System.Drawing.Size(283, 68)
         Me.txtServerInfo.TabIndex = 124
         '
         'txtChanChat
         '
-        Me.txtChanChat.Location = New System.Drawing.Point(589, 179)
+        Me.txtChanChat.Enabled = False
+        Me.txtChanChat.Location = New System.Drawing.Point(564, 164)
         Me.txtChanChat.Multiline = True
         Me.txtChanChat.Name = "txtChanChat"
-        Me.txtChanChat.Size = New System.Drawing.Size(258, 490)
+        Me.txtChanChat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtChanChat.Size = New System.Drawing.Size(283, 505)
         Me.txtChanChat.TabIndex = 125
         '
         'cmdConnect
@@ -981,7 +986,7 @@ Partial Class frmDestinyWeaponSwap
         'chkAutoJoin
         '
         Me.chkAutoJoin.AutoSize = True
-        Me.chkAutoJoin.Location = New System.Drawing.Point(774, 45)
+        Me.chkAutoJoin.Location = New System.Drawing.Point(774, 43)
         Me.chkAutoJoin.Name = "chkAutoJoin"
         Me.chkAutoJoin.Size = New System.Drawing.Size(70, 17)
         Me.chkAutoJoin.TabIndex = 128
@@ -1109,8 +1114,11 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.picWeapon1)
         Me.Controls.Add(Me.picSwapPlate)
         Me.Controls.Add(Me.picLime)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmDestinyWeaponSwap"
         Me.Text = "Destiny Weapon Swap"
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).EndInit()
