@@ -65,10 +65,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW13 = New System.Windows.Forms.TextBox()
         Me.txtLocationW14 = New System.Windows.Forms.TextBox()
         Me.txtLocationW15 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW16 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW17 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW18 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW19 = New System.Windows.Forms.TextBox()
         Me.cmdSendNew = New System.Windows.Forms.Button()
         Me.txtVoteCountdown = New System.Windows.Forms.TextBox()
         Me.cmdStartVote = New System.Windows.Forms.Button()
@@ -83,7 +79,6 @@ Partial Class frmDestinyWeaponSwap
         Me.tmrSpawnCheck = New System.Windows.Forms.Timer(Me.components)
         Me.tmrDeathCheck = New System.Windows.Forms.Timer(Me.components)
         Me.tmrTakeWeaponWait = New System.Windows.Forms.Timer(Me.components)
-        Me.txtTakeWeaponWait = New System.Windows.Forms.TextBox()
         Me.picActive = New System.Windows.Forms.PictureBox()
         Me.picOnDeck = New System.Windows.Forms.PictureBox()
         Me.txtLocationWActive = New System.Windows.Forms.TextBox()
@@ -91,8 +86,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtMouseLoc = New System.Windows.Forms.TextBox()
         Me.tmrMouseLoc = New System.Windows.Forms.Timer(Me.components)
         Me.txt3Strikes = New System.Windows.Forms.TextBox()
-        Me.txtExcess = New System.Windows.Forms.TextBox()
-        Me.AlertPlayer = New AxWMPLib.AxWindowsMediaPlayer()
         Me.txtWinnerLocation = New System.Windows.Forms.TextBox()
         Me.picW3 = New System.Windows.Forms.PictureBox()
         Me.picW4 = New System.Windows.Forms.PictureBox()
@@ -107,16 +100,14 @@ Partial Class frmDestinyWeaponSwap
         Me.picW13 = New System.Windows.Forms.PictureBox()
         Me.picW14 = New System.Windows.Forms.PictureBox()
         Me.picW15 = New System.Windows.Forms.PictureBox()
-        Me.picW16 = New System.Windows.Forms.PictureBox()
-        Me.picW17 = New System.Windows.Forms.PictureBox()
-        Me.picW18 = New System.Windows.Forms.PictureBox()
-        Me.picW19 = New System.Windows.Forms.PictureBox()
         Me.picW2 = New System.Windows.Forms.PictureBox()
-        Me.txtNick = New System.Windows.Forms.TextBox()
-        Me.txtPass = New System.Windows.Forms.TextBox()
-        Me.txtServer = New System.Windows.Forms.TextBox()
-        Me.txtChan = New System.Windows.Forms.TextBox()
-        Me.txtChat = New System.Windows.Forms.TextBox()
+        Me.cmdManualAuto = New System.Windows.Forms.Button()
+        Me.picBackground = New System.Windows.Forms.PictureBox()
+        Me.listWeaponSlot = New System.Windows.Forms.ComboBox()
+        Me.cmdSendWeaponToSlot = New System.Windows.Forms.Button()
+        Me.listWeaponName = New System.Windows.Forms.ComboBox()
+        Me.line1 = New System.Windows.Forms.Label()
+        Me.cmdIRC = New System.Windows.Forms.Button()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +119,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AlertPlayer, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,11 +132,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picBackground, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picWeapon1
@@ -268,6 +255,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtVote1
         '
+        Me.txtVote1.Enabled = False
         Me.txtVote1.Location = New System.Drawing.Point(302, 12)
         Me.txtVote1.Name = "txtVote1"
         Me.txtVote1.Size = New System.Drawing.Size(100, 20)
@@ -276,6 +264,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtVote2
         '
+        Me.txtVote2.Enabled = False
         Me.txtVote2.Location = New System.Drawing.Point(302, 38)
         Me.txtVote2.Name = "txtVote2"
         Me.txtVote2.Size = New System.Drawing.Size(100, 20)
@@ -293,6 +282,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtVote3
         '
+        Me.txtVote3.Enabled = False
         Me.txtVote3.Location = New System.Drawing.Point(302, 64)
         Me.txtVote3.Name = "txtVote3"
         Me.txtVote3.Size = New System.Drawing.Size(100, 20)
@@ -310,6 +300,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtTotalVotes
         '
+        Me.txtTotalVotes.Enabled = False
         Me.txtTotalVotes.Location = New System.Drawing.Point(302, 90)
         Me.txtTotalVotes.Name = "txtTotalVotes"
         Me.txtTotalVotes.Size = New System.Drawing.Size(100, 20)
@@ -331,6 +322,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtUpDown
         '
+        Me.txtUpDown.Enabled = False
         Me.txtUpDown.Location = New System.Drawing.Point(421, 40)
         Me.txtUpDown.Name = "txtUpDown"
         Me.txtUpDown.Size = New System.Drawing.Size(75, 20)
@@ -352,7 +344,7 @@ Partial Class frmDestinyWeaponSwap
         'txtCheckNo
         '
         Me.txtCheckNo.Enabled = False
-        Me.txtCheckNo.Location = New System.Drawing.Point(422, 162)
+        Me.txtCheckNo.Location = New System.Drawing.Point(422, 155)
         Me.txtCheckNo.Name = "txtCheckNo"
         Me.txtCheckNo.Size = New System.Drawing.Size(75, 20)
         Me.txtCheckNo.TabIndex = 68
@@ -361,7 +353,7 @@ Partial Class frmDestinyWeaponSwap
         'txtCheckYes
         '
         Me.txtCheckYes.Enabled = False
-        Me.txtCheckYes.Location = New System.Drawing.Point(422, 137)
+        Me.txtCheckYes.Location = New System.Drawing.Point(422, 130)
         Me.txtCheckYes.Name = "txtCheckYes"
         Me.txtCheckYes.Size = New System.Drawing.Size(75, 20)
         Me.txtCheckYes.TabIndex = 67
@@ -370,7 +362,7 @@ Partial Class frmDestinyWeaponSwap
         'txtPlayerStatus
         '
         Me.txtPlayerStatus.Enabled = False
-        Me.txtPlayerStatus.Location = New System.Drawing.Point(422, 186)
+        Me.txtPlayerStatus.Location = New System.Drawing.Point(422, 179)
         Me.txtPlayerStatus.Name = "txtPlayerStatus"
         Me.txtPlayerStatus.Size = New System.Drawing.Size(75, 20)
         Me.txtPlayerStatus.TabIndex = 66
@@ -379,7 +371,7 @@ Partial Class frmDestinyWeaponSwap
         'picReticleColor
         '
         Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picReticleColor.Location = New System.Drawing.Point(317, 164)
+        Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
         Me.picReticleColor.Name = "picReticleColor"
         Me.picReticleColor.Size = New System.Drawing.Size(85, 50)
         Me.picReticleColor.TabIndex = 65
@@ -387,7 +379,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtReticleColor
         '
-        Me.txtReticleColor.Location = New System.Drawing.Point(317, 138)
+        Me.txtReticleColor.Location = New System.Drawing.Point(317, 131)
         Me.txtReticleColor.Name = "txtReticleColor"
         Me.txtReticleColor.Size = New System.Drawing.Size(85, 20)
         Me.txtReticleColor.TabIndex = 64
@@ -512,42 +504,10 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW15.TabIndex = 83
         Me.txtLocationW15.Text = "R"
         '
-        'txtLocationW16
-        '
-        Me.txtLocationW16.Location = New System.Drawing.Point(252, 541)
-        Me.txtLocationW16.Name = "txtLocationW16"
-        Me.txtLocationW16.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW16.TabIndex = 84
-        Me.txtLocationW16.Visible = False
-        '
-        'txtLocationW17
-        '
-        Me.txtLocationW17.Location = New System.Drawing.Point(252, 567)
-        Me.txtLocationW17.Name = "txtLocationW17"
-        Me.txtLocationW17.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW17.TabIndex = 85
-        Me.txtLocationW17.Visible = False
-        '
-        'txtLocationW18
-        '
-        Me.txtLocationW18.Location = New System.Drawing.Point(252, 597)
-        Me.txtLocationW18.Name = "txtLocationW18"
-        Me.txtLocationW18.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW18.TabIndex = 86
-        Me.txtLocationW18.Visible = False
-        '
-        'txtLocationW19
-        '
-        Me.txtLocationW19.Location = New System.Drawing.Point(252, 623)
-        Me.txtLocationW19.Name = "txtLocationW19"
-        Me.txtLocationW19.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW19.TabIndex = 87
-        Me.txtLocationW19.Visible = False
-        '
         'cmdSendNew
         '
         Me.cmdSendNew.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdSendNew.Location = New System.Drawing.Point(421, 246)
+        Me.cmdSendNew.Location = New System.Drawing.Point(422, 399)
         Me.cmdSendNew.Name = "cmdSendNew"
         Me.cmdSendNew.Size = New System.Drawing.Size(106, 29)
         Me.cmdSendNew.TabIndex = 97
@@ -557,7 +517,7 @@ Partial Class frmDestinyWeaponSwap
         'txtVoteCountdown
         '
         Me.txtVoteCountdown.Enabled = False
-        Me.txtVoteCountdown.Location = New System.Drawing.Point(502, 331)
+        Me.txtVoteCountdown.Location = New System.Drawing.Point(503, 245)
         Me.txtVoteCountdown.Name = "txtVoteCountdown"
         Me.txtVoteCountdown.Size = New System.Drawing.Size(25, 20)
         Me.txtVoteCountdown.TabIndex = 96
@@ -566,7 +526,7 @@ Partial Class frmDestinyWeaponSwap
         'cmdStartVote
         '
         Me.cmdStartVote.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdStartVote.Location = New System.Drawing.Point(421, 331)
+        Me.cmdStartVote.Location = New System.Drawing.Point(422, 245)
         Me.cmdStartVote.Name = "cmdStartVote"
         Me.cmdStartVote.Size = New System.Drawing.Size(75, 44)
         Me.cmdStartVote.TabIndex = 95
@@ -575,7 +535,8 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtLastGun
         '
-        Me.txtLastGun.Location = New System.Drawing.Point(491, 471)
+        Me.txtLastGun.Enabled = False
+        Me.txtLastGun.Location = New System.Drawing.Point(490, 373)
         Me.txtLastGun.Name = "txtLastGun"
         Me.txtLastGun.Size = New System.Drawing.Size(25, 20)
         Me.txtLastGun.TabIndex = 94
@@ -584,7 +545,7 @@ Partial Class frmDestinyWeaponSwap
         'txtRandomGun3
         '
         Me.txtRandomGun3.Enabled = False
-        Me.txtRandomGun3.Location = New System.Drawing.Point(505, 445)
+        Me.txtRandomGun3.Location = New System.Drawing.Point(504, 347)
         Me.txtRandomGun3.Name = "txtRandomGun3"
         Me.txtRandomGun3.Size = New System.Drawing.Size(25, 20)
         Me.txtRandomGun3.TabIndex = 93
@@ -593,7 +554,7 @@ Partial Class frmDestinyWeaponSwap
         'txtRandomGun2
         '
         Me.txtRandomGun2.Enabled = False
-        Me.txtRandomGun2.Location = New System.Drawing.Point(505, 423)
+        Me.txtRandomGun2.Location = New System.Drawing.Point(504, 325)
         Me.txtRandomGun2.Name = "txtRandomGun2"
         Me.txtRandomGun2.Size = New System.Drawing.Size(25, 20)
         Me.txtRandomGun2.TabIndex = 92
@@ -602,7 +563,7 @@ Partial Class frmDestinyWeaponSwap
         'txtRandomGun1
         '
         Me.txtRandomGun1.Enabled = False
-        Me.txtRandomGun1.Location = New System.Drawing.Point(505, 401)
+        Me.txtRandomGun1.Location = New System.Drawing.Point(504, 303)
         Me.txtRandomGun1.Name = "txtRandomGun1"
         Me.txtRandomGun1.Size = New System.Drawing.Size(25, 20)
         Me.txtRandomGun1.TabIndex = 91
@@ -611,7 +572,7 @@ Partial Class frmDestinyWeaponSwap
         'cmdRandomWeapons
         '
         Me.cmdRandomWeapons.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdRandomWeapons.Location = New System.Drawing.Point(422, 408)
+        Me.cmdRandomWeapons.Location = New System.Drawing.Point(421, 310)
         Me.cmdRandomWeapons.Name = "cmdRandomWeapons"
         Me.cmdRandomWeapons.Size = New System.Drawing.Size(75, 47)
         Me.cmdRandomWeapons.TabIndex = 90
@@ -629,7 +590,7 @@ Partial Class frmDestinyWeaponSwap
         'cmdTakeOld
         '
         Me.cmdTakeOld.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdTakeOld.Location = New System.Drawing.Point(421, 281)
+        Me.cmdTakeOld.Location = New System.Drawing.Point(422, 434)
         Me.cmdTakeOld.Name = "cmdTakeOld"
         Me.cmdTakeOld.Size = New System.Drawing.Size(106, 28)
         Me.cmdTakeOld.TabIndex = 98
@@ -646,20 +607,11 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.tmrTakeWeaponWait.Interval = 1000
         '
-        'txtTakeWeaponWait
-        '
-        Me.txtTakeWeaponWait.Enabled = False
-        Me.txtTakeWeaponWait.Location = New System.Drawing.Point(502, 357)
-        Me.txtTakeWeaponWait.Name = "txtTakeWeaponWait"
-        Me.txtTakeWeaponWait.Size = New System.Drawing.Size(25, 20)
-        Me.txtTakeWeaponWait.TabIndex = 99
-        Me.txtTakeWeaponWait.Text = "15"
-        '
         'picActive
         '
         Me.picActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.picActive.Image = CType(resources.GetObject("picActive.Image"), System.Drawing.Image)
-        Me.picActive.Location = New System.Drawing.Point(317, 511)
+        Me.picActive.Location = New System.Drawing.Point(370, 528)
         Me.picActive.Name = "picActive"
         Me.picActive.Size = New System.Drawing.Size(115, 115)
         Me.picActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -670,7 +622,7 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.picOnDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.picOnDeck.Image = CType(resources.GetObject("picOnDeck.Image"), System.Drawing.Image)
-        Me.picOnDeck.Location = New System.Drawing.Point(438, 576)
+        Me.picOnDeck.Location = New System.Drawing.Point(491, 593)
         Me.picOnDeck.Name = "picOnDeck"
         Me.picOnDeck.Size = New System.Drawing.Size(50, 50)
         Me.picOnDeck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -679,7 +631,8 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtLocationWActive
         '
-        Me.txtLocationWActive.Location = New System.Drawing.Point(405, 632)
+        Me.txtLocationWActive.Enabled = False
+        Me.txtLocationWActive.Location = New System.Drawing.Point(458, 649)
         Me.txtLocationWActive.Name = "txtLocationWActive"
         Me.txtLocationWActive.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationWActive.TabIndex = 102
@@ -687,7 +640,8 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtLocationOnDeck
         '
-        Me.txtLocationOnDeck.Location = New System.Drawing.Point(461, 632)
+        Me.txtLocationOnDeck.Enabled = False
+        Me.txtLocationOnDeck.Location = New System.Drawing.Point(514, 649)
         Me.txtLocationOnDeck.Name = "txtLocationOnDeck"
         Me.txtLocationOnDeck.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationOnDeck.TabIndex = 103
@@ -695,7 +649,7 @@ Partial Class frmDestinyWeaponSwap
         '
         'txtMouseLoc
         '
-        Me.txtMouseLoc.Location = New System.Drawing.Point(317, 484)
+        Me.txtMouseLoc.Location = New System.Drawing.Point(370, 501)
         Me.txtMouseLoc.Name = "txtMouseLoc"
         Me.txtMouseLoc.Size = New System.Drawing.Size(115, 20)
         Me.txtMouseLoc.TabIndex = 104
@@ -706,32 +660,17 @@ Partial Class frmDestinyWeaponSwap
         '
         'txt3Strikes
         '
-        Me.txt3Strikes.Location = New System.Drawing.Point(502, 186)
+        Me.txt3Strikes.Enabled = False
+        Me.txt3Strikes.Location = New System.Drawing.Point(502, 179)
         Me.txt3Strikes.Name = "txt3Strikes"
         Me.txt3Strikes.Size = New System.Drawing.Size(27, 20)
         Me.txt3Strikes.TabIndex = 105
         Me.txt3Strikes.Text = "0"
         '
-        'txtExcess
-        '
-        Me.txtExcess.Location = New System.Drawing.Point(502, 66)
-        Me.txtExcess.Name = "txtExcess"
-        Me.txtExcess.Size = New System.Drawing.Size(48, 20)
-        Me.txtExcess.TabIndex = 106
-        Me.txtExcess.Text = "excess"
-        '
-        'AlertPlayer
-        '
-        Me.AlertPlayer.Enabled = True
-        Me.AlertPlayer.Location = New System.Drawing.Point(502, 90)
-        Me.AlertPlayer.Name = "AlertPlayer"
-        Me.AlertPlayer.OcxState = CType(resources.GetObject("AlertPlayer.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AlertPlayer.Size = New System.Drawing.Size(48, 20)
-        Me.AlertPlayer.TabIndex = 107
-        '
         'txtWinnerLocation
         '
-        Me.txtWinnerLocation.Location = New System.Drawing.Point(522, 471)
+        Me.txtWinnerLocation.Enabled = False
+        Me.txtWinnerLocation.Location = New System.Drawing.Point(521, 373)
         Me.txtWinnerLocation.Name = "txtWinnerLocation"
         Me.txtWinnerLocation.Size = New System.Drawing.Size(25, 20)
         Me.txtWinnerLocation.TabIndex = 108
@@ -894,54 +833,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picW15.TabStop = False
         Me.picW15.Tag = "Random"
         '
-        'picW16
-        '
-        Me.picW16.Image = CType(resources.GetObject("picW16.Image"), System.Drawing.Image)
-        Me.picW16.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW16.Location = New System.Drawing.Point(221, 538)
-        Me.picW16.Name = "picW16"
-        Me.picW16.Size = New System.Drawing.Size(25, 25)
-        Me.picW16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW16.TabIndex = 63
-        Me.picW16.TabStop = False
-        Me.picW16.Visible = False
-        '
-        'picW17
-        '
-        Me.picW17.Image = CType(resources.GetObject("picW17.Image"), System.Drawing.Image)
-        Me.picW17.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW17.Location = New System.Drawing.Point(221, 565)
-        Me.picW17.Name = "picW17"
-        Me.picW17.Size = New System.Drawing.Size(25, 25)
-        Me.picW17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW17.TabIndex = 48
-        Me.picW17.TabStop = False
-        Me.picW17.Visible = False
-        '
-        'picW18
-        '
-        Me.picW18.Image = CType(resources.GetObject("picW18.Image"), System.Drawing.Image)
-        Me.picW18.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW18.Location = New System.Drawing.Point(221, 592)
-        Me.picW18.Name = "picW18"
-        Me.picW18.Size = New System.Drawing.Size(25, 25)
-        Me.picW18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW18.TabIndex = 56
-        Me.picW18.TabStop = False
-        Me.picW18.Visible = False
-        '
-        'picW19
-        '
-        Me.picW19.Image = CType(resources.GetObject("picW19.Image"), System.Drawing.Image)
-        Me.picW19.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW19.Location = New System.Drawing.Point(221, 619)
-        Me.picW19.Name = "picW19"
-        Me.picW19.Size = New System.Drawing.Size(25, 25)
-        Me.picW19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW19.TabIndex = 49
-        Me.picW19.TabStop = False
-        Me.picW19.Visible = False
-        '
         'picW2
         '
         Me.picW2.Image = CType(resources.GetObject("picW2.Image"), System.Drawing.Image)
@@ -954,44 +845,68 @@ Partial Class frmDestinyWeaponSwap
         Me.picW2.TabStop = False
         Me.picW2.Tag = "Hawkmoon"
         '
-        'txtNick
+        'cmdManualAuto
         '
-        Me.txtNick.Location = New System.Drawing.Point(302, 260)
-        Me.txtNick.Name = "txtNick"
-        Me.txtNick.Size = New System.Drawing.Size(100, 20)
-        Me.txtNick.TabIndex = 109
-        Me.txtNick.Text = "Nick"
+        Me.cmdManualAuto.Location = New System.Drawing.Point(422, 205)
+        Me.cmdManualAuto.Name = "cmdManualAuto"
+        Me.cmdManualAuto.Size = New System.Drawing.Size(105, 23)
+        Me.cmdManualAuto.TabIndex = 114
+        Me.cmdManualAuto.Text = "Manual"
+        Me.cmdManualAuto.UseVisualStyleBackColor = True
         '
-        'txtPass
+        'picBackground
         '
-        Me.txtPass.Location = New System.Drawing.Point(302, 286)
-        Me.txtPass.Name = "txtPass"
-        Me.txtPass.Size = New System.Drawing.Size(100, 20)
-        Me.txtPass.TabIndex = 110
-        Me.txtPass.Text = "Pass"
+        Me.picBackground.BackColor = System.Drawing.Color.DimGray
+        Me.picBackground.Location = New System.Drawing.Point(216, 0)
+        Me.picBackground.Name = "picBackground"
+        Me.picBackground.Size = New System.Drawing.Size(337, 680)
+        Me.picBackground.TabIndex = 115
+        Me.picBackground.TabStop = False
         '
-        'txtServer
+        'listWeaponSlot
         '
-        Me.txtServer.Location = New System.Drawing.Point(302, 312)
-        Me.txtServer.Name = "txtServer"
-        Me.txtServer.Size = New System.Drawing.Size(100, 20)
-        Me.txtServer.TabIndex = 111
-        Me.txtServer.Text = "Server"
+        Me.listWeaponSlot.FormattingEnabled = True
+        Me.listWeaponSlot.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
+        Me.listWeaponSlot.Location = New System.Drawing.Point(302, 411)
+        Me.listWeaponSlot.Name = "listWeaponSlot"
+        Me.listWeaponSlot.Size = New System.Drawing.Size(37, 21)
+        Me.listWeaponSlot.TabIndex = 116
         '
-        'txtChan
+        'cmdSendWeaponToSlot
         '
-        Me.txtChan.Location = New System.Drawing.Point(302, 338)
-        Me.txtChan.Name = "txtChan"
-        Me.txtChan.Size = New System.Drawing.Size(100, 20)
-        Me.txtChan.TabIndex = 112
-        Me.txtChan.Text = "Chan"
+        Me.cmdSendWeaponToSlot.Location = New System.Drawing.Point(345, 410)
+        Me.cmdSendWeaponToSlot.Name = "cmdSendWeaponToSlot"
+        Me.cmdSendWeaponToSlot.Size = New System.Drawing.Size(57, 23)
+        Me.cmdSendWeaponToSlot.TabIndex = 117
+        Me.cmdSendWeaponToSlot.Text = "Update"
+        Me.cmdSendWeaponToSlot.UseVisualStyleBackColor = True
         '
-        'txtChat
+        'listWeaponName
         '
-        Me.txtChat.Location = New System.Drawing.Point(302, 388)
-        Me.txtChat.Name = "txtChat"
-        Me.txtChat.Size = New System.Drawing.Size(100, 20)
-        Me.txtChat.TabIndex = 113
+        Me.listWeaponName.FormattingEnabled = True
+        Me.listWeaponName.Items.AddRange(New Object() {"Hawksaw", "Hawkmoon", "Last Word", "MIDA", "Monte Carlo", "NLB", "NTtE", "Suros REGIME", "Thorn", "PDX-45", "Universal Remote", "Vex Mythoclast", "Zhalo Supercell"})
+        Me.listWeaponName.Location = New System.Drawing.Point(302, 439)
+        Me.listWeaponName.Name = "listWeaponName"
+        Me.listWeaponName.Size = New System.Drawing.Size(100, 21)
+        Me.listWeaponName.TabIndex = 118
+        '
+        'line1
+        '
+        Me.line1.BackColor = System.Drawing.Color.Black
+        Me.line1.Location = New System.Drawing.Point(299, 234)
+        Me.line1.Name = "line1"
+        Me.line1.Size = New System.Drawing.Size(240, 4)
+        Me.line1.TabIndex = 119
+        Me.line1.Text = "Label1"
+        '
+        'cmdIRC
+        '
+        Me.cmdIRC.Location = New System.Drawing.Point(421, 78)
+        Me.cmdIRC.Name = "cmdIRC"
+        Me.cmdIRC.Size = New System.Drawing.Size(75, 23)
+        Me.cmdIRC.TabIndex = 120
+        Me.cmdIRC.Text = "IRC"
+        Me.cmdIRC.UseVisualStyleBackColor = True
         '
         'frmDestinyWeaponSwap
         '
@@ -999,21 +914,19 @@ Partial Class frmDestinyWeaponSwap
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Lime
         Me.ClientSize = New System.Drawing.Size(553, 681)
-        Me.Controls.Add(Me.txtChat)
-        Me.Controls.Add(Me.txtChan)
-        Me.Controls.Add(Me.txtServer)
-        Me.Controls.Add(Me.txtPass)
-        Me.Controls.Add(Me.txtNick)
+        Me.Controls.Add(Me.cmdIRC)
+        Me.Controls.Add(Me.line1)
+        Me.Controls.Add(Me.listWeaponName)
+        Me.Controls.Add(Me.cmdSendWeaponToSlot)
+        Me.Controls.Add(Me.listWeaponSlot)
+        Me.Controls.Add(Me.cmdManualAuto)
         Me.Controls.Add(Me.txtWinnerLocation)
-        Me.Controls.Add(Me.AlertPlayer)
-        Me.Controls.Add(Me.txtExcess)
         Me.Controls.Add(Me.txt3Strikes)
         Me.Controls.Add(Me.txtMouseLoc)
         Me.Controls.Add(Me.txtLocationOnDeck)
         Me.Controls.Add(Me.txtLocationWActive)
         Me.Controls.Add(Me.picOnDeck)
         Me.Controls.Add(Me.picActive)
-        Me.Controls.Add(Me.txtTakeWeaponWait)
         Me.Controls.Add(Me.cmdTakeOld)
         Me.Controls.Add(Me.cmdSendNew)
         Me.Controls.Add(Me.txtVoteCountdown)
@@ -1023,10 +936,6 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtRandomGun2)
         Me.Controls.Add(Me.txtRandomGun1)
         Me.Controls.Add(Me.cmdRandomWeapons)
-        Me.Controls.Add(Me.txtLocationW19)
-        Me.Controls.Add(Me.txtLocationW18)
-        Me.Controls.Add(Me.txtLocationW17)
-        Me.Controls.Add(Me.txtLocationW16)
         Me.Controls.Add(Me.txtLocationW15)
         Me.Controls.Add(Me.txtLocationW14)
         Me.Controls.Add(Me.txtLocationW13)
@@ -1047,20 +956,16 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtPlayerStatus)
         Me.Controls.Add(Me.picReticleColor)
         Me.Controls.Add(Me.txtReticleColor)
-        Me.Controls.Add(Me.picW16)
         Me.Controls.Add(Me.picW13)
         Me.Controls.Add(Me.picW9)
         Me.Controls.Add(Me.picW6)
         Me.Controls.Add(Me.picW3)
         Me.Controls.Add(Me.picW11)
-        Me.Controls.Add(Me.picW18)
         Me.Controls.Add(Me.picW15)
         Me.Controls.Add(Me.picW12)
         Me.Controls.Add(Me.picW8)
         Me.Controls.Add(Me.picW5)
         Me.Controls.Add(Me.picW2)
-        Me.Controls.Add(Me.picW19)
-        Me.Controls.Add(Me.picW17)
         Me.Controls.Add(Me.picW14)
         Me.Controls.Add(Me.picW10)
         Me.Controls.Add(Me.picW7)
@@ -1085,6 +990,7 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.picWeapon2)
         Me.Controls.Add(Me.picWeapon1)
         Me.Controls.Add(Me.picSwapPlate)
+        Me.Controls.Add(Me.picBackground)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Name = "frmDestinyWeaponSwap"
@@ -1100,7 +1006,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AlertPlayer, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1114,11 +1019,8 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picBackground, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1165,10 +1067,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents txtLocationW13 As TextBox
     Friend WithEvents txtLocationW14 As TextBox
     Friend WithEvents txtLocationW15 As TextBox
-    Friend WithEvents txtLocationW16 As TextBox
-    Friend WithEvents txtLocationW17 As TextBox
-    Friend WithEvents txtLocationW18 As TextBox
-    Friend WithEvents txtLocationW19 As TextBox
     Friend WithEvents cmdSendNew As Button
     Friend WithEvents txtVoteCountdown As TextBox
     Friend WithEvents cmdStartVote As Button
@@ -1183,7 +1081,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents tmrSpawnCheck As Timer
     Friend WithEvents tmrDeathCheck As Timer
     Friend WithEvents tmrTakeWeaponWait As Timer
-    Friend WithEvents txtTakeWeaponWait As TextBox
     Friend WithEvents picActive As PictureBox
     Friend WithEvents picOnDeck As PictureBox
     Friend WithEvents txtLocationWActive As TextBox
@@ -1191,8 +1088,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents txtMouseLoc As TextBox
     Friend WithEvents tmrMouseLoc As Timer
     Friend WithEvents txt3Strikes As TextBox
-    Friend WithEvents txtExcess As TextBox
-    Friend WithEvents AlertPlayer As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents txtWinnerLocation As TextBox
     Friend WithEvents picW3 As PictureBox
     Friend WithEvents picW4 As PictureBox
@@ -1207,14 +1102,12 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picW13 As PictureBox
     Friend WithEvents picW14 As PictureBox
     Friend WithEvents picW15 As PictureBox
-    Friend WithEvents picW16 As PictureBox
-    Friend WithEvents picW17 As PictureBox
-    Friend WithEvents picW18 As PictureBox
-    Friend WithEvents picW19 As PictureBox
     Friend WithEvents picW2 As PictureBox
-    Friend WithEvents txtNick As TextBox
-    Friend WithEvents txtPass As TextBox
-    Friend WithEvents txtServer As TextBox
-    Friend WithEvents txtChan As TextBox
-    Friend WithEvents txtChat As TextBox
+    Friend WithEvents cmdManualAuto As Button
+    Friend WithEvents picBackground As PictureBox
+    Friend WithEvents listWeaponSlot As ComboBox
+    Friend WithEvents cmdSendWeaponToSlot As Button
+    Friend WithEvents listWeaponName As ComboBox
+    Friend WithEvents line1 As Label
+    Friend WithEvents cmdIRC As Button
 End Class

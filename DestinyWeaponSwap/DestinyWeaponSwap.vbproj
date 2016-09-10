@@ -46,6 +46,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IrcDotNet">
+      <HintPath>..\packages\IrcDotNet.0.6.1\lib\dnx451\IrcDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -78,6 +81,12 @@
       <DependentUpon>DestinyWeaponSwap.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="irc.Designer.vb">
+      <DependentUpon>irc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="irc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,6 +106,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DestinyWeaponSwap.resx">
       <DependentUpon>DestinyWeaponSwap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="irc.resx">
+      <DependentUpon>irc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -135,6 +147,57 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\HardLight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Hawkmoon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Hawksaw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\LastWord.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\media-shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\MIDA.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\MonteCarlo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\NoLandBeyond.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\NTTE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\PDX45.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\RedDeath.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\SurosRegime.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Thorn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\UniversalRemote.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Vex.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guns\Zhalo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Null.png.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
