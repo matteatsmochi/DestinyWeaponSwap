@@ -64,10 +64,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW13 = New System.Windows.Forms.TextBox()
         Me.txtLocationW14 = New System.Windows.Forms.TextBox()
         Me.txtLocationW15 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW16 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW17 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW18 = New System.Windows.Forms.TextBox()
-        Me.txtLocationW19 = New System.Windows.Forms.TextBox()
         Me.cmdSendNew = New System.Windows.Forms.Button()
         Me.txtVoteCountdown = New System.Windows.Forms.TextBox()
         Me.cmdStartVote = New System.Windows.Forms.Button()
@@ -103,10 +99,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picW13 = New System.Windows.Forms.PictureBox()
         Me.picW14 = New System.Windows.Forms.PictureBox()
         Me.picW15 = New System.Windows.Forms.PictureBox()
-        Me.picW16 = New System.Windows.Forms.PictureBox()
-        Me.picW17 = New System.Windows.Forms.PictureBox()
-        Me.picW18 = New System.Windows.Forms.PictureBox()
-        Me.picW19 = New System.Windows.Forms.PictureBox()
         Me.picW2 = New System.Windows.Forms.PictureBox()
         Me.cmdManualAuto = New System.Windows.Forms.Button()
         Me.listWeaponSlot = New System.Windows.Forms.ComboBox()
@@ -149,11 +141,7 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW15, System.ComponentModel.ISupportInitialize).BeginInit()        
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picLime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -520,38 +508,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW15.TabIndex = 83
         Me.txtLocationW15.Text = "R"
         '
-        'txtLocationW16
-        '
-        Me.txtLocationW16.Location = New System.Drawing.Point(252, 541)
-        Me.txtLocationW16.Name = "txtLocationW16"
-        Me.txtLocationW16.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW16.TabIndex = 84
-        Me.txtLocationW16.Visible = False
-        '
-        'txtLocationW17
-        '
-        Me.txtLocationW17.Location = New System.Drawing.Point(252, 567)
-        Me.txtLocationW17.Name = "txtLocationW17"
-        Me.txtLocationW17.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW17.TabIndex = 85
-        Me.txtLocationW17.Visible = False
-        '
-        'txtLocationW18
-        '
-        Me.txtLocationW18.Location = New System.Drawing.Point(252, 597)
-        Me.txtLocationW18.Name = "txtLocationW18"
-        Me.txtLocationW18.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW18.TabIndex = 86
-        Me.txtLocationW18.Visible = False
-        '
-        'txtLocationW19
-        '
-        Me.txtLocationW19.Location = New System.Drawing.Point(252, 623)
-        Me.txtLocationW19.Name = "txtLocationW19"
-        Me.txtLocationW19.Size = New System.Drawing.Size(27, 20)
-        Me.txtLocationW19.TabIndex = 87
-        Me.txtLocationW19.Visible = False
-        '
         'cmdSendNew
         '
         Me.cmdSendNew.ImeMode = System.Windows.Forms.ImeMode.NoControl
@@ -881,54 +837,6 @@ Partial Class frmDestinyWeaponSwap
         Me.picW15.TabStop = False
         Me.picW15.Tag = "Random"
         '
-        'picW16
-        '
-        Me.picW16.Image = CType(resources.GetObject("picW16.Image"), System.Drawing.Image)
-        Me.picW16.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW16.Location = New System.Drawing.Point(221, 538)
-        Me.picW16.Name = "picW16"
-        Me.picW16.Size = New System.Drawing.Size(25, 25)
-        Me.picW16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW16.TabIndex = 63
-        Me.picW16.TabStop = False
-        Me.picW16.Visible = False
-        '
-        'picW17
-        '
-        Me.picW17.Image = CType(resources.GetObject("picW17.Image"), System.Drawing.Image)
-        Me.picW17.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW17.Location = New System.Drawing.Point(221, 565)
-        Me.picW17.Name = "picW17"
-        Me.picW17.Size = New System.Drawing.Size(25, 25)
-        Me.picW17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW17.TabIndex = 48
-        Me.picW17.TabStop = False
-        Me.picW17.Visible = False
-        '
-        'picW18
-        '
-        Me.picW18.Image = CType(resources.GetObject("picW18.Image"), System.Drawing.Image)
-        Me.picW18.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW18.Location = New System.Drawing.Point(221, 592)
-        Me.picW18.Name = "picW18"
-        Me.picW18.Size = New System.Drawing.Size(25, 25)
-        Me.picW18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW18.TabIndex = 56
-        Me.picW18.TabStop = False
-        Me.picW18.Visible = False
-        '
-        'picW19
-        '
-        Me.picW19.Image = CType(resources.GetObject("picW19.Image"), System.Drawing.Image)
-        Me.picW19.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW19.Location = New System.Drawing.Point(221, 619)
-        Me.picW19.Name = "picW19"
-        Me.picW19.Size = New System.Drawing.Size(25, 25)
-        Me.picW19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW19.TabIndex = 49
-        Me.picW19.TabStop = False
-        Me.picW19.Visible = False
-        '
         'picW2
         '
         Me.picW2.Image = CType(resources.GetObject("picW2.Image"), System.Drawing.Image)
@@ -1154,10 +1062,6 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtRandomGun2)
         Me.Controls.Add(Me.txtRandomGun1)
         Me.Controls.Add(Me.cmdRandomWeapons)
-        Me.Controls.Add(Me.txtLocationW19)
-        Me.Controls.Add(Me.txtLocationW18)
-        Me.Controls.Add(Me.txtLocationW17)
-        Me.Controls.Add(Me.txtLocationW16)
         Me.Controls.Add(Me.txtLocationW15)
         Me.Controls.Add(Me.txtLocationW14)
         Me.Controls.Add(Me.txtLocationW13)
@@ -1177,20 +1081,16 @@ Partial Class frmDestinyWeaponSwap
         Me.Controls.Add(Me.txtCheckYes)
         Me.Controls.Add(Me.txtPlayerStatus)
         Me.Controls.Add(Me.txtReticleColor)
-        Me.Controls.Add(Me.picW16)
         Me.Controls.Add(Me.picW13)
         Me.Controls.Add(Me.picW9)
         Me.Controls.Add(Me.picW6)
         Me.Controls.Add(Me.picW3)
         Me.Controls.Add(Me.picW11)
-        Me.Controls.Add(Me.picW18)
         Me.Controls.Add(Me.picW15)
         Me.Controls.Add(Me.picW12)
         Me.Controls.Add(Me.picW8)
         Me.Controls.Add(Me.picW5)
         Me.Controls.Add(Me.picW2)
-        Me.Controls.Add(Me.picW19)
-        Me.Controls.Add(Me.picW17)
         Me.Controls.Add(Me.picW14)
         Me.Controls.Add(Me.picW10)
         Me.Controls.Add(Me.picW7)
@@ -1246,10 +1146,6 @@ Partial Class frmDestinyWeaponSwap
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picLime, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1298,10 +1194,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents txtLocationW13 As TextBox
     Friend WithEvents txtLocationW14 As TextBox
     Friend WithEvents txtLocationW15 As TextBox
-    Friend WithEvents txtLocationW16 As TextBox
-    Friend WithEvents txtLocationW17 As TextBox
-    Friend WithEvents txtLocationW18 As TextBox
-    Friend WithEvents txtLocationW19 As TextBox
     Friend WithEvents cmdSendNew As Button
     Friend WithEvents txtVoteCountdown As TextBox
     Friend WithEvents cmdStartVote As Button
@@ -1337,10 +1229,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents picW13 As PictureBox
     Friend WithEvents picW14 As PictureBox
     Friend WithEvents picW15 As PictureBox
-    Friend WithEvents picW16 As PictureBox
-    Friend WithEvents picW17 As PictureBox
-    Friend WithEvents picW18 As PictureBox
-    Friend WithEvents picW19 As PictureBox
     Friend WithEvents picW2 As PictureBox
     Friend WithEvents cmdManualAuto As Button
     Friend WithEvents listWeaponSlot As ComboBox

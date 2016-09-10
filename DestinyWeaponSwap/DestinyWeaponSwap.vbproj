@@ -139,6 +139,63 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HardLight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hawkmoon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hawksaw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LastWord.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MIDA.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonteCarlo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoLandBeyond.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NTTE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDX45.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedDeath.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SurosRegime.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thorn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UniversalRemote.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vex.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zhalo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Null.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Random.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

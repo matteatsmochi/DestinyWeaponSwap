@@ -121,10 +121,61 @@
   <data name="Death" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Que01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="HardLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HardLight.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hawkmoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hawkmoon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hawksaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hawksaw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LastWord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LastWord.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MIDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MIDA.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MonteCarlo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MonteCarlo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoLandBeyond" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NoLandBeyond.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NTTE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NTTE.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PDX45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PDX45.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RedDeath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RedDeath.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SurosRegime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SurosRegime.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Thorn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Thorn.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UniversalRemote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UniversalRemote.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vex.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="VoteEnd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Que02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="VoteStart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Que03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Zhalo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zhalo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Null" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Null.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Random" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Random.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
