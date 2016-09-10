@@ -81,12 +81,6 @@
       <DependentUpon>DestinyWeaponSwap.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="irc.Designer.vb">
-      <DependentUpon>irc.vb</DependentUpon>
-    </Compile>
-    <Compile Include="irc.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -106,9 +100,6 @@
   <ItemGroup>
     <EmbeddedResource Include="DestinyWeaponSwap.resx">
       <DependentUpon>DestinyWeaponSwap.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="irc.resx">
-      <DependentUpon>irc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

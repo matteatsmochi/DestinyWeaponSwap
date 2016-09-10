@@ -63,27 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         '''</summary>
-        Friend ReadOnly Property Cue01() As System.IO.UnmanagedMemoryStream
+        Friend ReadOnly Property Death() As System.IO.UnmanagedMemoryStream
             Get
-                Return ResourceManager.GetStream("Cue01", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        '''</summary>
-        Friend ReadOnly Property Cue02() As System.IO.UnmanagedMemoryStream
-            Get
-                Return ResourceManager.GetStream("Cue02", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        '''</summary>
-        Friend ReadOnly Property Cue03() As System.IO.UnmanagedMemoryStream
-            Get
-                Return ResourceManager.GetStream("Cue03", resourceCulture)
+                Return ResourceManager.GetStream("Death", resourceCulture)
             End Get
         End Property
         
@@ -244,6 +226,24 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("Vex", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property VoteEnd() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("VoteEnd", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property VoteStart() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("VoteStart", resourceCulture)
             End Get
         End Property
         
