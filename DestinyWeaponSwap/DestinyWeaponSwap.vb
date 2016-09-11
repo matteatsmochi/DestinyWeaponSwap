@@ -130,7 +130,7 @@
                     picAllWeapons(i).Image = My.Resources.UniversalRemote
                 Case "Vex"
                     picAllWeapons(i).Image = My.Resources.Vex
-                Case "Zhalo Supercell"
+                Case "Zhalo"
                     picAllWeapons(i).Image = My.Resources.Zhalo
             End Select
 

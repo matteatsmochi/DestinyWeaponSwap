@@ -229,7 +229,7 @@ Partial Class frmDestinyWeaponSwap
         Me.lblWeaponName1.Name = "lblWeaponName1"
         Me.lblWeaponName1.Size = New System.Drawing.Size(195, 35)
         Me.lblWeaponName1.TabIndex = 7
-        Me.lblWeaponName1.Text = "!THORN"
+        Me.lblWeaponName1.Text = "Null"
         Me.lblWeaponName1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblWeaponName2
@@ -241,7 +241,7 @@ Partial Class frmDestinyWeaponSwap
         Me.lblWeaponName2.Name = "lblWeaponName2"
         Me.lblWeaponName2.Size = New System.Drawing.Size(195, 35)
         Me.lblWeaponName2.TabIndex = 8
-        Me.lblWeaponName2.Text = "!THORN"
+        Me.lblWeaponName2.Text = "Null"
         Me.lblWeaponName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblWeaponName3
@@ -253,7 +253,7 @@ Partial Class frmDestinyWeaponSwap
         Me.lblWeaponName3.Name = "lblWeaponName3"
         Me.lblWeaponName3.Size = New System.Drawing.Size(195, 35)
         Me.lblWeaponName3.TabIndex = 9
-        Me.lblWeaponName3.Text = "!THORN"
+        Me.lblWeaponName3.Text = "Null"
         Me.lblWeaponName3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'cmdVote1
