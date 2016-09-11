@@ -554,7 +554,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLastGun.Name = "txtLastGun"
         Me.txtLastGun.Size = New System.Drawing.Size(25, 20)
         Me.txtLastGun.TabIndex = 94
-        Me.txtLastGun.Text = "2"
+        Me.txtLastGun.Text = "0"
         '
         'txtRandomGun3
         '
@@ -688,7 +688,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtWinnerLocation.Name = "txtWinnerLocation"
         Me.txtWinnerLocation.Size = New System.Drawing.Size(25, 20)
         Me.txtWinnerLocation.TabIndex = 108
-        Me.txtWinnerLocation.Text = "2"
+        Me.txtWinnerLocation.Text = "0"
         '
         'picW3
         '
@@ -880,7 +880,7 @@ Partial Class frmDestinyWeaponSwap
         'listWeaponSlot
         '
         Me.listWeaponSlot.FormattingEnabled = True
-        Me.listWeaponSlot.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
+        Me.listWeaponSlot.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
         Me.listWeaponSlot.Location = New System.Drawing.Point(302, 411)
         Me.listWeaponSlot.Name = "listWeaponSlot"
         Me.listWeaponSlot.Size = New System.Drawing.Size(37, 21)
@@ -898,7 +898,7 @@ Partial Class frmDestinyWeaponSwap
         'listWeaponName
         '
         Me.listWeaponName.FormattingEnabled = True
-        Me.listWeaponName.Items.AddRange(New Object() {"Hawksaw", "Hawkmoon", "Last Word", "MIDA", "Monte Carlo", "NLB", "NTtE", "Suros REGIME", "Thorn", "PDX-45", "Universal Remote", "Vex Mythoclast", "Zhalo Supercell"})
+        Me.listWeaponName.Items.AddRange(New Object() {"Hawksaw", "Hawkmoon", "LastWord", "MIDA", "MonteCarlo", "NoLandBeyond", "NTTE", "SurosRegime", "Thorn", "PDX45", "UniversalRemote", "Vex", "Zhalo"})
         Me.listWeaponName.Location = New System.Drawing.Point(302, 439)
         Me.listWeaponName.Name = "listWeaponName"
         Me.listWeaponName.Size = New System.Drawing.Size(100, 21)

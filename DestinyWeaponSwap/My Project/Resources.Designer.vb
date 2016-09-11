@@ -61,15 +61,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        '''</summary>
-        Friend ReadOnly Property Death() As System.IO.UnmanagedMemoryStream
-            Get
-                Return ResourceManager.GetStream("Death", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property HardLight() As System.Drawing.Bitmap
@@ -196,6 +187,15 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("SurosRegime", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property SwitchGun() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("SwitchGun", resourceCulture)
             End Get
         End Property
         

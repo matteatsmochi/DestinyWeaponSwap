@@ -28,6 +28,113 @@
         Client.FloodPreventer = New IrcDotNet.IrcStandardFloodPreventer(4, 2000)
         Down()
         RandomWeapons()
+        LoadSettings()
+    End Sub
+    Private Sub frmDestinyWeaponSwap_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        'Save settings when closing nick pass channel auto
+        My.Settings.Nick = txtNick.Text
+        My.Settings.Pass = txtPass.Text
+        My.Settings.Channel = txtChan.Text
+        My.Settings.AutoJoin = chkAutoJoin.Checked
+
+        My.Settings.LocW1 = txtLocationW1.Text
+        My.Settings.LocW2 = txtLocationW2.Text
+        My.Settings.LocW3 = txtLocationW3.Text
+        My.Settings.LocW4 = txtLocationW4.Text
+        My.Settings.LocW5 = txtLocationW5.Text
+        My.Settings.LocW6 = txtLocationW6.Text
+        My.Settings.LocW7 = txtLocationW7.Text
+        My.Settings.LocW8 = txtLocationW8.Text
+        My.Settings.LocW9 = txtLocationW9.Text
+        My.Settings.LocW10 = txtLocationW10.Text
+        My.Settings.LocW11 = txtLocationW11.Text
+        My.Settings.LocW12 = txtLocationW12.Text
+        My.Settings.LocW13 = txtLocationW13.Text
+        My.Settings.LocW14 = txtLocationW14.Text
+
+        My.Settings.Weapon1 = picW1.Tag
+        My.Settings.Weapon2 = picW2.Tag
+        My.Settings.Weapon3 = picW3.Tag
+        My.Settings.Weapon4 = picW4.Tag
+        My.Settings.Weapon5 = picW5.Tag
+        My.Settings.Weapon6 = picW6.Tag
+        My.Settings.Weapon7 = picW7.Tag
+        My.Settings.Weapon8 = picW8.Tag
+        My.Settings.Weapon9 = picW9.Tag
+        My.Settings.Weapon10 = picW10.Tag
+        My.Settings.Weapon11 = picW11.Tag
+        My.Settings.Weapon12 = picW12.Tag
+        My.Settings.Weapon13 = picW13.Tag
+        My.Settings.Weapon14 = picW14.Tag
+    End Sub
+    Private Sub LoadSettings()
+        'Load user settings
+        txtNick.Text = My.Settings.Nick
+        txtPass.Text = My.Settings.Pass
+        txtChan.Text = My.Settings.Channel
+        chkAutoJoin.Checked = My.Settings.AutoJoin
+
+        txtLocationW1.Text = My.Settings.LocW1
+        txtLocationW2.Text = My.Settings.LocW2
+        txtLocationW3.Text = My.Settings.LocW3
+        txtLocationW4.Text = My.Settings.LocW4
+        txtLocationW5.Text = My.Settings.LocW5
+        txtLocationW6.Text = My.Settings.LocW6
+        txtLocationW7.Text = My.Settings.LocW7
+        txtLocationW8.Text = My.Settings.LocW8
+        txtLocationW9.Text = My.Settings.LocW9
+        txtLocationW10.Text = My.Settings.LocW10
+        txtLocationW11.Text = My.Settings.LocW11
+        txtLocationW12.Text = My.Settings.LocW12
+        txtLocationW13.Text = My.Settings.LocW13
+        txtLocationW14.Text = My.Settings.LocW14
+
+        picW1.Tag = My.Settings.Weapon1
+        picW2.Tag = My.Settings.Weapon2
+        picW3.Tag = My.Settings.Weapon3
+        picW4.Tag = My.Settings.Weapon4
+        picW5.Tag = My.Settings.Weapon5
+        picW6.Tag = My.Settings.Weapon6
+        picW7.Tag = My.Settings.Weapon7
+        picW8.Tag = My.Settings.Weapon8
+        picW9.Tag = My.Settings.Weapon9
+        picW10.Tag = My.Settings.Weapon10
+        picW11.Tag = My.Settings.Weapon11
+        picW12.Tag = My.Settings.Weapon12
+        picW13.Tag = My.Settings.Weapon13
+        picW14.Tag = My.Settings.Weapon14
+
+        For i = 0 To 13
+            Select Case picAllWeapons(i).Tag
+                Case "Hawksaw"
+                    picAllWeapons(i).Image = My.Resources.Hawksaw
+                Case "Hawkmoon"
+                    picAllWeapons(i).Image = My.Resources.Hawkmoon
+                Case "LastWord"
+                    picAllWeapons(i).Image = My.Resources.LastWord
+                Case "MIDA"
+                    picAllWeapons(i).Image = My.Resources.MIDA
+                Case "MonteCarlo"
+                    picAllWeapons(i).Image = My.Resources.MonteCarlo
+                Case "NoLandBeyond"
+                    picAllWeapons(i).Image = My.Resources.NoLandBeyond
+                Case "NTTE"
+                    picAllWeapons(i).Image = My.Resources.NTTE
+                Case "SurosRegime"
+                    picAllWeapons(i).Image = My.Resources.SurosRegime
+                Case "Thorn"
+                    picAllWeapons(i).Image = My.Resources.Thorn
+                Case "PDX45"
+                    picAllWeapons(i).Image = My.Resources.PDX45
+                Case "UniversalRemote"
+                    picAllWeapons(i).Image = My.Resources.UniversalRemote
+                Case "Vex"
+                    picAllWeapons(i).Image = My.Resources.Vex
+                Case "Zhalo Supercell"
+                    picAllWeapons(i).Image = My.Resources.Zhalo
+            End Select
+
+        Next
     End Sub
     Private Sub Down()
         cmdVote1.Enabled = Not cmdVote1.Enabled
@@ -333,7 +440,7 @@
             YesNoReticleDeathSpawnStatus(True, False, tmrSpawnCheck.Enabled, "Dead")
             txt3Strikes.Text += 1
             If txt3Strikes.Text = 0 Then
-                My.Computer.Audio.Play(My.Resources.Death, AudioPlayMode.Background)
+                My.Computer.Audio.Play(My.Resources.SwitchGun, AudioPlayMode.Background)
             ElseIf txt3Strikes.Text = 1 Then
                 ReloadDIM()
                 FocusDIS()
@@ -406,7 +513,7 @@
         System.Threading.Thread.Sleep(200)
     End Sub
     Private Sub CheckPixels()
-        'Checking 1 pixel at the center of the right screen
+        'Checking 1 pixel at the bottom center of Destiny in capture app
         Dim a As New Drawing.Bitmap(1, 1)
         Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
         b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
@@ -502,45 +609,48 @@
         Select Case listWeaponName.SelectedItem
             Case "Hawksaw"
                 picAllWeapons(l).Image = My.Resources.Hawksaw
-
+                picAllWeapons(l).Tag = "Hawksaw"
             Case "Hawkmoon"
                 picAllWeapons(l).Image = My.Resources.Hawkmoon
-
-            Case "Last Word"
+                picAllWeapons(l).Tag = "Hawkmoon"
+            Case "LastWord"
                 picAllWeapons(l).Image = My.Resources.LastWord
-
+                picAllWeapons(l).Tag = "LastWord"
             Case "MIDA"
                 picAllWeapons(l).Image = My.Resources.MIDA
-
-            Case "Monte Carlo"
+                picAllWeapons(l).Tag = "MIDA"
+            Case "MonteCarlo"
                 picAllWeapons(l).Image = My.Resources.MonteCarlo
-
-            Case "NLB"
+                picAllWeapons(l).Tag = "MonteCarlo"
+            Case "NoLandBeyond"
                 picAllWeapons(l).Image = My.Resources.NoLandBeyond
-
-            Case "NTtE"
+                picAllWeapons(l).Tag = "NoLandBeyond"
+            Case "NTTE"
                 picAllWeapons(l).Image = My.Resources.NTTE
-
-            Case "Suros REGIME"
+                picAllWeapons(l).Tag = "NTTE"
+            Case "SurosRegime"
                 picAllWeapons(l).Image = My.Resources.SurosRegime
-
+                picAllWeapons(l).Tag = "SurosRegime"
             Case "Thorn"
                 picAllWeapons(l).Image = My.Resources.Thorn
-
-            Case "PDX-45"
+                picAllWeapons(l).Tag = "Thorn"
+            Case "PDX45"
                 picAllWeapons(l).Image = My.Resources.PDX45
-
-            Case "Universal Remote"
+                picAllWeapons(l).Tag = "PDX45"
+            Case "UniversalRemote"
                 picAllWeapons(l).Image = My.Resources.UniversalRemote
-
-            Case "Vex Mythoclast"
+                picAllWeapons(l).Tag = "UniversalRemote"
+            Case "Vex"
                 picAllWeapons(l).Image = My.Resources.Vex
-
-            Case "Zhalo Supercell"
+                picAllWeapons(l).Tag = "Vex"
+            Case "Zhalo"
                 picAllWeapons(l).Image = My.Resources.Zhalo
-
+                picAllWeapons(l).Tag = "Zhalo"
             Case "Random"
                 picAllWeapons(l).Image = My.Resources.Random
+                picAllWeapons(l).Tag = "Random"
         End Select
     End Sub
+
+
 End Class
