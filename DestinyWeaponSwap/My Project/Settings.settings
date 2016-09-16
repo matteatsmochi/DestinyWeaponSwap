@@ -101,5 +101,11 @@
     <Setting Name="PoolCap" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
     </Setting>
+    <Setting Name="PointX" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1477</Value>
+    </Setting>
+    <Setting Name="PointY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">446</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

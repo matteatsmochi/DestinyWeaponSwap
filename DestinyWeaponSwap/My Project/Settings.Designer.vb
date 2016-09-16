@@ -449,6 +449,30 @@ Namespace My
                 Me("PoolCap") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1477")>  _
+        Public Property PointX() As Integer
+            Get
+                Return CType(Me("PointX"),Integer)
+            End Get
+            Set
+                Me("PointX") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("446")>  _
+        Public Property PointY() As Integer
+            Get
+                Return CType(Me("PointY"),Integer)
+            End Get
+            Set
+                Me("PointY") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

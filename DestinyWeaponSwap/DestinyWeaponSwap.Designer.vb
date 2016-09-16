@@ -121,6 +121,7 @@ Partial Class frmDestinyWeaponSwap
         Me.lblChan = New System.Windows.Forms.Label()
         Me.listTotal = New System.Windows.Forms.ComboBox()
         Me.lblTotal = New System.Windows.Forms.Label()
+        Me.cmdCalibrate = New System.Windows.Forms.Button()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -672,7 +673,6 @@ Partial Class frmDestinyWeaponSwap
         '
         'tmrMouseLoc
         '
-        Me.tmrMouseLoc.Enabled = True
         '
         'txt3Strikes
         '
@@ -1040,12 +1040,23 @@ Partial Class frmDestinyWeaponSwap
         Me.lblTotal.TabIndex = 133
         Me.lblTotal.Text = "Total in Pool:"
         '
+        'cmdCalibrate
+        '
+        Me.cmdCalibrate.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.cmdCalibrate.Location = New System.Drawing.Point(370, 478)
+        Me.cmdCalibrate.Name = "cmdCalibrate"
+        Me.cmdCalibrate.Size = New System.Drawing.Size(115, 20)
+        Me.cmdCalibrate.TabIndex = 134
+        Me.cmdCalibrate.Text = "Change Point"
+        Me.cmdCalibrate.UseVisualStyleBackColor = True
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DimGray
         Me.ClientSize = New System.Drawing.Size(859, 681)
+        Me.Controls.Add(Me.cmdCalibrate)
         Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.listTotal)
         Me.Controls.Add(Me.lblChan)
@@ -1271,4 +1282,5 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents lblChan As Label
     Friend WithEvents listTotal As ComboBox
     Friend WithEvents lblTotal As Label
+    Friend WithEvents cmdCalibrate As Button
 End Class

@@ -8,6 +8,8 @@
     Dim txtLocations() As TextBox
     Dim txtVotes() As TextBox
     Dim PoolCap As Integer
+    Dim PointX As Integer
+    Dim PointY As Integer
     ' IRC Variables
     Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
     Dim OAuth As String
@@ -69,6 +71,9 @@
         My.Settings.Weapon14 = picW14.Tag
 
         My.Settings.PoolCap = PoolCap
+
+        My.Settings.PointX = PointX
+        My.Settings.PointY = PointY
     End Sub
     Private Sub LoadSettings()
         'Load user settings
@@ -142,7 +147,8 @@
         PoolCap = My.Settings.PoolCap
         SetPool()
 
-
+        PointX = My.Settings.PointX
+        PointY = My.Settings.PointY
     End Sub
     Private Sub Down()
         cmdVote1.Enabled = Not cmdVote1.Enabled
@@ -479,6 +485,7 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tmrMouseLoc.Tick
         Dim MPx As Point = MousePosition()
         txtMouseLoc.Text = MPx.ToString
+
     End Sub
     Private Sub SendNew()
         'Send clicks to switch Weapons in game - to be used on death screen
@@ -527,7 +534,7 @@
         'Checking 1 pixel at the bottom center of Destiny in capture app
         Dim a As New Drawing.Bitmap(1, 1)
         Dim b As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(a)
-        b.CopyFromScreen(New Drawing.Point(1477, 446), New Drawing.Point(0, 0), a.Size)
+        b.CopyFromScreen(New Drawing.Point(PointX, PointY), New Drawing.Point(0, 0), a.Size)
         Dim c As Drawing.Color = a.GetPixel(0, 0)
         picReticleColor.BackColor = c
         txtReticleColor.Text = picReticleColor.BackColor.Name
@@ -781,5 +788,10 @@
                 Next i
                 My.Settings.PoolCap = 14
         End Select
+    End Sub
+
+    Private Sub cmdCalibrate_Click(sender As Object, e As EventArgs) Handles cmdCalibrate.Click
+        tmrMouseLoc.Enabled = True
+        txtPlayerStatus.Text = "Calibrating"
     End Sub
 End Class
