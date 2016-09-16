@@ -12,91 +12,94 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LocW1" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="LocW2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="LocW3" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="LocW4" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="LocW5" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="LocW6" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="LocW7" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="LocW8" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">9</Value>
     </Setting>
     <Setting Name="LocW9" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="LocW10" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">11</Value>
     </Setting>
     <Setting Name="LocW11" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="LocW12" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">12</Value>
     </Setting>
     <Setting Name="LocW13" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">13</Value>
     </Setting>
     <Setting Name="LocW14" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">14</Value>
     </Setting>
     <Setting Name="Weapon1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Hawksaw</Value>
     </Setting>
     <Setting Name="Weapon2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Hawkmoon</Value>
     </Setting>
     <Setting Name="Weapon3" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">LastWord</Value>
     </Setting>
     <Setting Name="Weapon4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">MIDA</Value>
     </Setting>
     <Setting Name="Weapon5" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">MonteCarlo</Value>
     </Setting>
     <Setting Name="Weapon6" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">NoLandBeyond</Value>
     </Setting>
     <Setting Name="Weapon7" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">NTTE</Value>
     </Setting>
     <Setting Name="Weapon8" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">RedDeath</Value>
     </Setting>
     <Setting Name="Weapon9" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">SurosRegime</Value>
     </Setting>
     <Setting Name="Weapon10" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Thorn</Value>
     </Setting>
     <Setting Name="Weapon11" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">PDX45</Value>
     </Setting>
     <Setting Name="Weapon12" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">UniversalRemote</Value>
     </Setting>
     <Setting Name="Weapon13" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Vex</Value>
     </Setting>
     <Setting Name="Weapon14" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Zhalo</Value>
     </Setting>
     <Setting Name="AutoJoin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PoolCap" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">14</Value>
     </Setting>
   </Settings>
 </SettingsFile>

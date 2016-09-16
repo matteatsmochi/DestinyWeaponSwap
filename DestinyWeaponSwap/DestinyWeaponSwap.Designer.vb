@@ -119,6 +119,8 @@ Partial Class frmDestinyWeaponSwap
         Me.lblNick = New System.Windows.Forms.Label()
         Me.lblPass = New System.Windows.Forms.Label()
         Me.lblChan = New System.Windows.Forms.Label()
+        Me.listTotal = New System.Windows.Forms.ComboBox()
+        Me.lblTotal = New System.Windows.Forms.Label()
         CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -881,14 +883,14 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.listWeaponSlot.FormattingEnabled = True
         Me.listWeaponSlot.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
-        Me.listWeaponSlot.Location = New System.Drawing.Point(302, 411)
+        Me.listWeaponSlot.Location = New System.Drawing.Point(302, 296)
         Me.listWeaponSlot.Name = "listWeaponSlot"
         Me.listWeaponSlot.Size = New System.Drawing.Size(37, 21)
         Me.listWeaponSlot.TabIndex = 116
         '
         'cmdSendWeaponToSlot
         '
-        Me.cmdSendWeaponToSlot.Location = New System.Drawing.Point(345, 410)
+        Me.cmdSendWeaponToSlot.Location = New System.Drawing.Point(345, 295)
         Me.cmdSendWeaponToSlot.Name = "cmdSendWeaponToSlot"
         Me.cmdSendWeaponToSlot.Size = New System.Drawing.Size(57, 23)
         Me.cmdSendWeaponToSlot.TabIndex = 117
@@ -899,7 +901,7 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.listWeaponName.FormattingEnabled = True
         Me.listWeaponName.Items.AddRange(New Object() {"Hawksaw", "Hawkmoon", "LastWord", "MIDA", "MonteCarlo", "NoLandBeyond", "NTTE", "SurosRegime", "Thorn", "PDX45", "UniversalRemote", "Vex", "Zhalo"})
-        Me.listWeaponName.Location = New System.Drawing.Point(302, 439)
+        Me.listWeaponName.Location = New System.Drawing.Point(302, 324)
         Me.listWeaponName.Name = "listWeaponName"
         Me.listWeaponName.Size = New System.Drawing.Size(100, 21)
         Me.listWeaponName.TabIndex = 118
@@ -1020,12 +1022,32 @@ Partial Class frmDestinyWeaponSwap
         Me.lblChan.TabIndex = 131
         Me.lblChan.Text = "Channel:"
         '
+        'listTotal
+        '
+        Me.listTotal.FormattingEnabled = True
+        Me.listTotal.Items.AddRange(New Object() {"3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
+        Me.listTotal.Location = New System.Drawing.Point(302, 380)
+        Me.listTotal.Name = "listTotal"
+        Me.listTotal.Size = New System.Drawing.Size(66, 21)
+        Me.listTotal.TabIndex = 132
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.Location = New System.Drawing.Point(299, 364)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(69, 13)
+        Me.lblTotal.TabIndex = 133
+        Me.lblTotal.Text = "Total in Pool:"
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DimGray
         Me.ClientSize = New System.Drawing.Size(859, 681)
+        Me.Controls.Add(Me.lblTotal)
+        Me.Controls.Add(Me.listTotal)
         Me.Controls.Add(Me.lblChan)
         Me.Controls.Add(Me.lblPass)
         Me.Controls.Add(Me.lblNick)
@@ -1247,4 +1269,6 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents lblNick As Label
     Friend WithEvents lblPass As Label
     Friend WithEvents lblChan As Label
+    Friend WithEvents listTotal As ComboBox
+    Friend WithEvents lblTotal As Label
 End Class

@@ -7,6 +7,7 @@
     Dim txtWeapons() As TextBox
     Dim txtLocations() As TextBox
     Dim txtVotes() As TextBox
+    Dim PoolCap As Integer
     ' IRC Variables
     Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
     Dim OAuth As String
@@ -66,6 +67,8 @@
         My.Settings.Weapon12 = picW12.Tag
         My.Settings.Weapon13 = picW13.Tag
         My.Settings.Weapon14 = picW14.Tag
+
+        My.Settings.PoolCap = PoolCap
     End Sub
     Private Sub LoadSettings()
         'Load user settings
@@ -104,6 +107,7 @@
         picW13.Tag = My.Settings.Weapon13
         picW14.Tag = My.Settings.Weapon14
 
+        'load weapons images into slots based on tag info. any new guns added must be added to this list
         For i = 0 To 13
             Select Case picAllWeapons(i).Tag
                 Case "Hawksaw"
@@ -133,8 +137,12 @@
                 Case "Zhalo"
                     picAllWeapons(i).Image = My.Resources.Zhalo
             End Select
-
         Next
+
+        PoolCap = My.Settings.PoolCap
+        SetPool()
+
+
     End Sub
     Private Sub Down()
         cmdVote1.Enabled = Not cmdVote1.Enabled
@@ -236,6 +244,9 @@
                 ElseIf txtRandomGun3.Text = txtLastGun.Text Then
                     txtRandomGun3.Text = Rand(1, 15)
                 End If
+                looper = True
+
+
                 looper = True
             End If
         Loop While looper
@@ -604,6 +615,7 @@
         End If
     End Sub
     Private Sub cmdSendWeaponToSlot_Click(sender As Object, e As EventArgs) Handles cmdSendWeaponToSlot.Click
+        'each new weapon added must be added to this list
         Dim l As Integer
         l = listWeaponSlot.SelectedItem - 1
         Select Case listWeaponName.SelectedItem
@@ -652,5 +664,122 @@
         End Select
     End Sub
 
-
+    Private Sub listTotal_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listTotal.SelectedIndexChanged
+        PoolCap = listTotal.SelectedItem
+        SetPool()
+    End Sub
+    Private Sub SetPool()
+        Select Case PoolCap
+            Case 3
+                For i = 3 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                    My.Settings.PoolCap = 3
+                Next i
+            Case 4
+                picAllWeapons(3).Visible = True
+                txtLocations(3).Visible = True
+                For i = 4 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 4
+            Case 5
+                For i = 3 To 4
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 5 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 5
+            Case 6
+                For i = 3 To 5
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 6 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 6
+            Case 7
+                For i = 3 To 6
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 7 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 7
+            Case 8
+                For i = 3 To 7
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 8 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 8
+            Case 9
+                For i = 3 To 8
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 9 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 9
+            Case 10
+                For i = 3 To 9
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 10 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 10
+            Case 11
+                For i = 3 To 10
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 11 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 11
+            Case 12
+                For i = 3 To 11
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 12 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 12
+            Case 13
+                For i = 3 To 12
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                For i = 13 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 13
+            Case 14
+                For i = 3 To 13
+                    picAllWeapons(i).Visible = False
+                    txtLocations(i).Visible = False
+                Next i
+                My.Settings.PoolCap = 14
+        End Select
+    End Sub
 End Class
