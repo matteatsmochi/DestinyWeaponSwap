@@ -260,7 +260,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Hawksaw")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Random")>  _
         Public Property Weapon1() As String
             Get
                 Return CType(Me("Weapon1"),String)
@@ -471,6 +471,54 @@ Namespace My
             End Get
             Set
                 Me("PointY") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Hawksaw")>  _
+        Public Property Weapon15() As String
+            Get
+                Return CType(Me("Weapon15"),String)
+            End Get
+            Set
+                Me("Weapon15") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property LocW15() As Integer
+            Get
+                Return CType(Me("LocW15"),Integer)
+            End Get
+            Set
+                Me("LocW15") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property Random() As Boolean
+            Get
+                Return CType(Me("Random"),Boolean)
+            End Get
+            Set
+                Me("Random") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property RandomOrNo() As Integer
+            Get
+                Return CType(Me("RandomOrNo"),Integer)
+            End Get
+            Set
+                Me("RandomOrNo") = value
             End Set
         End Property
     End Class

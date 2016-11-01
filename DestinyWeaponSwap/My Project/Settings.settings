@@ -54,7 +54,7 @@
       <Value Profile="(Default)">14</Value>
     </Setting>
     <Setting Name="Weapon1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Hawksaw</Value>
+      <Value Profile="(Default)">Random</Value>
     </Setting>
     <Setting Name="Weapon2" Type="System.String" Scope="User">
       <Value Profile="(Default)">Hawkmoon</Value>
@@ -106,6 +106,18 @@
     </Setting>
     <Setting Name="PointY" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">446</Value>
+    </Setting>
+    <Setting Name="Weapon15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hawksaw</Value>
+    </Setting>
+    <Setting Name="LocW15" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Random" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RandomOrNo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

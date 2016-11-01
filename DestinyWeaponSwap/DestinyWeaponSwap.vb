@@ -1,4 +1,6 @@
-﻿Public Class frmDestinyWeaponSwap
+﻿Imports System.Runtime.InteropServices
+
+Public Class frmDestinyWeaponSwap
     ' Set up Arrays for Weapons
     Dim picAllWeapons() As PictureBox
     Dim picWeapons() As PictureBox
@@ -10,6 +12,7 @@
     Dim PoolCap As Integer
     Dim PointX As Integer
     Dim PointY As Integer
+    Dim RandomOrNo As Integer
     ' IRC Variables
     Dim WithEvents Client As New IrcDotNet.TwitchIrcClient
     Dim OAuth As String
@@ -19,6 +22,36 @@
     'One-Line Sub Declarations
     Delegate Sub SetTextCallback(ByVal [text] As String)
     Declare Sub mouse_event Lib "user32.dll" Alias "mouse_event" (ByVal dwFlags As Int32, ByVal dx As Int32, ByVal dy As Int32, ByVal cButtons As Int32, ByVal dwExtraInfo As Int32)
+
+
+    Public Const MOD_ALT As Integer = &H1 'Alt key
+    Public Const WM_HOTKEY As Integer = &H312
+    <DllImport("User32.dll")>
+    Public Shared Function RegisterHotKey(ByVal hwnd As IntPtr, ByVal id As Integer, ByVal fsModifiers As Integer, ByVal vk As Integer) As Integer
+    End Function
+    <DllImport("User32.dll")>
+    Public Shared Function UnregisterHotKey(ByVal hwnd As IntPtr, ByVal id As Integer) As Integer
+    End Function
+
+
+    Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
+        If m.Msg = WM_HOTKEY Then
+            Dim id As IntPtr = m.WParam
+            Select Case (id.ToString)
+                Case "100"
+                    Vote(1)
+
+                Case "200"
+                    Vote(2)
+
+                Case "300"
+                    Vote(3)
+
+            End Select
+        End If
+        MyBase.WndProc(m)
+    End Sub
+
     Private Sub frmDestinyWeaponSwap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Width = "570"
         barVotes = New PictureBox() {barVote1, barVote2, barVote3}
@@ -32,6 +65,11 @@
         Down()
         RandomWeapons()
         LoadSettings()
+
+        'Loading the Form and putting all image boxes in the correct place
+        RegisterHotKey(Me.Handle, 100, 0, Keys.F6)
+        RegisterHotKey(Me.Handle, 200, 0, Keys.F7)
+        RegisterHotKey(Me.Handle, 300, 0, Keys.F8)
     End Sub
     Private Sub frmDestinyWeaponSwap_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         'Save settings when closing nick pass channel auto
@@ -40,7 +78,8 @@
         My.Settings.Channel = txtChan.Text
         My.Settings.AutoJoin = chkAutoJoin.Checked
 
-        My.Settings.LocW1 = txtLocationW1.Text
+        My.Settings.Random = chkRandom.Checked
+        My.Settings.RandomOrNo = RandomOrNo
         My.Settings.LocW2 = txtLocationW2.Text
         My.Settings.LocW3 = txtLocationW3.Text
         My.Settings.LocW4 = txtLocationW4.Text
@@ -54,8 +93,9 @@
         My.Settings.LocW12 = txtLocationW12.Text
         My.Settings.LocW13 = txtLocationW13.Text
         My.Settings.LocW14 = txtLocationW14.Text
+        My.Settings.LocW15 = txtLocationW15.Text
 
-        My.Settings.Weapon1 = picW1.Tag
+
         My.Settings.Weapon2 = picW2.Tag
         My.Settings.Weapon3 = picW3.Tag
         My.Settings.Weapon4 = picW4.Tag
@@ -69,6 +109,7 @@
         My.Settings.Weapon12 = picW12.Tag
         My.Settings.Weapon13 = picW13.Tag
         My.Settings.Weapon14 = picW14.Tag
+        My.Settings.Weapon15 = picW15.Tag
 
         My.Settings.PoolCap = PoolCap
 
@@ -82,7 +123,8 @@
         txtChan.Text = My.Settings.Channel
         chkAutoJoin.Checked = My.Settings.AutoJoin
 
-        txtLocationW1.Text = My.Settings.LocW1
+        chkRandom.Checked = My.Settings.Random
+        RandomOrNo = My.Settings.RandomOrNo
         txtLocationW2.Text = My.Settings.LocW2
         txtLocationW3.Text = My.Settings.LocW3
         txtLocationW4.Text = My.Settings.LocW4
@@ -97,7 +139,7 @@
         txtLocationW13.Text = My.Settings.LocW13
         txtLocationW14.Text = My.Settings.LocW14
 
-        picW1.Tag = My.Settings.Weapon1
+
         picW2.Tag = My.Settings.Weapon2
         picW3.Tag = My.Settings.Weapon3
         picW4.Tag = My.Settings.Weapon4
@@ -113,7 +155,7 @@
         picW14.Tag = My.Settings.Weapon14
 
         'load weapons images into slots based on tag info. any new guns added must be added to this list
-        For i = 0 To 13
+        For i = 1 To 14
             Select Case picAllWeapons(i).Tag
                 Case "Hawksaw"
                     picAllWeapons(i).Image = My.Resources.Hawksaw
@@ -125,8 +167,8 @@
                     picAllWeapons(i).Image = My.Resources.MIDA
                 Case "MonteCarlo"
                     picAllWeapons(i).Image = My.Resources.MonteCarlo
-                Case "NoLandBeyond"
-                    picAllWeapons(i).Image = My.Resources.NoLandBeyond
+                Case "Palindrome"
+                    picAllWeapons(i).Image = My.Resources.Palindrome
                 Case "NTTE"
                     picAllWeapons(i).Image = My.Resources.NTTE
                 Case "SurosRegime"
@@ -145,7 +187,7 @@
         Next
 
         PoolCap = My.Settings.PoolCap
-        SetPool()
+        'SetPool()
 
         PointX = My.Settings.PointX
         PointY = My.Settings.PointY
@@ -228,27 +270,27 @@
         'Select 3 Ramdom Guns for a poll. Do not include the last used gun
 
         For i = 0 To 2
-            txtWeapons(i).Text = Rand(1, 15)
+            txtWeapons(i).Text = Rand(RandomOrNo, 15)
         Next
 
         Do
             looper = False
             If txtRandomGun1.Text = txtRandomGun2.Text Or txtRandomGun2.Text = txtRandomGun3.Text Or txtRandomGun1.Text = txtRandomGun3.Text Then
                 If txtRandomGun1.Text = txtRandomGun2.Text Then
-                    txtRandomGun1.Text = Rand(1, 15)
+                    txtRandomGun1.Text = Rand(RandomOrNo, 15)
                 ElseIf txtRandomGun2.Text = txtRandomGun3.Text Then
-                    txtRandomGun2.Text = Rand(1, 15)
+                    txtRandomGun2.Text = Rand(RandomOrNo, 15)
                 ElseIf txtRandomGun1.Text = txtRandomGun3.Text Then
-                    txtRandomGun3.Text = Rand(1, 15)
+                    txtRandomGun3.Text = Rand(RandomOrNo, 15)
                 End If
                 looper = True
             ElseIf txtRandomGun1.Text = txtLastGun.Text Or txtRandomGun2.Text = txtLastGun.Text Or txtRandomGun3.Text = txtLastGun.Text Then
                 If txtRandomGun1.Text = txtLastGun.Text Then
-                    txtRandomGun1.Text = Rand(1, 15)
+                    txtRandomGun1.Text = Rand(RandomOrNo, 15)
                 ElseIf txtRandomGun2.Text = txtLastGun.Text Then
-                    txtRandomGun2.Text = Rand(1, 15)
+                    txtRandomGun2.Text = Rand(RandomOrNo, 15)
                 ElseIf txtRandomGun3.Text = txtLastGun.Text Then
-                    txtRandomGun3.Text = Rand(1, 15)
+                    txtRandomGun3.Text = Rand(RandomOrNo, 15)
                 End If
                 looper = True
 
@@ -273,40 +315,9 @@
             End If
         Next
     End Sub
-    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        Select Case e.KeyCode
-            Case Keys.A
-                Voter(picW1.Tag)
-            Case Keys.B
-                Voter(picW2.Tag)
-            Case Keys.C
-                Voter(picW3.Tag)
-            Case Keys.D
-                Voter(picW4.Tag)
-            Case Keys.E
-                Voter(picW5.Tag)
-            Case Keys.F
-                Voter(picW6.Tag)
-            Case Keys.G
-                Voter(picW7.Tag)
-            Case Keys.H
-                Voter(picW8.Tag)
-            Case Keys.I
-                Voter(picW9.Tag)
-            Case Keys.J
-                Voter(picW10.Tag)
-            Case Keys.K
-                Voter(picW11.Tag)
-            Case Keys.L
-                Voter(picW12.Tag)
-            Case Keys.M
-                Voter(picW13.Tag)
-            Case Keys.N
-                Voter(picW14.Tag)
-            Case Keys.O
-                Voter(picW15.Tag)
-        End Select
-    End Sub
+
+
+
     Private Sub cmdVote1_Click(sender As Object, e As EventArgs) Handles cmdVote1.Click
         Vote(1)
     End Sub
@@ -624,7 +635,7 @@
     Private Sub cmdSendWeaponToSlot_Click(sender As Object, e As EventArgs) Handles cmdSendWeaponToSlot.Click
         'each new weapon added must be added to this list
         Dim l As Integer
-        l = listWeaponSlot.SelectedItem - 1
+        l = listWeaponSlot.SelectedItem
         Select Case listWeaponName.SelectedItem
             Case "Hawksaw"
                 picAllWeapons(l).Image = My.Resources.Hawksaw
@@ -641,9 +652,9 @@
             Case "MonteCarlo"
                 picAllWeapons(l).Image = My.Resources.MonteCarlo
                 picAllWeapons(l).Tag = "MonteCarlo"
-            Case "NoLandBeyond"
-                picAllWeapons(l).Image = My.Resources.NoLandBeyond
-                picAllWeapons(l).Tag = "NoLandBeyond"
+            Case "Palindrome"
+                picAllWeapons(l).Image = My.Resources.Palindrome
+                picAllWeapons(l).Tag = "Palindrome"
             Case "NTTE"
                 picAllWeapons(l).Image = My.Resources.NTTE
                 picAllWeapons(l).Tag = "NTTE"
@@ -672,8 +683,8 @@
     End Sub
 
     Private Sub listTotal_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listTotal.SelectedIndexChanged
-        PoolCap = listTotal.SelectedItem
-        SetPool()
+        'PoolCap = Int(listTotal.SelectedItem)
+        'SetPool()
     End Sub
     Private Sub SetPool()
         Select Case PoolCap
@@ -793,5 +804,19 @@
     Private Sub cmdCalibrate_Click(sender As Object, e As EventArgs) Handles cmdCalibrate.Click
         tmrMouseLoc.Enabled = True
         txtPlayerStatus.Text = "Calibrating"
+    End Sub
+
+    Private Sub chkRandom_CheckedChanged(sender As Object, e As EventArgs) Handles chkRandom.CheckedChanged
+        If chkRandom.Checked = True Then
+            RandomOrNo = 1
+        Else
+            RandomOrNo = 2
+        End If
+    End Sub
+
+    Private Sub frmDestinyWeaponSwap_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        UnregisterHotKey(Me.Handle, 100)
+        UnregisterHotKey(Me.Handle, 200)
+        UnregisterHotKey(Me.Handle, 300)
     End Sub
 End Class

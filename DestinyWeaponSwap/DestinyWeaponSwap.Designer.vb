@@ -24,13 +24,6 @@ Partial Class frmDestinyWeaponSwap
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDestinyWeaponSwap))
-        Me.picWeapon1 = New System.Windows.Forms.PictureBox()
-        Me.picWeapon2 = New System.Windows.Forms.PictureBox()
-        Me.picWeapon3 = New System.Windows.Forms.PictureBox()
-        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
-        Me.barVote3 = New System.Windows.Forms.PictureBox()
-        Me.barVote2 = New System.Windows.Forms.PictureBox()
-        Me.barVote1 = New System.Windows.Forms.PictureBox()
         Me.lblWeaponName1 = New System.Windows.Forms.Label()
         Me.lblWeaponName2 = New System.Windows.Forms.Label()
         Me.lblWeaponName3 = New System.Windows.Forms.Label()
@@ -44,11 +37,9 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdUpDown = New System.Windows.Forms.Button()
         Me.tmrUpDown = New System.Windows.Forms.Timer(Me.components)
         Me.txtUpDown = New System.Windows.Forms.TextBox()
-        Me.picW1 = New System.Windows.Forms.PictureBox()
         Me.txtCheckNo = New System.Windows.Forms.TextBox()
         Me.txtCheckYes = New System.Windows.Forms.TextBox()
         Me.txtPlayerStatus = New System.Windows.Forms.TextBox()
-        Me.picReticleColor = New System.Windows.Forms.PictureBox()
         Me.txtReticleColor = New System.Windows.Forms.TextBox()
         Me.txtLocationW1 = New System.Windows.Forms.TextBox()
         Me.txtLocationW2 = New System.Windows.Forms.TextBox()
@@ -79,30 +70,13 @@ Partial Class frmDestinyWeaponSwap
         Me.tmrSpawnCheck = New System.Windows.Forms.Timer(Me.components)
         Me.tmrDeathCheck = New System.Windows.Forms.Timer(Me.components)
         Me.tmrTakeWeaponWait = New System.Windows.Forms.Timer(Me.components)
-        Me.picActive = New System.Windows.Forms.PictureBox()
-        Me.picOnDeck = New System.Windows.Forms.PictureBox()
         Me.txtLocationWActive = New System.Windows.Forms.TextBox()
         Me.txtLocationOnDeck = New System.Windows.Forms.TextBox()
         Me.txtMouseLoc = New System.Windows.Forms.TextBox()
         Me.tmrMouseLoc = New System.Windows.Forms.Timer(Me.components)
         Me.txt3Strikes = New System.Windows.Forms.TextBox()
         Me.txtWinnerLocation = New System.Windows.Forms.TextBox()
-        Me.picW3 = New System.Windows.Forms.PictureBox()
-        Me.picW4 = New System.Windows.Forms.PictureBox()
-        Me.picW5 = New System.Windows.Forms.PictureBox()
-        Me.picW6 = New System.Windows.Forms.PictureBox()
-        Me.picW7 = New System.Windows.Forms.PictureBox()
-        Me.picW8 = New System.Windows.Forms.PictureBox()
-        Me.picW9 = New System.Windows.Forms.PictureBox()
-        Me.picW10 = New System.Windows.Forms.PictureBox()
-        Me.picW11 = New System.Windows.Forms.PictureBox()
-        Me.picW12 = New System.Windows.Forms.PictureBox()
-        Me.picW13 = New System.Windows.Forms.PictureBox()
-        Me.picW14 = New System.Windows.Forms.PictureBox()
-        Me.picW15 = New System.Windows.Forms.PictureBox()
-        Me.picW2 = New System.Windows.Forms.PictureBox()
         Me.cmdManualAuto = New System.Windows.Forms.Button()
-        Me.picLime = New System.Windows.Forms.PictureBox()
         Me.listWeaponSlot = New System.Windows.Forms.ComboBox()
         Me.cmdSendWeaponToSlot = New System.Windows.Forms.Button()
         Me.listWeaponName = New System.Windows.Forms.ComboBox()
@@ -122,106 +96,60 @@ Partial Class frmDestinyWeaponSwap
         Me.listTotal = New System.Windows.Forms.ComboBox()
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.cmdCalibrate = New System.Windows.Forms.Button()
-        CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.barVote3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.barVote2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.barVote1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.chkRandom = New System.Windows.Forms.CheckBox()
+        Me.picOnDeck = New System.Windows.Forms.PictureBox()
+        Me.picActive = New System.Windows.Forms.PictureBox()
+        Me.picReticleColor = New System.Windows.Forms.PictureBox()
+        Me.picW13 = New System.Windows.Forms.PictureBox()
+        Me.picW9 = New System.Windows.Forms.PictureBox()
+        Me.picW6 = New System.Windows.Forms.PictureBox()
+        Me.picW3 = New System.Windows.Forms.PictureBox()
+        Me.picW11 = New System.Windows.Forms.PictureBox()
+        Me.picW15 = New System.Windows.Forms.PictureBox()
+        Me.picW12 = New System.Windows.Forms.PictureBox()
+        Me.picW8 = New System.Windows.Forms.PictureBox()
+        Me.picW5 = New System.Windows.Forms.PictureBox()
+        Me.picW2 = New System.Windows.Forms.PictureBox()
+        Me.picW14 = New System.Windows.Forms.PictureBox()
+        Me.picW10 = New System.Windows.Forms.PictureBox()
+        Me.picW7 = New System.Windows.Forms.PictureBox()
+        Me.picW4 = New System.Windows.Forms.PictureBox()
+        Me.picW1 = New System.Windows.Forms.PictureBox()
+        Me.barVote1 = New System.Windows.Forms.PictureBox()
+        Me.barVote2 = New System.Windows.Forms.PictureBox()
+        Me.barVote3 = New System.Windows.Forms.PictureBox()
+        Me.picWeapon3 = New System.Windows.Forms.PictureBox()
+        Me.picWeapon2 = New System.Windows.Forms.PictureBox()
+        Me.picWeapon1 = New System.Windows.Forms.PictureBox()
+        Me.picSwapPlate = New System.Windows.Forms.PictureBox()
+        Me.picLime = New System.Windows.Forms.PictureBox()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picW14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picW1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.barVote1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.barVote2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.barVote3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picLime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'picWeapon1
-        '
-        Me.picWeapon1.BackColor = System.Drawing.Color.Yellow
-        Me.picWeapon1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picWeapon1.Image = CType(resources.GetObject("picWeapon1.Image"), System.Drawing.Image)
-        Me.picWeapon1.Location = New System.Drawing.Point(2, 89)
-        Me.picWeapon1.Name = "picWeapon1"
-        Me.picWeapon1.Size = New System.Drawing.Size(100, 100)
-        Me.picWeapon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picWeapon1.TabIndex = 0
-        Me.picWeapon1.TabStop = False
-        '
-        'picWeapon2
-        '
-        Me.picWeapon2.BackColor = System.Drawing.Color.Yellow
-        Me.picWeapon2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picWeapon2.Image = CType(resources.GetObject("picWeapon2.Image"), System.Drawing.Image)
-        Me.picWeapon2.Location = New System.Drawing.Point(2, 275)
-        Me.picWeapon2.Name = "picWeapon2"
-        Me.picWeapon2.Size = New System.Drawing.Size(100, 100)
-        Me.picWeapon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picWeapon2.TabIndex = 1
-        Me.picWeapon2.TabStop = False
-        '
-        'picWeapon3
-        '
-        Me.picWeapon3.BackColor = System.Drawing.Color.Yellow
-        Me.picWeapon3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picWeapon3.Image = CType(resources.GetObject("picWeapon3.Image"), System.Drawing.Image)
-        Me.picWeapon3.Location = New System.Drawing.Point(2, 463)
-        Me.picWeapon3.Name = "picWeapon3"
-        Me.picWeapon3.Size = New System.Drawing.Size(100, 100)
-        Me.picWeapon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picWeapon3.TabIndex = 2
-        Me.picWeapon3.TabStop = False
-        '
-        'picSwapPlate
-        '
-        Me.picSwapPlate.BackColor = System.Drawing.Color.Lime
-        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
-        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
-        Me.picSwapPlate.Name = "picSwapPlate"
-        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
-        Me.picSwapPlate.TabIndex = 3
-        Me.picSwapPlate.TabStop = False
-        '
-        'barVote3
-        '
-        Me.barVote3.BackColor = System.Drawing.Color.Red
-        Me.barVote3.Location = New System.Drawing.Point(0, 611)
-        Me.barVote3.Name = "barVote3"
-        Me.barVote3.Size = New System.Drawing.Size(200, 10)
-        Me.barVote3.TabIndex = 4
-        Me.barVote3.TabStop = False
-        '
-        'barVote2
-        '
-        Me.barVote2.BackColor = System.Drawing.Color.Red
-        Me.barVote2.Location = New System.Drawing.Point(0, 423)
-        Me.barVote2.Name = "barVote2"
-        Me.barVote2.Size = New System.Drawing.Size(200, 10)
-        Me.barVote2.TabIndex = 5
-        Me.barVote2.TabStop = False
-        '
-        'barVote1
-        '
-        Me.barVote1.BackColor = System.Drawing.Color.Red
-        Me.barVote1.Location = New System.Drawing.Point(0, 237)
-        Me.barVote1.Name = "barVote1"
-        Me.barVote1.Size = New System.Drawing.Size(200, 10)
-        Me.barVote1.TabIndex = 6
-        Me.barVote1.TabStop = False
         '
         'lblWeaponName1
         '
@@ -344,18 +272,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtUpDown.TabIndex = 18
         Me.txtUpDown.Text = "0"
         '
-        'picW1
-        '
-        Me.picW1.Image = CType(resources.GetObject("picW1.Image"), System.Drawing.Image)
-        Me.picW1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW1.Location = New System.Drawing.Point(221, 133)
-        Me.picW1.Name = "picW1"
-        Me.picW1.Size = New System.Drawing.Size(25, 25)
-        Me.picW1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW1.TabIndex = 43
-        Me.picW1.TabStop = False
-        Me.picW1.Tag = "Hawksaw"
-        '
         'txtCheckNo
         '
         Me.txtCheckNo.Enabled = False
@@ -383,17 +299,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtPlayerStatus.TabIndex = 66
         Me.txtPlayerStatus.Text = "Alive"
         '
-        'picReticleColor
-        '
-        Me.picReticleColor.BackColor = System.Drawing.Color.Lime
-        Me.picReticleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
-        Me.picReticleColor.Name = "picReticleColor"
-        Me.picReticleColor.Size = New System.Drawing.Size(85, 50)
-        Me.picReticleColor.TabIndex = 65
-        Me.picReticleColor.TabStop = False
-        '
         'txtReticleColor
         '
         Me.txtReticleColor.Location = New System.Drawing.Point(317, 131)
@@ -407,7 +312,8 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW1.Name = "txtLocationW1"
         Me.txtLocationW1.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW1.TabIndex = 69
-        Me.txtLocationW1.Text = "2"
+        Me.txtLocationW1.Text = "R"
+        Me.txtLocationW1.Visible = False
         '
         'txtLocationW2
         '
@@ -519,7 +425,7 @@ Partial Class frmDestinyWeaponSwap
         Me.txtLocationW15.Name = "txtLocationW15"
         Me.txtLocationW15.Size = New System.Drawing.Size(27, 20)
         Me.txtLocationW15.TabIndex = 83
-        Me.txtLocationW15.Text = "R"
+        Me.txtLocationW15.Text = "2"
         '
         'cmdSendNew
         '
@@ -624,28 +530,6 @@ Partial Class frmDestinyWeaponSwap
         '
         Me.tmrTakeWeaponWait.Interval = 1000
         '
-        'picActive
-        '
-        Me.picActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picActive.Image = CType(resources.GetObject("picActive.Image"), System.Drawing.Image)
-        Me.picActive.Location = New System.Drawing.Point(370, 528)
-        Me.picActive.Name = "picActive"
-        Me.picActive.Size = New System.Drawing.Size(115, 115)
-        Me.picActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picActive.TabIndex = 100
-        Me.picActive.TabStop = False
-        '
-        'picOnDeck
-        '
-        Me.picOnDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picOnDeck.Image = CType(resources.GetObject("picOnDeck.Image"), System.Drawing.Image)
-        Me.picOnDeck.Location = New System.Drawing.Point(491, 593)
-        Me.picOnDeck.Name = "picOnDeck"
-        Me.picOnDeck.Size = New System.Drawing.Size(50, 50)
-        Me.picOnDeck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picOnDeck.TabIndex = 101
-        Me.picOnDeck.TabStop = False
-        '
         'txtLocationWActive
         '
         Me.txtLocationWActive.Enabled = False
@@ -692,175 +576,6 @@ Partial Class frmDestinyWeaponSwap
         Me.txtWinnerLocation.TabIndex = 108
         Me.txtWinnerLocation.Text = "0"
         '
-        'picW3
-        '
-        Me.picW3.Image = CType(resources.GetObject("picW3.Image"), System.Drawing.Image)
-        Me.picW3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW3.Location = New System.Drawing.Point(221, 187)
-        Me.picW3.Name = "picW3"
-        Me.picW3.Size = New System.Drawing.Size(25, 25)
-        Me.picW3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW3.TabIndex = 59
-        Me.picW3.TabStop = False
-        Me.picW3.Tag = "LastWord"
-        '
-        'picW4
-        '
-        Me.picW4.Image = CType(resources.GetObject("picW4.Image"), System.Drawing.Image)
-        Me.picW4.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW4.Location = New System.Drawing.Point(221, 214)
-        Me.picW4.Name = "picW4"
-        Me.picW4.Size = New System.Drawing.Size(25, 25)
-        Me.picW4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW4.TabIndex = 44
-        Me.picW4.TabStop = False
-        Me.picW4.Tag = "MIDA"
-        '
-        'picW5
-        '
-        Me.picW5.Image = CType(resources.GetObject("picW5.Image"), System.Drawing.Image)
-        Me.picW5.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW5.Location = New System.Drawing.Point(221, 241)
-        Me.picW5.Name = "picW5"
-        Me.picW5.Size = New System.Drawing.Size(25, 25)
-        Me.picW5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW5.TabIndex = 52
-        Me.picW5.TabStop = False
-        Me.picW5.Tag = "Carlo"
-        '
-        'picW6
-        '
-        Me.picW6.Image = CType(resources.GetObject("picW6.Image"), System.Drawing.Image)
-        Me.picW6.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW6.Location = New System.Drawing.Point(221, 268)
-        Me.picW6.Name = "picW6"
-        Me.picW6.Size = New System.Drawing.Size(25, 25)
-        Me.picW6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW6.TabIndex = 60
-        Me.picW6.TabStop = False
-        Me.picW6.Tag = "NLB"
-        '
-        'picW7
-        '
-        Me.picW7.Image = CType(resources.GetObject("picW7.Image"), System.Drawing.Image)
-        Me.picW7.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW7.Location = New System.Drawing.Point(221, 295)
-        Me.picW7.Name = "picW7"
-        Me.picW7.Size = New System.Drawing.Size(25, 25)
-        Me.picW7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW7.TabIndex = 45
-        Me.picW7.TabStop = False
-        Me.picW7.Tag = "NTtE"
-        '
-        'picW8
-        '
-        Me.picW8.Image = CType(resources.GetObject("picW8.Image"), System.Drawing.Image)
-        Me.picW8.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW8.Location = New System.Drawing.Point(221, 322)
-        Me.picW8.Name = "picW8"
-        Me.picW8.Size = New System.Drawing.Size(25, 25)
-        Me.picW8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW8.TabIndex = 53
-        Me.picW8.TabStop = False
-        Me.picW8.Tag = "RedDeath"
-        '
-        'picW9
-        '
-        Me.picW9.Image = CType(resources.GetObject("picW9.Image"), System.Drawing.Image)
-        Me.picW9.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW9.Location = New System.Drawing.Point(221, 349)
-        Me.picW9.Name = "picW9"
-        Me.picW9.Size = New System.Drawing.Size(25, 25)
-        Me.picW9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW9.TabIndex = 61
-        Me.picW9.TabStop = False
-        Me.picW9.Tag = "Regime"
-        '
-        'picW10
-        '
-        Me.picW10.Image = CType(resources.GetObject("picW10.Image"), System.Drawing.Image)
-        Me.picW10.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW10.Location = New System.Drawing.Point(221, 376)
-        Me.picW10.Name = "picW10"
-        Me.picW10.Size = New System.Drawing.Size(25, 25)
-        Me.picW10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW10.TabIndex = 46
-        Me.picW10.TabStop = False
-        Me.picW10.Tag = "Thorn"
-        '
-        'picW11
-        '
-        Me.picW11.Image = CType(resources.GetObject("picW11.Image"), System.Drawing.Image)
-        Me.picW11.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW11.Location = New System.Drawing.Point(221, 403)
-        Me.picW11.Name = "picW11"
-        Me.picW11.Size = New System.Drawing.Size(25, 25)
-        Me.picW11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW11.TabIndex = 57
-        Me.picW11.TabStop = False
-        Me.picW11.Tag = "PDX45"
-        '
-        'picW12
-        '
-        Me.picW12.Image = CType(resources.GetObject("picW12.Image"), System.Drawing.Image)
-        Me.picW12.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW12.Location = New System.Drawing.Point(221, 430)
-        Me.picW12.Name = "picW12"
-        Me.picW12.Size = New System.Drawing.Size(25, 25)
-        Me.picW12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW12.TabIndex = 54
-        Me.picW12.TabStop = False
-        Me.picW12.Tag = "Remote"
-        '
-        'picW13
-        '
-        Me.picW13.Image = CType(resources.GetObject("picW13.Image"), System.Drawing.Image)
-        Me.picW13.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW13.Location = New System.Drawing.Point(221, 457)
-        Me.picW13.Name = "picW13"
-        Me.picW13.Size = New System.Drawing.Size(25, 25)
-        Me.picW13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW13.TabIndex = 62
-        Me.picW13.TabStop = False
-        Me.picW13.Tag = "Vex"
-        '
-        'picW14
-        '
-        Me.picW14.Image = CType(resources.GetObject("picW14.Image"), System.Drawing.Image)
-        Me.picW14.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW14.Location = New System.Drawing.Point(221, 484)
-        Me.picW14.Name = "picW14"
-        Me.picW14.Size = New System.Drawing.Size(25, 25)
-        Me.picW14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW14.TabIndex = 47
-        Me.picW14.TabStop = False
-        Me.picW14.Tag = "Zhalo"
-        '
-        'picW15
-        '
-        Me.picW15.BackColor = System.Drawing.Color.Yellow
-        Me.picW15.Image = CType(resources.GetObject("picW15.Image"), System.Drawing.Image)
-        Me.picW15.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW15.Location = New System.Drawing.Point(221, 511)
-        Me.picW15.Name = "picW15"
-        Me.picW15.Size = New System.Drawing.Size(25, 25)
-        Me.picW15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW15.TabIndex = 55
-        Me.picW15.TabStop = False
-        Me.picW15.Tag = "Random"
-        '
-        'picW2
-        '
-        Me.picW2.Image = CType(resources.GetObject("picW2.Image"), System.Drawing.Image)
-        Me.picW2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.picW2.Location = New System.Drawing.Point(221, 160)
-        Me.picW2.Name = "picW2"
-        Me.picW2.Size = New System.Drawing.Size(25, 25)
-        Me.picW2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picW2.TabIndex = 51
-        Me.picW2.TabStop = False
-        Me.picW2.Tag = "Hawkmoon"
-        '
         'cmdManualAuto
         '
         Me.cmdManualAuto.Location = New System.Drawing.Point(422, 205)
@@ -869,15 +584,6 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdManualAuto.TabIndex = 114
         Me.cmdManualAuto.Text = "Manual"
         Me.cmdManualAuto.UseVisualStyleBackColor = True
-        '
-        'picLime
-        '
-        Me.picLime.BackColor = System.Drawing.Color.Lime
-        Me.picLime.Location = New System.Drawing.Point(0, 0)
-        Me.picLime.Name = "picLime"
-        Me.picLime.Size = New System.Drawing.Size(215, 680)
-        Me.picLime.TabIndex = 115
-        Me.picLime.TabStop = False
         '
         'listWeaponSlot
         '
@@ -1050,12 +756,320 @@ Partial Class frmDestinyWeaponSwap
         Me.cmdCalibrate.Text = "Change Point"
         Me.cmdCalibrate.UseVisualStyleBackColor = True
         '
+        'chkRandom
+        '
+        Me.chkRandom.AutoSize = True
+        Me.chkRandom.Location = New System.Drawing.Point(252, 138)
+        Me.chkRandom.Name = "chkRandom"
+        Me.chkRandom.Size = New System.Drawing.Size(66, 17)
+        Me.chkRandom.TabIndex = 135
+        Me.chkRandom.Text = "Random"
+        Me.chkRandom.UseVisualStyleBackColor = True
+        '
+        'picOnDeck
+        '
+        Me.picOnDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picOnDeck.Image = CType(resources.GetObject("picOnDeck.Image"), System.Drawing.Image)
+        Me.picOnDeck.Location = New System.Drawing.Point(491, 593)
+        Me.picOnDeck.Name = "picOnDeck"
+        Me.picOnDeck.Size = New System.Drawing.Size(50, 50)
+        Me.picOnDeck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picOnDeck.TabIndex = 101
+        Me.picOnDeck.TabStop = False
+        '
+        'picActive
+        '
+        Me.picActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picActive.Image = CType(resources.GetObject("picActive.Image"), System.Drawing.Image)
+        Me.picActive.Location = New System.Drawing.Point(370, 528)
+        Me.picActive.Name = "picActive"
+        Me.picActive.Size = New System.Drawing.Size(115, 115)
+        Me.picActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picActive.TabIndex = 100
+        Me.picActive.TabStop = False
+        '
+        'picReticleColor
+        '
+        Me.picReticleColor.BackColor = System.Drawing.Color.Lime
+        Me.picReticleColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picReticleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picReticleColor.Location = New System.Drawing.Point(317, 157)
+        Me.picReticleColor.Name = "picReticleColor"
+        Me.picReticleColor.Size = New System.Drawing.Size(85, 50)
+        Me.picReticleColor.TabIndex = 65
+        Me.picReticleColor.TabStop = False
+        '
+        'picW13
+        '
+        Me.picW13.Image = CType(resources.GetObject("picW13.Image"), System.Drawing.Image)
+        Me.picW13.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW13.Location = New System.Drawing.Point(221, 457)
+        Me.picW13.Name = "picW13"
+        Me.picW13.Size = New System.Drawing.Size(25, 25)
+        Me.picW13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW13.TabIndex = 62
+        Me.picW13.TabStop = False
+        Me.picW13.Tag = "Vex"
+        '
+        'picW9
+        '
+        Me.picW9.Image = CType(resources.GetObject("picW9.Image"), System.Drawing.Image)
+        Me.picW9.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW9.Location = New System.Drawing.Point(221, 349)
+        Me.picW9.Name = "picW9"
+        Me.picW9.Size = New System.Drawing.Size(25, 25)
+        Me.picW9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW9.TabIndex = 61
+        Me.picW9.TabStop = False
+        Me.picW9.Tag = "Regime"
+        '
+        'picW6
+        '
+        Me.picW6.Image = CType(resources.GetObject("picW6.Image"), System.Drawing.Image)
+        Me.picW6.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW6.Location = New System.Drawing.Point(221, 268)
+        Me.picW6.Name = "picW6"
+        Me.picW6.Size = New System.Drawing.Size(25, 25)
+        Me.picW6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW6.TabIndex = 60
+        Me.picW6.TabStop = False
+        Me.picW6.Tag = "Palindrome"
+        '
+        'picW3
+        '
+        Me.picW3.Image = CType(resources.GetObject("picW3.Image"), System.Drawing.Image)
+        Me.picW3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW3.Location = New System.Drawing.Point(221, 187)
+        Me.picW3.Name = "picW3"
+        Me.picW3.Size = New System.Drawing.Size(25, 25)
+        Me.picW3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW3.TabIndex = 59
+        Me.picW3.TabStop = False
+        Me.picW3.Tag = "LastWord"
+        '
+        'picW11
+        '
+        Me.picW11.Image = CType(resources.GetObject("picW11.Image"), System.Drawing.Image)
+        Me.picW11.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW11.Location = New System.Drawing.Point(221, 403)
+        Me.picW11.Name = "picW11"
+        Me.picW11.Size = New System.Drawing.Size(25, 25)
+        Me.picW11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW11.TabIndex = 57
+        Me.picW11.TabStop = False
+        Me.picW11.Tag = "PDX45"
+        '
+        'picW15
+        '
+        Me.picW15.BackColor = System.Drawing.Color.DimGray
+        Me.picW15.Image = Global.DestinyWeaponSwap.My.Resources.Resources.Hawksaw
+        Me.picW15.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW15.Location = New System.Drawing.Point(221, 511)
+        Me.picW15.Name = "picW15"
+        Me.picW15.Size = New System.Drawing.Size(25, 25)
+        Me.picW15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW15.TabIndex = 55
+        Me.picW15.TabStop = False
+        Me.picW15.Tag = "Hawksaw"
+        '
+        'picW12
+        '
+        Me.picW12.Image = CType(resources.GetObject("picW12.Image"), System.Drawing.Image)
+        Me.picW12.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW12.Location = New System.Drawing.Point(221, 430)
+        Me.picW12.Name = "picW12"
+        Me.picW12.Size = New System.Drawing.Size(25, 25)
+        Me.picW12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW12.TabIndex = 54
+        Me.picW12.TabStop = False
+        Me.picW12.Tag = "Remote"
+        '
+        'picW8
+        '
+        Me.picW8.Image = CType(resources.GetObject("picW8.Image"), System.Drawing.Image)
+        Me.picW8.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW8.Location = New System.Drawing.Point(221, 322)
+        Me.picW8.Name = "picW8"
+        Me.picW8.Size = New System.Drawing.Size(25, 25)
+        Me.picW8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW8.TabIndex = 53
+        Me.picW8.TabStop = False
+        Me.picW8.Tag = "RedDeath"
+        '
+        'picW5
+        '
+        Me.picW5.Image = CType(resources.GetObject("picW5.Image"), System.Drawing.Image)
+        Me.picW5.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW5.Location = New System.Drawing.Point(221, 241)
+        Me.picW5.Name = "picW5"
+        Me.picW5.Size = New System.Drawing.Size(25, 25)
+        Me.picW5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW5.TabIndex = 52
+        Me.picW5.TabStop = False
+        Me.picW5.Tag = "Carlo"
+        '
+        'picW2
+        '
+        Me.picW2.Image = CType(resources.GetObject("picW2.Image"), System.Drawing.Image)
+        Me.picW2.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW2.Location = New System.Drawing.Point(221, 160)
+        Me.picW2.Name = "picW2"
+        Me.picW2.Size = New System.Drawing.Size(25, 25)
+        Me.picW2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW2.TabIndex = 51
+        Me.picW2.TabStop = False
+        Me.picW2.Tag = "Hawkmoon"
+        '
+        'picW14
+        '
+        Me.picW14.Image = CType(resources.GetObject("picW14.Image"), System.Drawing.Image)
+        Me.picW14.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW14.Location = New System.Drawing.Point(221, 484)
+        Me.picW14.Name = "picW14"
+        Me.picW14.Size = New System.Drawing.Size(25, 25)
+        Me.picW14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW14.TabIndex = 47
+        Me.picW14.TabStop = False
+        Me.picW14.Tag = "Zhalo"
+        '
+        'picW10
+        '
+        Me.picW10.Image = CType(resources.GetObject("picW10.Image"), System.Drawing.Image)
+        Me.picW10.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW10.Location = New System.Drawing.Point(221, 376)
+        Me.picW10.Name = "picW10"
+        Me.picW10.Size = New System.Drawing.Size(25, 25)
+        Me.picW10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW10.TabIndex = 46
+        Me.picW10.TabStop = False
+        Me.picW10.Tag = "Thorn"
+        '
+        'picW7
+        '
+        Me.picW7.Image = CType(resources.GetObject("picW7.Image"), System.Drawing.Image)
+        Me.picW7.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW7.Location = New System.Drawing.Point(221, 295)
+        Me.picW7.Name = "picW7"
+        Me.picW7.Size = New System.Drawing.Size(25, 25)
+        Me.picW7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW7.TabIndex = 45
+        Me.picW7.TabStop = False
+        Me.picW7.Tag = "NTtE"
+        '
+        'picW4
+        '
+        Me.picW4.Image = CType(resources.GetObject("picW4.Image"), System.Drawing.Image)
+        Me.picW4.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW4.Location = New System.Drawing.Point(221, 214)
+        Me.picW4.Name = "picW4"
+        Me.picW4.Size = New System.Drawing.Size(25, 25)
+        Me.picW4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW4.TabIndex = 44
+        Me.picW4.TabStop = False
+        Me.picW4.Tag = "MIDA"
+        '
+        'picW1
+        '
+        Me.picW1.BackColor = System.Drawing.Color.Yellow
+        Me.picW1.Image = Global.DestinyWeaponSwap.My.Resources.Resources.Random
+        Me.picW1.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.picW1.Location = New System.Drawing.Point(221, 133)
+        Me.picW1.Name = "picW1"
+        Me.picW1.Size = New System.Drawing.Size(25, 25)
+        Me.picW1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picW1.TabIndex = 43
+        Me.picW1.TabStop = False
+        Me.picW1.Tag = "Random"
+        '
+        'barVote1
+        '
+        Me.barVote1.BackColor = System.Drawing.Color.Red
+        Me.barVote1.Location = New System.Drawing.Point(0, 237)
+        Me.barVote1.Name = "barVote1"
+        Me.barVote1.Size = New System.Drawing.Size(200, 10)
+        Me.barVote1.TabIndex = 6
+        Me.barVote1.TabStop = False
+        '
+        'barVote2
+        '
+        Me.barVote2.BackColor = System.Drawing.Color.Red
+        Me.barVote2.Location = New System.Drawing.Point(0, 423)
+        Me.barVote2.Name = "barVote2"
+        Me.barVote2.Size = New System.Drawing.Size(200, 10)
+        Me.barVote2.TabIndex = 5
+        Me.barVote2.TabStop = False
+        '
+        'barVote3
+        '
+        Me.barVote3.BackColor = System.Drawing.Color.Red
+        Me.barVote3.Location = New System.Drawing.Point(0, 611)
+        Me.barVote3.Name = "barVote3"
+        Me.barVote3.Size = New System.Drawing.Size(200, 10)
+        Me.barVote3.TabIndex = 4
+        Me.barVote3.TabStop = False
+        '
+        'picWeapon3
+        '
+        Me.picWeapon3.BackColor = System.Drawing.Color.Yellow
+        Me.picWeapon3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picWeapon3.Image = CType(resources.GetObject("picWeapon3.Image"), System.Drawing.Image)
+        Me.picWeapon3.Location = New System.Drawing.Point(2, 463)
+        Me.picWeapon3.Name = "picWeapon3"
+        Me.picWeapon3.Size = New System.Drawing.Size(100, 100)
+        Me.picWeapon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picWeapon3.TabIndex = 2
+        Me.picWeapon3.TabStop = False
+        '
+        'picWeapon2
+        '
+        Me.picWeapon2.BackColor = System.Drawing.Color.Yellow
+        Me.picWeapon2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picWeapon2.Image = CType(resources.GetObject("picWeapon2.Image"), System.Drawing.Image)
+        Me.picWeapon2.Location = New System.Drawing.Point(2, 275)
+        Me.picWeapon2.Name = "picWeapon2"
+        Me.picWeapon2.Size = New System.Drawing.Size(100, 100)
+        Me.picWeapon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picWeapon2.TabIndex = 1
+        Me.picWeapon2.TabStop = False
+        '
+        'picWeapon1
+        '
+        Me.picWeapon1.BackColor = System.Drawing.Color.Yellow
+        Me.picWeapon1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picWeapon1.Image = CType(resources.GetObject("picWeapon1.Image"), System.Drawing.Image)
+        Me.picWeapon1.Location = New System.Drawing.Point(2, 89)
+        Me.picWeapon1.Name = "picWeapon1"
+        Me.picWeapon1.Size = New System.Drawing.Size(100, 100)
+        Me.picWeapon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picWeapon1.TabIndex = 0
+        Me.picWeapon1.TabStop = False
+        '
+        'picSwapPlate
+        '
+        Me.picSwapPlate.BackColor = System.Drawing.Color.Lime
+        Me.picSwapPlate.Image = CType(resources.GetObject("picSwapPlate.Image"), System.Drawing.Image)
+        Me.picSwapPlate.Location = New System.Drawing.Point(0, 0)
+        Me.picSwapPlate.Name = "picSwapPlate"
+        Me.picSwapPlate.Size = New System.Drawing.Size(215, 680)
+        Me.picSwapPlate.TabIndex = 3
+        Me.picSwapPlate.TabStop = False
+        '
+        'picLime
+        '
+        Me.picLime.BackColor = System.Drawing.Color.Lime
+        Me.picLime.Location = New System.Drawing.Point(0, 0)
+        Me.picLime.Name = "picLime"
+        Me.picLime.Size = New System.Drawing.Size(215, 680)
+        Me.picLime.TabIndex = 115
+        Me.picLime.TabStop = False
+        '
         'frmDestinyWeaponSwap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DimGray
         Me.ClientSize = New System.Drawing.Size(859, 681)
+        Me.Controls.Add(Me.chkRandom)
         Me.Controls.Add(Me.cmdCalibrate)
         Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.listTotal)
@@ -1154,31 +1168,31 @@ Partial Class frmDestinyWeaponSwap
         Me.MinimizeBox = False
         Me.Name = "frmDestinyWeaponSwap"
         Me.Text = "Destiny Weapon Swap"
-        CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.barVote3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.barVote2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.barVote1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picOnDeck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picActive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picReticleColor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picW14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picW2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picW1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.barVote1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.barVote2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.barVote3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picWeapon3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picWeapon2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picWeapon1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picSwapPlate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picLime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1283,4 +1297,5 @@ Partial Class frmDestinyWeaponSwap
     Friend WithEvents listTotal As ComboBox
     Friend WithEvents lblTotal As Label
     Friend WithEvents cmdCalibrate As Button
+    Friend WithEvents chkRandom As CheckBox
 End Class

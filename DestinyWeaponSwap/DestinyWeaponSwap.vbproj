@@ -228,7 +228,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WutFace.png" />
+    <None Include="Resources\SMOrc.png" />
+    <None Include="Resources\PJSalt.png" />
+    <None Include="Resources\4Head.png" />
+    <None Include="Resources\BabyRage.png" />
+    <None Include="Resources\FrankerZ.png" />
+    <None Include="Resources\HeyGuys.png" />
+    <None Include="Resources\Kappa.png" />
+    <None Include="Resources\NotLikeThis.png" />
     <Content Include="Resources\Null.png" />
+    <None Include="Resources\Palindrome.jpg" />
+    <None Include="Resources\Palindrome.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

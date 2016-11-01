@@ -178,4 +178,34 @@
   <data name="SwitchGun" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Que01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BabyRage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BabyRage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FrankerZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FrankerZ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeyGuys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeyGuys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kappa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Kappa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotLikeThis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotLikeThis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Palindrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palindrome.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PJSalt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PJSalt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SMOrc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMOrc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WutFace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WutFace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4Head" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4Head.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
